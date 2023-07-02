@@ -1,5 +1,7 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.MathUtils;
+
 /**
  * Immutable class for all swarm positions representation.
  */
@@ -62,6 +64,15 @@ public final class Position {
      */
     public boolean isPositive() {
         return x > 0 && y > 0;
+    }
+
+    /**
+     * Check if the position is equal to another position, with the configured tolerance.
+     * @param p second position
+     * @return true if the two positions are equal, false otherwise
+     */
+    public boolean isEqual(Position p) {
+        return MathUtils.compare(x, p.x) == 0 && MathUtils.compare(y, p.y) == 0;
     }
 
     /**

@@ -52,12 +52,23 @@ public final class SwarmProperties {
         throw new IllegalStateException("Static class cannot be instantiated.");
     }
 
+    /**
+     * Initialize the swarm properties.
+     *
+     * @throws HiveMindException if an error occurs while getting the properties file or parsing it
+     */
     public static void initialize() throws HiveMindException {
         if (!(Double.isFinite(tolerance) && tolerance >= 0))
             throw new SwarmException("Swarm properties tolerance must be finite and non-negative.");
         loadFile();
     }
 
+    /**
+     * Load the appropriate swarm properties file.
+     * If the custom file is not found, the default one is copied from the resources.
+     *
+     * @throws HiveMindException if an error occurs while getting the properties file or parsing it
+     */
     private static void loadFile() throws HiveMindException {
         InputStream swarmPropertiesStream;
         File customSwarmPropertiesFile = new File(SWARM_FOLDER + CUSTOM_SWARM_PROPERTIES_FILE_NAME);
@@ -77,15 +88,21 @@ public final class SwarmProperties {
         parseProperties(swarmPropertiesStream);
     }
 
+    /**
+     * Parse the swarm properties file.
+     *
+     * @param swarmPropertiesStream input stream for the properties
+     * @throws HiveMindException if an error occurs while parsing the properties
+     */
     private static void parseProperties(InputStream swarmPropertiesStream) throws HiveMindException {
         ObjectMapper mapper = new ObjectMapper();
         try {
             JsonNode root = mapper.readTree(swarmPropertiesStream);
-            SwarmProperties.tolerance = root.get("tolerance").asDouble();
-            SwarmProperties.maxPolygonVertices = root.get("maxPolygonVertices").asInt();
-            SwarmProperties.signalPattern = Pattern.compile(root.get("signalRegex").asText());
-            SwarmProperties.echoPattern = Pattern.compile(root.get("echoRegex").asText());
-        } catch (IOException e) {
+            tolerance = root.get("tolerance").requireNonNull().asDouble();
+            maxPolygonVertices = root.get("maxPolygonVertices").requireNonNull().asInt();
+            signalPattern = Pattern.compile(root.get("signalRegex").requireNonNull().asText());
+            echoPattern = Pattern.compile(root.get("echoRegex").requireNonNull().asText());
+        } catch (IOException | IllegalArgumentException e) {
             throw new HiveMindException("Error while parsing swarm properties.", e);
         }
     }
