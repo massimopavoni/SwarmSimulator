@@ -1,0 +1,6 @@
+{
+  "tolerance": 0.000000001,
+  "maxPolygonVertices": 64,
+  "signalRegex": "^[A-Za-z\\d_]+$",
+  "echoRegex": "^[A-Za-z\\d_]+$"
+}

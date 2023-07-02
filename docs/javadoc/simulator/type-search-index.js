@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"it.unicam.cs.massimopavoni.swarmsimulator.simulator","l":"App"}];updateSearchResults();
