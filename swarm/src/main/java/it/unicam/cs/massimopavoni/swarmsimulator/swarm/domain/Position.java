@@ -68,6 +68,7 @@ public final class Position {
 
     /**
      * Check if the position is equal to another position, with the configured tolerance.
+     *
      * @param p second position
      * @return true if the two positions are equal, false otherwise
      */

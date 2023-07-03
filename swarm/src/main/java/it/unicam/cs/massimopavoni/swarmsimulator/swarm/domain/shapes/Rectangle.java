@@ -26,10 +26,10 @@ public class Rectangle extends Polygon implements Shape {
      */
     public Rectangle(Position center, Position widthHeight) {
         super(List.of(
-                new Position(center.x() - widthHeight.x() / 2, center.y() + widthHeight.y() / 2),
-                new Position(center.x() + widthHeight.x() / 2, center.y() + widthHeight.y() / 2),
+                new Position(center.x() - widthHeight.x() / 2, center.y() - widthHeight.y() / 2),
                 new Position(center.x() + widthHeight.x() / 2, center.y() - widthHeight.y() / 2),
-                new Position(center.x() - widthHeight.x() / 2, center.y() - widthHeight.y() / 2)));
+                new Position(center.x() + widthHeight.x() / 2, center.y() + widthHeight.y() / 2),
+                new Position(center.x() - widthHeight.x() / 2, center.y() + widthHeight.y() / 2)));
         this.center = center;
         this.widthHeight = widthHeight;
     }
@@ -62,7 +62,7 @@ public class Rectangle extends Polygon implements Shape {
     public boolean contains(Position p) {
         return MathUtils.compare(p.x(), vertices.get(0).x()) >= 0 &&
                 MathUtils.compare(p.x(), vertices.get(2).x()) <= 0 &&
-                MathUtils.compare(p.y(), vertices.get(2).y()) >= 0 &&
-                MathUtils.compare(p.y(), vertices.get(0).y()) <= 0;
+                MathUtils.compare(p.y(), vertices.get(0).y()) >= 0 &&
+                MathUtils.compare(p.y(), vertices.get(2).y()) <= 0;
     }
 }

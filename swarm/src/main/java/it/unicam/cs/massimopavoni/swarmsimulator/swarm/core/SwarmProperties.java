@@ -25,7 +25,8 @@ public final class SwarmProperties {
     /**
      * Default swarm properties resource location if no custom file is found.
      */
-    private static final String DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION = "defaultSwarmProperties.json";
+    private static final String DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION =
+            "it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/defaultSwarmProperties.json";
     /**
      * Tolerance for double comparisons.
      */
