@@ -35,18 +35,38 @@ public class Polygon implements Shape {
      *                        or if the polygon is self-intersecting
      */
     public Polygon(List<Position> vertices) {
-        this.vertices = vertices.stream().distinct().collect(toImmutableList());
-        if (vertices.size() < 3 || vertices.size() > SwarmProperties.maxPolygonVertices())
-            throw new ShapeException(String.format("A polygon shape must have between 3 and %d vertices.",
+        this.vertices = uniqueVertices(vertices).stream().collect(toImmutableList());
+        if (this.vertices.size() < 3 || this.vertices.size() > SwarmProperties.maxPolygonVertices())
+            throw new ShapeException(String.format("A polygon shape must have between 3 and %d distinct vertices.",
                     SwarmProperties.maxPolygonVertices()));
-        this.xVertices = new double[vertices.size()];
-        this.yVertices = new double[vertices.size()];
+        this.xVertices = new double[this.vertices.size()];
+        this.yVertices = new double[this.vertices.size()];
         this.vertices.forEach(v -> {
             xVertices[this.vertices.indexOf(v)] = v.x();
             yVertices[this.vertices.indexOf(v)] = v.y();
         });
         if (isSelfIntersectingPolygon())
             throw new ShapeException("A polygon shape cannot have self-intersections.");
+    }
+
+    /**
+     * Take unique vertices from the list of vertices.
+     * Cannot use stream approaches or sets because of the fuzzy nature of positions equality (isEqual method),
+     * and resulting impossible coherent transitive equals and hashCode implementations.
+     *
+     * @param vertices list of vertices
+     * @return immutable list of unique vertices
+     */
+    private List<Position> uniqueVertices(List<Position> vertices) {
+        for (int i = 0; i < vertices.size(); i++) {
+            for (int j = i + 1; j < vertices.size(); j++) {
+                if (vertices.get(i).isEqual(vertices.get(j))) {
+                    vertices.remove(i--);
+                    break;
+                }
+            }
+        }
+        return vertices;
     }
 
     /**
@@ -85,8 +105,10 @@ public class Polygon implements Shape {
     private boolean isSelfIntersectingPolygon() {
         for (int i = 0; i < xVertices.length; i++) {
             for (int j = i + 1; j < xVertices.length; j++) {
-                if (Line2D.linesIntersect(xVertices[i], yVertices[i], xVertices[i + 1], yVertices[i + 1],
-                        xVertices[j], yVertices[j], xVertices[j + 1], yVertices[j + 1]))
+                if (Line2D.linesIntersect(xVertices[i], yVertices[i],
+                        xVertices[(i + 1) % xVertices.length], yVertices[(i + 1) % xVertices.length],
+                        xVertices[j], yVertices[j],
+                        xVertices[(j + 1) % xVertices.length], yVertices[(j + 1) % xVertices.length]))
                     return true;
             }
         }
