@@ -10,6 +10,8 @@ repositories {
     mavenCentral()
 }
 
+rootProject.version = "0.0.1-SNAPSHOT"
+
 sonar {
     properties {
         property("sonar.projectName", rootProject.name)

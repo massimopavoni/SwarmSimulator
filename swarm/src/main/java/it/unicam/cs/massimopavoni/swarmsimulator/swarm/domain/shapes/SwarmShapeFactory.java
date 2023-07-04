@@ -2,6 +2,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
+import java.util.ArrayList;
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
 
@@ -43,8 +44,8 @@ public final class SwarmShapeFactory implements ShapeFactory {
     public Shape createPolygon(double[] args) {
         checkArgumentsOrThrow(args.length, l -> l >= 6 && l % 2 == 0,
                 "A polygon shape requires at least 6 arguments and an even number of arguments.");
-        return new Polygon(IntStream.iterate(0, i -> i + 2).limit(args.length / 2)
-                .mapToObj(i -> new Position(args[i], args[i + 1])).toList());
+        return new Polygon(new ArrayList<>(IntStream.iterate(0, i -> i + 2).limit(args.length / 2)
+                .mapToObj(i -> new Position(args[i], args[i + 1])).toList()));
     }
 
     /**

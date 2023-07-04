@@ -12,7 +12,7 @@ public interface ShapeFactory {
      * @return the created shape
      */
     default Shape createShape(String shapeName, double[] args) {
-        ParserShape parserShape = ParserShape.fromString(shapeName)
+        ParserShape parserShape = ParserShape.fromString(shapeName.toLowerCase())
                 .orElseThrow(() -> new ShapeException("Specified shape is unavailable."));
         return switch (parserShape) {
             case CIRCLE -> createCircle(args);
