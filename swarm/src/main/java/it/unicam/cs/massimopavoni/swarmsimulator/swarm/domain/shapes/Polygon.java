@@ -44,7 +44,7 @@ public class Polygon implements Shape {
         int i;
         for (i = 0; i < vertices.size(); i++) {
             for (int j = i + 1; j < vertices.size(); j++) {
-                if (vertices.get(i).isEqual(vertices.get(j))) {
+                if (vertices.get(i).equalTo(vertices.get(j))) {
                     vertices.remove(i--);
                     break;
                 }
@@ -77,7 +77,7 @@ public class Polygon implements Shape {
         Position jp;
         for (int i = 0; i < vertices.size(); i++) {
             ip = vertices.get(i);
-            if (p.isEqual(ip))
+            if (p.equalTo(ip))
                 return true;
             jp = vertices.get(j);
             if (MathUtils.compare(ip.y(), p.y()) > 0 != MathUtils.compare(jp.y(), p.y()) > 0) {

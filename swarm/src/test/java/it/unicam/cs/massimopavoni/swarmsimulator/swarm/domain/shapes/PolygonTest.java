@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,10 +55,15 @@ class PolygonTest {
 
     @Test
     void Polygon_correctNumberOfVertices() {
-        assertDoesNotThrow(() -> new Polygon(new ArrayList<>(List.of(
-                new Position(0, 0),
-                new Position(1, 1),
-                new Position(1, 0)))));
+        AtomicReference<Polygon> p = new AtomicReference<>();
+        assertAll(
+                () -> assertDoesNotThrow(() -> p.set(new Polygon(new ArrayList<>(List.of(
+                        new Position(0, 0),
+                        new Position(1, 1),
+                        new Position(1, 0)))))),
+                () -> assertTrue(p.get().getVertices().get(0).equalTo(new Position(0, 0))),
+                () -> assertTrue(p.get().getVertices().get(1).equalTo(new Position(1, 1))),
+                () -> assertTrue(p.get().getVertices().get(2).equalTo(new Position(1, 0))));
     }
 
     @Test

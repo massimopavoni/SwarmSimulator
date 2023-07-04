@@ -3,6 +3,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.MathUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,11 +26,13 @@ public class Rectangle extends Polygon implements Shape {
      * @param widthHeight rectangle width and height
      */
     public Rectangle(Position center, Position widthHeight) {
-        super(List.of(
+        super(new ArrayList<>(List.of(
                 new Position(center.x() - widthHeight.x() / 2, center.y() - widthHeight.y() / 2),
                 new Position(center.x() + widthHeight.x() / 2, center.y() - widthHeight.y() / 2),
                 new Position(center.x() + widthHeight.x() / 2, center.y() + widthHeight.y() / 2),
-                new Position(center.x() - widthHeight.x() / 2, center.y() + widthHeight.y() / 2)));
+                new Position(center.x() - widthHeight.x() / 2, center.y() + widthHeight.y() / 2))));
+        if (!widthHeight.isPositive())
+            throw new ShapeException("A rectangle shape must have positive width and height.");
         this.center = center;
         this.widthHeight = widthHeight;
     }

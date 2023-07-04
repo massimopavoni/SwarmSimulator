@@ -79,13 +79,13 @@ class PositionTest {
     }
 
     @Test
-    void isEqual() {
+    void equalTo() {
         Position p = new Position(-2, 3);
         assertAll(
-                () -> assertFalse(p.isEqual(new Position(-2.000000000001, 2.999999999998))),
-                () -> assertFalse(p.isEqual(new Position(-2.0000000000009, 2.999999999998))),
-                () -> assertFalse(p.isEqual(new Position(-2.000000000001, 2.9999999999999))),
-                () -> assertTrue(p.isEqual(new Position(-2.0000000000009, 2.9999999999999))));
+                () -> assertFalse(p.equalTo(new Position(-2.000000000001, 2.999999999998))),
+                () -> assertFalse(p.equalTo(new Position(-2.0000000000009, 2.999999999998))),
+                () -> assertFalse(p.equalTo(new Position(-2.000000000001, 2.9999999999999))),
+                () -> assertTrue(p.equalTo(new Position(-2.0000000000009, 2.9999999999999))));
     }
 
     @Test
@@ -93,7 +93,7 @@ class PositionTest {
         Position p = new Position(3, 4);
         Position dp = new Position(6, Math.sqrt(7));
         Position pd = p.translate(dp);
-        assertTrue(pd.isEqual(new Position(9, 6.64575131106459059050162)));
+        assertTrue(pd.equalTo(new Position(9, 6.64575131106459059050162)));
     }
 
     @Test
@@ -112,7 +112,7 @@ class PositionTest {
     void scale_finite() {
         Position p = new Position(3.5, -0.4);
         Position ps = p.scale(Math.sqrt(23.765));
-        assertTrue(ps.isEqual(new Position(17.0622756395505461896230, -1.94997435880577670738548)));
+        assertTrue(ps.equalTo(new Position(17.0622756395505461896230, -1.94997435880577670738548)));
     }
 
     @Test
@@ -134,6 +134,6 @@ class PositionTest {
         Position p0 = new Position(2, 9);
         Position p1 = new Position(-8.7, -0.5);
         Position pt = p0.directionTo(p1);
-        assertTrue(pt.isEqual(new Position(-0.747794778251355629849493, -0.663929943307278362950484)));
+        assertTrue(pt.equalTo(new Position(-0.747794778251355629849493, -0.663929943307278362950484)));
     }
 }

@@ -72,7 +72,7 @@ public final class Position {
      * @param p second position
      * @return true if the two positions are equal, false otherwise
      */
-    public boolean isEqual(Position p) {
+    public boolean equalTo(Position p) {
         return MathUtils.compare(x, p.x) == 0 && MathUtils.compare(y, p.y) == 0;
     }
 
