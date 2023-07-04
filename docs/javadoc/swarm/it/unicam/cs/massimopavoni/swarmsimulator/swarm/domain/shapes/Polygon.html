@@ -143,16 +143,6 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">List of vertices' positions getter.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getXVertices()" class="member-name-link">getXVertices</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Array of vertices' x coordinates getter.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getYVertices()" class="member-name-link">getYVertices</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Array of vertices' y coordinates getter.</div>
-</div>
 </div>
 </div>
 </div>
@@ -220,33 +210,11 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 </section>
 </li>
 <li>
-<section class="detail" id="getXVertices()">
-<h3>getXVertices</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">getXVertices</span>()</div>
-<div class="block">Array of vertices' x coordinates getter.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>vertices' x coordinates</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getYVertices()">
-<h3>getYVertices</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">getYVertices</span>()</div>
-<div class="block">Array of vertices' y coordinates getter.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>vertices' y coordinates</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="contains(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)">
 <h3>contains</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">contains</span><wbr><span class="parameters">(<a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;p)</span></div>
 <div class="block">Checks if a position is contained in the polygon shape.
- See: <a href="https://wrfranklin.org/Research/Short_Notes/pnpoly.html">pnpoly</a></div>
+ Uses even-odd vector graphics rule.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Shape.html#contains(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)">contains</a></code>&nbsp;in interface&nbsp;<code><a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></code></dd>

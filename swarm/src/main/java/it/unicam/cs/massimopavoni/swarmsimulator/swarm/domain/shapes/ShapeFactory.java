@@ -5,7 +5,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
  */
 public interface ShapeFactory {
     /**
-     * Default creation method for a shape from its name and arguments.
+     * Default creation method for a shape from its name (case-insensitive) and arguments.
      *
      * @param shapeName name of the shape
      * @param args      arguments of the shape
