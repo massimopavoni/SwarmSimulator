@@ -20,11 +20,11 @@ public final class Position {
      *
      * @param x first coordinate
      * @param y second coordinate
-     * @throws IllegalPositionException if the position is not finite
+     * @throws PositionException if the position is not finite
      */
     public Position(double x, double y) {
         if (!(Double.isFinite(x) && Double.isFinite(y)))
-            throw new IllegalPositionException("Domain coordinates must be finite.");
+            throw new PositionException("Domain coordinates must be finite.");
         this.x = x;
         this.y = y;
     }
@@ -91,10 +91,10 @@ public final class Position {
      *
      * @param scalar scalar to multiply
      * @return scaled position
-     * @throws IllegalPositionException if the scalar is not finite
+     * @throws PositionException if the scalar is not finite
      */
     public Position scale(double scalar) {
-        if (!(Double.isFinite(scalar))) throw new IllegalPositionException("Scalar to multiply must be finite.");
+        if (!(Double.isFinite(scalar))) throw new PositionException("Scalar to multiply must be finite.");
         return new Position(x * scalar, y * scalar);
     }
 

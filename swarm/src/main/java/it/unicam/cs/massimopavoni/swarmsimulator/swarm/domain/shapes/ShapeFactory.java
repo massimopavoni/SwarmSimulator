@@ -5,16 +5,14 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
  */
 public interface ShapeFactory {
     /**
-     * Default creation method for a shape from its name (case-insensitive) and arguments.
+     * Default creation method for a shape from shape type and arguments.
      *
-     * @param shapeName name of the shape
+     * @param shapeType type of the shape
      * @param args      arguments of the shape
      * @return the created shape
      */
-    default Shape createShape(String shapeName, double[] args) {
-        ParserShape parserShape = ParserShape.fromString(shapeName.toLowerCase())
-                .orElseThrow(() -> new ShapeException("Specified shape is unavailable."));
-        return switch (parserShape) {
+    default Shape createShape(ShapeType shapeType, double[] args) {
+        return switch (shapeType) {
             case CIRCLE -> createCircle(args);
             case ELLIPSE -> createEllipse(args);
             case POLYGON -> createPolygon(args);

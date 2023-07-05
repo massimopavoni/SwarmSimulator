@@ -28,12 +28,6 @@ class SwarmShapeFactoryTest {
     }
 
     @Test
-    void createShape_unavailableShape() {
-        assertThrowsExactly(ShapeException.class,
-                () -> swarmShapeFactory.createShape("unavailable", new double[]{0, 0, 1}));
-    }
-
-    @Test
     void createShape_correctShape() {
         AtomicReference<Shape> circle = new AtomicReference<>();
         AtomicReference<Shape> ellipse = new AtomicReference<>();
@@ -42,20 +36,20 @@ class SwarmShapeFactoryTest {
         assertAll(
                 () -> assertDoesNotThrow(
                         () -> circle.set(
-                                swarmShapeFactory.createShape("ciRCle", new double[]{0, 0, 1}))),
-                () -> assertEquals(ParserShape.CIRCLE.getShapeClass(), circle.get().getClass()),
+                                swarmShapeFactory.createShape(ShapeType.CIRCLE, new double[]{0, 0, 1}))),
+                () -> assertEquals(ShapeType.CIRCLE.getShapeClass(), circle.get().getClass()),
                 () -> assertDoesNotThrow(
                         () -> ellipse.set(
-                                swarmShapeFactory.createShape("ELLipsE", new double[]{0, 0, 1, 2}))),
-                () -> assertEquals(ParserShape.ELLIPSE.getShapeClass(), ellipse.get().getClass()),
+                                swarmShapeFactory.createShape(ShapeType.ELLIPSE, new double[]{0, 0, 1, 2}))),
+                () -> assertEquals(ShapeType.ELLIPSE.getShapeClass(), ellipse.get().getClass()),
                 () -> assertDoesNotThrow(
                         () -> polygon.set(
-                                swarmShapeFactory.createShape("PoLyGoN", new double[]{0, 0, 1, 1, 2, 2}))),
-                () -> assertEquals(ParserShape.POLYGON.getShapeClass(), polygon.get().getClass()),
+                                swarmShapeFactory.createShape(ShapeType.POLYGON, new double[]{0, 0, 1, 1, 2, 2}))),
+                () -> assertEquals(ShapeType.POLYGON.getShapeClass(), polygon.get().getClass()),
                 () -> assertDoesNotThrow(
                         () -> rectangle.set(
-                                swarmShapeFactory.createShape("RECTAngle", new double[]{0, 0, 1, 2}))),
-                () -> assertEquals(ParserShape.RECTANGLE.getShapeClass(), rectangle.get().getClass()));
+                                swarmShapeFactory.createShape(ShapeType.RECTANGLE, new double[]{0, 0, 1, 2}))),
+                () -> assertEquals(ShapeType.RECTANGLE.getShapeClass(), rectangle.get().getClass()));
     }
 
     @Test

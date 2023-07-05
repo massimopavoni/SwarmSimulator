@@ -113,10 +113,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a rectangle shape.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#createShape(java.lang.String,double%5B%5D)" class="member-name-link">createShape</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;shapeName,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#createShape(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType,double%5B%5D)" class="member-name-link">createShape</a><wbr>(<a href="ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a>&nbsp;shapeType,
  double[]&nbsp;args)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
-<div class="block">Default creation method for a shape from its name (case-insensitive) and arguments.</div>
+<div class="block">Default creation method for a shape from shape type and arguments.</div>
 </div>
 </div>
 </div>
@@ -133,14 +133,14 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="createShape(java.lang.String,double[])">
+<section class="detail" id="createShape(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType,double[])">
 <h3>createShape</h3>
-<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></span>&nbsp;<span class="element-name">createShape</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;shapeName,
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></span>&nbsp;<span class="element-name">createShape</span><wbr><span class="parameters">(<a href="ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a>&nbsp;shapeType,
  double[]&nbsp;args)</span></div>
-<div class="block">Default creation method for a shape from its name (case-insensitive) and arguments.</div>
+<div class="block">Default creation method for a shape from shape type and arguments.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>shapeName</code> - name of the shape</dd>
+<dd><code>shapeType</code> - type of the shape</dd>
 <dd><code>args</code> - arguments of the shape</dd>
 <dt>Returns:</dt>
 <dd>the created shape</dd>

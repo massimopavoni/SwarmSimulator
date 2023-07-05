@@ -27,23 +27,23 @@ class PositionTest {
     @Test
     void Position_nonFinite() {
         assertAll(
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(Double.POSITIVE_INFINITY, 0)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(0, Double.POSITIVE_INFINITY)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(Double.NEGATIVE_INFINITY, 0)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(0, Double.NEGATIVE_INFINITY)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(Double.NaN, 0)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(0, Double.NaN)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(Double.NaN, Double.NaN)));
     }
 
@@ -100,11 +100,11 @@ class PositionTest {
     void scale_nonFinite() {
         Position p = new Position(7, -2);
         assertAll(
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> p.scale(Double.POSITIVE_INFINITY)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> p.scale(Double.NEGATIVE_INFINITY)),
-                () -> assertThrowsExactly(IllegalPositionException.class,
+                () -> assertThrowsExactly(PositionException.class,
                         () -> p.scale(Double.NaN)));
     }
 

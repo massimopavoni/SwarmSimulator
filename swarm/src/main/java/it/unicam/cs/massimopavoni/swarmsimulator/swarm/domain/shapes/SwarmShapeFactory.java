@@ -18,7 +18,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      */
     @Override
     public Shape createCircle(double[] args) {
-        checkArgumentsOrThrow(args.length, l -> l == 3, "A circle shape requires 3 arguments.");
+        acceptArgumentsOrThrow(args.length, l -> l == 3, "A circle shape requires 3 arguments.");
         return new Circle(new Position(args[0], args[1]), args[2]);
     }
 
@@ -30,7 +30,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      */
     @Override
     public Shape createEllipse(double[] args) {
-        checkArgumentsOrThrow(args.length, l -> l == 4, "An ellipse shape requires 4 arguments.");
+        acceptArgumentsOrThrow(args.length, l -> l == 4, "An ellipse shape requires 4 arguments.");
         return new Ellipse(new Position(args[0], args[1]), new Position(args[2], args[3]));
     }
 
@@ -42,7 +42,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      */
     @Override
     public Shape createPolygon(double[] args) {
-        checkArgumentsOrThrow(args.length, l -> l >= 6 && l % 2 == 0,
+        acceptArgumentsOrThrow(args.length, l -> l >= 6 && l % 2 == 0,
                 "A polygon shape requires at least 6 arguments and an even number of arguments.");
         return new Polygon(new ArrayList<>(IntStream.iterate(0, i -> i + 2).limit(args.length / 2)
                 .mapToObj(i -> new Position(args[i], args[i + 1])).toList()));
@@ -56,7 +56,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      */
     @Override
     public Shape createRectangle(double[] args) {
-        checkArgumentsOrThrow(args.length, l -> l == 4, "A rectangle shape requires 4 arguments.");
+        acceptArgumentsOrThrow(args.length, l -> l == 4, "A rectangle shape requires 4 arguments.");
         return new Rectangle(new Position(args[0], args[1]), new Position(args[2], args[3]));
     }
 
@@ -69,7 +69,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      * @param message   message to throw in case of error
      * @throws ShapeException if the number of arguments is not valid
      */
-    private void checkArgumentsOrThrow(int length, IntPredicate predicate, String message) {
+    private void acceptArgumentsOrThrow(int length, IntPredicate predicate, String message) {
         if (!predicate.test(length))
             throw new ShapeException(message);
     }

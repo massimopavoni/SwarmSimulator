@@ -79,10 +79,11 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Record Components:</dt>
 <dd><code><span id="param-signal">signal</span></code> - emitted by the region's beacon</dd>
+<dd><code><span id="param-shapeType">shapeType</span></code> - type of the shape of the region</dd>
 <dd><code><span id="param-shape">shape</span></code> - defining the region itself (essentially identifies the area of signal emission of the beacon)</dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Region</span>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signal, <a href="shapes/Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a>&nbsp;shape)
+<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">Region</span>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signal, <a href="shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a>&nbsp;shapeType, <a href="shapes/Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a>&nbsp;shape)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Class defining a region inside the swarm's domain.</div>
 </section>
@@ -96,7 +97,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)" class="member-name-link">Region</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signal,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)" class="member-name-link">Region</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signal,
+ <a href="shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a>&nbsp;shapeType,
  <a href="shapes/Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a>&nbsp;shape)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Constructor for a domain region with a given signal and shape.</div>
@@ -130,14 +132,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-shape"><code>shape</code></a> record component.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#signal()" class="member-name-link">signal</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shapeType()" class="member-name-link">shapeType</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the value of the <a href="#param-shapeType"><code>shapeType</code></a> record component.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#signal()" class="member-name-link">signal</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <a href="#param-signal"><code>signal</code></a> record component.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a string representation of this record class.</div>
 </div>
 </div>
@@ -158,17 +165,19 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)">
 <h3>Region</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Region</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signal,
+ <a href="shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a>&nbsp;shapeType,
  <a href="shapes/Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a>&nbsp;shape)</span></div>
 <div class="block">Constructor for a domain region with a given signal and shape.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>signal</code> - emitted by the region's beacon</dd>
+<dd><code>shapeType</code> - type of the shape of the region</dd>
 <dd><code>shape</code> - defining the region itself (essentially identifies the area of signal emission of the beacon)</dd>
 <dt>Throws:</dt>
-<dd><code><a href="IllegalDomainException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">IllegalDomainException</a></code> - if the signal does not match the pattern</dd>
+<dd><code><a href="DomainException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">DomainException</a></code> - if the signal does not match the pattern</dd>
 </dl>
 </section>
 </li>
@@ -229,6 +238,17 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the value of the <a href="#param-signal"><code>signal</code></a> record component</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="shapeType()">
+<h3>shapeType</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></span>&nbsp;<span class="element-name">shapeType</span>()</div>
+<div class="block">Returns the value of the <a href="#param-shapeType"><code>shapeType</code></a> record component.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the value of the <a href="#param-shapeType"><code>shapeType</code></a> record component</dd>
 </dl>
 </section>
 </li>

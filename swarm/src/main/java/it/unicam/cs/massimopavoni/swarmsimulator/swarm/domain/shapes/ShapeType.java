@@ -4,9 +4,9 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * Enum of available parser shapes to define the swarm's domain.
+ * Enum of available shapes to define the swarm's domain.
  */
-public enum ParserShape {
+public enum ShapeType {
     /**
      * <p>
      * Circle shape.
@@ -47,7 +47,7 @@ public enum ParserShape {
     RECTANGLE("rectangle", Rectangle.class);
 
     /**
-     * String representation of the shape to be parsed.
+     * String representation of the shape type.
      */
     private final String shapeName;
 
@@ -57,12 +57,12 @@ public enum ParserShape {
     private final Class<? extends Shape> shapeClass;
 
     /**
-     * Constructor for a parser shape from string representation and corresponding shape class.
+     * Constructor for a shape type from string representation and corresponding shape class.
      *
      * @param shapeName  shape string representation
      * @param shapeClass shape class
      */
-    ParserShape(String shapeName, Class<? extends Shape> shapeClass) {
+    ShapeType(String shapeName, Class<? extends Shape> shapeClass) {
         this.shapeName = shapeName;
         this.shapeClass = shapeClass;
     }
@@ -73,9 +73,9 @@ public enum ParserShape {
      * @param shapeName shape string representation
      * @return an optional with the shape, if found
      */
-    public static Optional<ParserShape> fromString(String shapeName) {
-        return Stream.of(ParserShape.values())
-                .filter(ps -> ps.shapeName.equals(shapeName))
+    public static Optional<ShapeType> fromString(String shapeName) {
+        return Stream.of(ShapeType.values())
+                .filter(st -> st.shapeName.equals(shapeName))
                 .findFirst();
     }
 

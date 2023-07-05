@@ -72,7 +72,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructor for a circle shape from its center and radius.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#CIRCLE" class="member-name-link">CIRCLE</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#CIRCLE" class="member-name-link">CIRCLE</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">
  Circle shape.</div>
@@ -146,9 +146,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Creates a rectangle shape for the swarm's domain.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeFactory.html#createShape(java.lang.String,double%5B%5D)" class="member-name-link">createShape(String, double[])</a> - Method in interface it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeFactory.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeFactory</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeFactory.html#createShape(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType,double%5B%5D)" class="member-name-link">createShape(ShapeType, double[])</a> - Method in interface it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeFactory.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeFactory</a></dt>
 <dd>
-<div class="block">Default creation method for a shape from its name (case-insensitive) and arguments.</div>
+<div class="block">Default creation method for a shape from shape type and arguments.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
@@ -181,6 +181,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/StrategyParserHandler.html#doForeverStart()" class="member-name-link">doForeverStart()</a> - Method in interface it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/StrategyParserHandler.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser">StrategyParserHandler</a></dt>
 <dd>
 <div class="block">Method invoked when a command "DO FOREVER" is parsed.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/DomainException.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">DomainException</a> - Exception in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain</a></dt>
+<dd>
+<div class="block">Runtime exception for domain..</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/DomainException.html#%3Cinit%3E(java.lang.String)" class="member-name-link">DomainException(String)</a> - Constructor for exception it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/DomainException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">DomainException</a></dt>
+<dd>
+<div class="block">Domain exception constructor with message.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/DomainParser.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser">DomainParser</a> - Class in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser</a></dt>
 <dd>
@@ -226,7 +234,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructor for an ellipse shape from its center and radius.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#ELLIPSE" class="member-name-link">ELLIPSE</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#ELLIPSE" class="member-name-link">ELLIPSE</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">
  Ellipse shape.</div>
@@ -273,7 +281,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Selects the corresponding directive from a strategy line.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#fromString(java.lang.String)" class="member-name-link">fromString(String)</a> - Static method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#fromString(java.lang.String)" class="member-name-link">fromString(String)</a> - Static method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">Selects the corresponding shape from a string.</div>
 </dd>
@@ -292,7 +300,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Radius position getter.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#getShapeClass()" class="member-name-link">getShapeClass()</a> - Method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#getShapeClass()" class="member-name-link">getShapeClass()</a> - Method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">Corresponding shape class getter.</div>
 </dd>
@@ -330,22 +338,6 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/IllegalDomainException.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">IllegalDomainException</a> - Exception in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain</a></dt>
-<dd>
-<div class="block">Runtime exception for impossible domain creation.</div>
-</dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/IllegalDomainException.html#%3Cinit%3E(java.lang.String)" class="member-name-link">IllegalDomainException(String)</a> - Constructor for exception it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/IllegalDomainException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">IllegalDomainException</a></dt>
-<dd>
-<div class="block">Illegal domain exception constructor with message.</div>
-</dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/IllegalPositionException.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">IllegalPositionException</a> - Exception in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain</a></dt>
-<dd>
-<div class="block">Runtime exception for impossible positions inside the swarm's domain.</div>
-</dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/IllegalPositionException.html#%3Cinit%3E(java.lang.String)" class="member-name-link">IllegalPositionException(String)</a> - Constructor for exception it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/IllegalPositionException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">IllegalPositionException</a></dt>
-<dd>
-<div class="block">Illegal position exception constructor with message.</div>
-</dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/SwarmProperties.html#initialize()" class="member-name-link">initialize()</a> - Static method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/SwarmProperties.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmProperties</a></dt>
 <dd>
 <div class="block">Initialize the swarm properties.</div>
@@ -435,10 +427,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/StrategyParser.html#parseRobotProgram(java.nio.file.Path)" class="member-name-link">parseRobotProgram(Path)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/StrategyParser.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser">StrategyParser</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" class="type-name-link" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a> - Enum Class in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes</a></dt>
-<dd>
-<div class="block">Enum of available parser shapes to define the swarm's domain.</div>
-</dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/StrategyParserHandler.html#parsingDone()" class="member-name-link">parsingDone()</a> - Method in interface it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/StrategyParserHandler.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser">StrategyParserHandler</a></dt>
 <dd>
 <div class="block">This method is the method that is invoked ad the end of the parse procedure.</div>
@@ -463,7 +451,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructor for a polygon shape from a list of vertices' positions.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#POLYGON" class="member-name-link">POLYGON</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#POLYGON" class="member-name-link">POLYGON</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">
  Polygon shape.</div>
@@ -480,6 +468,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Position constructor from a position.</div>
 </dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/PositionException.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">PositionException</a> - Exception in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain</a></dt>
+<dd>
+<div class="block">Runtime exception for positions inside the swarm's domain.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/PositionException.html#%3Cinit%3E(java.lang.String)" class="member-name-link">PositionException(String)</a> - Constructor for exception it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/PositionException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">PositionException</a></dt>
+<dd>
+<div class="block">Position exception constructor with message.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
@@ -495,7 +491,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructor for a rectangle shape from a list of vertices' positions.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#RECTANGLE" class="member-name-link">RECTANGLE</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#RECTANGLE" class="member-name-link">RECTANGLE</a> - Enum constant in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">
  Rectangle shape.</div>
@@ -504,7 +500,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Class defining a region inside the swarm's domain.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html#%3Cinit%3E(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)" class="member-name-link">Region(String, Shape)</a> - Constructor for record class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Region</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html#%3Cinit%3E(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)" class="member-name-link">Region(String, ShapeType, Shape)</a> - Constructor for record class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Region</a></dt>
 <dd>
 <div class="block">Constructor for a domain region with a given signal and shape.</div>
 </dd>
@@ -547,6 +543,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeFactory.html" class="type-name-link" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeFactory</a> - Interface in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes</a></dt>
 <dd>
 <div class="block">Interface defining a shape factory.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html#shapeType()" class="member-name-link">shapeType()</a> - Method in record class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Region</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html#param-shapeType"><code>shapeType</code></a> record component.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" class="type-name-link" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a> - Enum Class in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes</a></dt>
+<dd>
+<div class="block">Enum of available shapes to define the swarm's domain.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html#signal()" class="member-name-link">signal()</a> - Method in record class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Region</a></dt>
 <dd>
@@ -689,7 +693,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
@@ -697,7 +701,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html#values()" class="member-name-link">values()</a> - Static method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ParserShape.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ParserShape</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html#values()" class="member-name-link">values()</a> - Static method in enum class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/shapes/ShapeType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeType</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>

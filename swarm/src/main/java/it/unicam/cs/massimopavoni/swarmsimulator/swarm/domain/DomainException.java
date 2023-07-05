@@ -3,15 +3,15 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
 
 /**
- * Runtime exception for impossible domain creation.
+ * Runtime exception for domain..
  */
-public class IllegalDomainException extends SwarmException {
+public class DomainException extends SwarmException {
     /**
-     * Illegal domain exception constructor with message.
+     * Domain exception constructor with message.
      *
      * @param message cause of the exception
      */
-    public IllegalDomainException(String message) {
+    public DomainException(String message) {
         super(message);
     }
 }
