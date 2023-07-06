@@ -1,6 +1,9 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.MathUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
+
+import java.util.List;
+import java.util.OptionalDouble;
 
 /**
  * Immutable class for all swarm positions representation.
@@ -40,6 +43,22 @@ public final class Position {
     }
 
     /**
+     * Calculate the average position of a list of positions.
+     *
+     * @param positions list of positions
+     * @return average position
+     * @throws PositionException if the list is empty
+     */
+    public static Position averageOf(List<Position> positions) {
+        OptionalDouble x = positions.stream().mapToDouble(Position::x).average();
+        OptionalDouble y = positions.stream().mapToDouble(Position::y).average();
+        if (x.isPresent() && y.isPresent())
+            return new Position(x.getAsDouble(), y.getAsDouble());
+        else
+            throw new PositionException("Cannot calculate average of empty list.");
+    }
+
+    /**
      * First coordinate getter.
      *
      * @return first coordinate
@@ -73,7 +92,7 @@ public final class Position {
      * @return true if the two positions are equal, false otherwise
      */
     public boolean equalTo(Position p) {
-        return MathUtils.compare(x, p.x) == 0 && MathUtils.compare(y, p.y) == 0;
+        return SwarmUtils.compare(x, p.x) == 0 && SwarmUtils.compare(y, p.y) == 0;
     }
 
     /**

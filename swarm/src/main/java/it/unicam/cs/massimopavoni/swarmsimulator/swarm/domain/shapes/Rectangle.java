@@ -1,6 +1,6 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.MathUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
 import java.util.ArrayList;
@@ -63,9 +63,9 @@ public class Rectangle extends Polygon implements Shape {
      */
     @Override
     public boolean contains(Position p) {
-        return MathUtils.compare(p.x(), vertices.get(0).x()) >= 0 &&
-                MathUtils.compare(p.x(), vertices.get(2).x()) <= 0 &&
-                MathUtils.compare(p.y(), vertices.get(0).y()) >= 0 &&
-                MathUtils.compare(p.y(), vertices.get(2).y()) <= 0;
+        return SwarmUtils.compare(p.x(), vertices.get(0).x()) >= 0 &&
+                SwarmUtils.compare(p.x(), vertices.get(2).x()) <= 0 &&
+                SwarmUtils.compare(p.y(), vertices.get(0).y()) >= 0 &&
+                SwarmUtils.compare(p.y(), vertices.get(2).y()) <= 0;
     }
 }

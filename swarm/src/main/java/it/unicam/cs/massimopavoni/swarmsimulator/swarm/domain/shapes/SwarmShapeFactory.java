@@ -15,6 +15,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      *
      * @param args shape arguments
      * @return circle shape
+     * @throws ShapeException if the shape could not be created
      */
     @Override
     public Shape createCircle(double[] args) {
@@ -27,6 +28,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      *
      * @param args shape arguments
      * @return ellipse shape
+     * @throws ShapeException if the shape could not be created
      */
     @Override
     public Shape createEllipse(double[] args) {
@@ -39,6 +41,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      *
      * @param args shape arguments
      * @return polygon shape
+     * @throws ShapeException if the shape could not be created
      */
     @Override
     public Shape createPolygon(double[] args) {
@@ -53,6 +56,7 @@ public final class SwarmShapeFactory implements ShapeFactory {
      *
      * @param args shape arguments
      * @return rectangle shape
+     * @throws ShapeException if the shape could not be created
      */
     @Override
     public Shape createRectangle(double[] args) {

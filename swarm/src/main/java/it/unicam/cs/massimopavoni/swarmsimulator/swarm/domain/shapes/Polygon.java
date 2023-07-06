@@ -1,6 +1,6 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.MathUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
@@ -80,11 +80,11 @@ public class Polygon implements Shape {
             if (p.equalTo(ip))
                 return true;
             jp = vertices.get(j);
-            if (MathUtils.compare(ip.y(), p.y()) > 0 != MathUtils.compare(jp.y(), p.y()) > 0) {
+            if (SwarmUtils.compare(ip.y(), p.y()) > 0 != SwarmUtils.compare(jp.y(), p.y()) > 0) {
                 double slope = (p.x() - ip.x()) * (jp.y() - ip.y()) - (p.y() - ip.y()) * (jp.x() - ip.x());
-                if (MathUtils.compare(slope, 0) == 0)
+                if (SwarmUtils.compare(slope, 0) == 0)
                     return true;
-                if (MathUtils.compare(slope, 0) < 0 != MathUtils.compare(jp.y(), ip.y()) < 0)
+                if (SwarmUtils.compare(slope, 0) < 0 != SwarmUtils.compare(jp.y(), ip.y()) < 0)
                     result = !result;
             }
             j = i;

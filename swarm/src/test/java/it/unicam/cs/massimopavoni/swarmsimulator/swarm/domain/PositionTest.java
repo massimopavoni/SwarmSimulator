@@ -1,11 +1,13 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.MathUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
@@ -65,6 +67,22 @@ class PositionTest {
     }
 
     @Test
+    void averageOf_emptyList() {
+        assertThrowsExactly(PositionException.class, () -> Position.averageOf(List.of()));
+    }
+
+    @Test
+    void averageOf_nonEmptyList() {
+        assertTrue(new Position(1.4, 0.2).equalTo(Position.averageOf(List.of(
+                new Position(3, 2),
+                new Position(-4, 8),
+                new Position(1, -10),
+                new Position(-2, -5),
+                new Position(9, 6)
+        ))));
+    }
+
+    @Test
     void isPositive() {
         assertAll(
                 () -> assertTrue(new Position(1, 1).isPositive()),
@@ -119,14 +137,14 @@ class PositionTest {
     void distanceTo() {
         Position p0 = new Position(-1, 5);
         Position p1 = new Position(8.547, 1.333);
-        assertEquals(0, MathUtils.compare(p0.distanceTo(p1), 10.2270278184817704151750));
+        assertEquals(0, SwarmUtils.compare(p0.distanceTo(p1), 10.2270278184817704151750));
     }
 
     @Test
     void manhattanDistanceTo() {
         Position p0 = new Position(4, -26);
         Position p1 = new Position(-222, -88);
-        assertEquals(0, MathUtils.compare(p0.manhattanDistanceTo(p1), 288));
+        assertEquals(0, SwarmUtils.compare(p0.manhattanDistanceTo(p1), 288));
     }
 
     @Test

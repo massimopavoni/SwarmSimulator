@@ -1,6 +1,6 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.MathUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
 /**
@@ -26,6 +26,6 @@ public class Circle extends Ellipse implements Shape {
      */
     @Override
     public boolean contains(Position p) {
-        return MathUtils.compare(p.distanceTo(center), radius.x()) <= 0;
+        return SwarmUtils.compare(p.distanceTo(center), radius.x()) <= 0;
     }
 }

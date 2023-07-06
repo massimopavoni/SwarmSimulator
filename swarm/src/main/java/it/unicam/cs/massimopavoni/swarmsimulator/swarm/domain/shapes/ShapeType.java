@@ -1,6 +1,5 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -72,11 +71,13 @@ public enum ShapeType {
      *
      * @param shapeName shape string representation
      * @return an optional with the shape, if found
+     * @throws ShapeException if a shape for the provided shape name is not found
      */
-    public static Optional<ShapeType> fromString(String shapeName) {
+    public static ShapeType fromString(String shapeName) {
         return Stream.of(ShapeType.values())
                 .filter(st -> st.shapeName.equals(shapeName))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(() -> new ShapeException("Specified shape is unavailable."));
     }
 
     /**

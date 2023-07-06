@@ -10,6 +10,7 @@ public interface ShapeFactory {
      * @param shapeType type of the shape
      * @param args      arguments of the shape
      * @return the created shape
+     * @throws ShapeException if the shape could not be created
      */
     default Shape createShape(ShapeType shapeType, double[] args) {
         return switch (shapeType) {
