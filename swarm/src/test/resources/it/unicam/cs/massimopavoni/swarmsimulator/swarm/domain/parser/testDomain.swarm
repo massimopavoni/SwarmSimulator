@@ -1,0 +1,4 @@
+first_shape CIRCLE 1 2 3
+second_shape ELLIPSE 4 5 6 7
+third_shape POLYGON 8 9 10 11 12 13 14 15 16 17
+fourth_shape RECTANGLE 18 19 20 21

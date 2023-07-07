@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -67,19 +68,15 @@ class PositionTest {
     }
 
     @Test
-    void averageOf_emptyList() {
-        assertThrowsExactly(PositionException.class, () -> Position.averageOf(List.of()));
-    }
-
-    @Test
-    void averageOf_nonEmptyList() {
-        assertTrue(new Position(1.4, 0.2).equalTo(Position.averageOf(List.of(
-                new Position(3, 2),
-                new Position(-4, 8),
-                new Position(1, -10),
-                new Position(-2, -5),
-                new Position(9, 6)
-        ))));
+    void averageOf() {
+        assertAll(
+                () -> assertTrue(Position.averageOf(Collections.emptyList()).equalTo(new Position(0, 0))),
+                () -> assertTrue(Position.averageOf(List.of(
+                        new Position(3, 2),
+                        new Position(-4, 8),
+                        new Position(1, -10),
+                        new Position(-2, -5),
+                        new Position(9, 6))).equalTo(new Position(1.4, 0.2))));
     }
 
     @Test

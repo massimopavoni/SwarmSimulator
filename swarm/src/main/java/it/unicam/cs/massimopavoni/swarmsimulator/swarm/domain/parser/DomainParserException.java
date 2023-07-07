@@ -5,15 +5,6 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser;
  */
 public class DomainParserException extends Exception {
     /**
-     * Domain parser exception constructor with message.
-     *
-     * @param message cause of the exception
-     */
-    public DomainParserException(String message) {
-        super(message);
-    }
-
-    /**
      * Domain parser exception constructor with message and inner cause.
      *
      * @param message cause of the exception
