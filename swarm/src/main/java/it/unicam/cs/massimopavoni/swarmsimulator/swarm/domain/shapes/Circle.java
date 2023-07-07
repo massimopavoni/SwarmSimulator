@@ -19,6 +19,16 @@ public class Circle extends Ellipse implements Shape {
     }
 
     /**
+     * Get circle center and radius coordinates.
+     *
+     * @return properties double array
+     */
+    @Override
+    public double[] getProperties() {
+        return new double[]{center.x(), center.y(), radius.x()};
+    }
+
+    /**
      * Checks if a position is contained in the circle shape.
      *
      * @param p position to check

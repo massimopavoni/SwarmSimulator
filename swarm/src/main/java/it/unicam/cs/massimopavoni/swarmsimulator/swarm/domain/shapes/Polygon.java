@@ -5,6 +5,7 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
@@ -60,6 +61,19 @@ public class Polygon implements Shape {
      */
     public List<Position> getVertices() {
         return vertices;
+    }
+
+    /**
+     * Get polygon vertices coordinates.
+     *
+     * @return properties double array
+     */
+    @Override
+    public double[] getProperties() {
+        return IntStream.iterate(0, i -> i + 1).limit(vertices.size() * 2L)
+                .mapToDouble(i -> i % 2 == 0 ?
+                        vertices.get(i / 2).x()
+                        : vertices.get(i / 2).y()).toArray();
     }
 
     /**

@@ -44,6 +44,12 @@ class CircleTest {
                 () -> assertTrue(c.get().getRadius().equalTo(new Position(4, 4))));
     }
 
+    @Test
+    void getProperties() {
+        Circle c = new Circle(new Position(1, 1), 2);
+        assertArrayEquals(new double[]{1, 1, 2}, c.getProperties());
+    }
+
     // https://www.geogebra.org/classic/jhuhv7dx
     @Test
     void contains() {

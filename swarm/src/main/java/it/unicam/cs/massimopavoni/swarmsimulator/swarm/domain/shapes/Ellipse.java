@@ -49,6 +49,16 @@ public class Ellipse implements Shape {
     }
 
     /**
+     * Get ellipse center and radius coordinates.
+     *
+     * @return properties double array
+     */
+    @Override
+    public double[] getProperties() {
+        return new double[]{center.x(), center.y(), radius.x(), radius.y()};
+    }
+
+    /**
      * Checks if a position is contained in the ellipse shape.
      *
      * @param p position to check

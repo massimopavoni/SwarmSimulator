@@ -80,6 +80,15 @@ class PolygonTest {
                         () -> p.getVertices().set(0, new Position(2, 2))));
     }
 
+    @Test
+    void getProperties() {
+        Polygon p = new Polygon(new ArrayList<>(List.of(
+                new Position(0, 0),
+                new Position(1, 1),
+                new Position(1, 0))));
+        assertArrayEquals(new double[]{0, 0, 1, 1, 1, 0}, p.getProperties());
+    }
+
     // https://www.geogebra.org/classic/xyfj7wzm
     @Test
     void contains_vertex() {

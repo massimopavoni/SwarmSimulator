@@ -54,6 +54,12 @@ class RectangleTest {
                 () -> assertTrue(r.get().getVertices().get(3).equalTo(new Position(-2, 2.5))));
     }
 
+    @Test
+    void getProperties() {
+        Rectangle r = new Rectangle(new Position(0, 0), new Position(1, 2));
+        assertArrayEquals(new double[]{0, 0, 1, 2}, r.getProperties());
+    }
+
     // https://www.geogebra.org/classic/xm8asmya
     @Test
     void contains() {

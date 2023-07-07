@@ -7,6 +7,13 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
  */
 public interface Shape {
     /**
+     * Get the properties of the shape as an array of doubles.
+     *
+     * @return properties double array
+     */
+    double[] getProperties();
+
+    /**
      * Checks if a position is contained in the shape.
      *
      * @param p position to check

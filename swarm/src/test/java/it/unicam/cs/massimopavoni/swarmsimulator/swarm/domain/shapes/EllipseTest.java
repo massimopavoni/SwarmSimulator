@@ -45,6 +45,12 @@ class EllipseTest {
                 () -> assertTrue(e.get().getRadius().equalTo(new Position(1, 2))));
     }
 
+    @Test
+    void getProperties() {
+        Ellipse e = new Ellipse(new Position(1, 1), new Position(1, 2));
+        assertArrayEquals(new double[]{1, 1, 1, 2}, e.getProperties());
+    }
+
     // https://www.geogebra.org/classic/hgtvksw7
     @Test
     void contains() {

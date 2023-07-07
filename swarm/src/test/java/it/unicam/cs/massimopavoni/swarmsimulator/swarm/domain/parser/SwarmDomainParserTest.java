@@ -2,9 +2,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.DomainException;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Circle;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.SwarmShapeFactory;
@@ -151,7 +149,8 @@ class SwarmDomainParserTest {
                 () -> assertEquals(
                         List.of(ShapeType.CIRCLE, ShapeType.ELLIPSE, ShapeType.POLYGON, ShapeType.RECTANGLE),
                         domain.get().stream().map(Region::shapeType).toList()),
-                () -> assertTrue(
-                        ((Circle) domain.get().get(0).shape()).getCenter().equalTo(new Position(1, 2))));
+                () -> assertArrayEquals(
+                        new double[]{1, 2, 3},
+                        domain.get().get(0).shape().getProperties()));
     }
 }

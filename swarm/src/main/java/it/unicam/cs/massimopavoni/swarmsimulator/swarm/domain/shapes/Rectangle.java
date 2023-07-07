@@ -56,6 +56,16 @@ public class Rectangle extends Polygon implements Shape {
     }
 
     /**
+     * Get rectangle center and width and height coordinates.
+     *
+     * @return properties double array
+     */
+    @Override
+    public double[] getProperties() {
+        return new double[]{center.x(), center.y(), widthHeight.x(), widthHeight.y()};
+    }
+
+    /**
      * Checks if a position is contained in the rectangle shape.
      *
      * @param p position to check
