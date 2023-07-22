@@ -1,11 +1,13 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,21 +17,16 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class PolygonTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
-
     @BeforeAll
-    static void setUp() throws IOException {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
-        swarmPropertiesMockedStatic.when(SwarmProperties::maxPolygonVertices).thenReturn(256);
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(PolygonTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(PolygonTest.class.getSimpleName());
     }
 
     @Test
@@ -273,5 +270,68 @@ class PolygonTest {
                 () -> assertTrue(p.contains(new Position(1, 13))),
                 () -> assertTrue(p.contains(new Position(4, 5))),
                 () -> assertTrue(p.contains(new Position(-6, 4))));
+    }
+
+    @Test
+    void getRandomPositions_onBoundary() {
+        Polygon p = new Polygon(new ArrayList<>(List.of(
+                new Position(-4, 1),
+                new Position(3, 2),
+                new Position(1, 5),
+                new Position(-1.5, 2.5),
+                new Position(1, 3),
+                new Position(-2, 5),
+                new Position(-2, -1))));
+        List<Position> rps = p.getRandomPositions(true, SwarmProperties.maxDronesNumber());
+        Rectangle br = p.getBoundingRectangle();
+        double xMin = p.vertices.stream().mapToDouble(Position::x).min().orElseThrow();
+        double xMax = p.vertices.stream().mapToDouble(Position::x).max().orElseThrow();
+        double yMin = p.vertices.stream().mapToDouble(Position::y).min().orElseThrow();
+        double yMax = p.vertices.stream().mapToDouble(Position::y).max().orElseThrow();
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(rp -> (SwarmUtils.compare(rp.x(), xMin) >= 0 && SwarmUtils.compare(rp.x(), xMax) <= 0
+                                && (SwarmUtils.compare(rp.y(), yMin) == 0 || SwarmUtils.compare(rp.y(), yMax) == 0))
+                                || (SwarmUtils.compare(rp.y(), yMin) >= 0 && SwarmUtils.compare(rp.y(), yMax) <= 0 &&
+                                (SwarmUtils.compare(rp.x(), xMin) == 0 || SwarmUtils.compare(rp.x(), xMax) == 0))))));
+    }
+
+    @Test
+    void getRandomPositions_notOnBoundary() {
+        Polygon p = new Polygon(new ArrayList<>(List.of(
+                new Position(-4, 1),
+                new Position(3, 2),
+                new Position(1, 5),
+                new Position(-1.5, 2.5),
+                new Position(1, 3),
+                new Position(-2, 5),
+                new Position(-2, -1))));
+        List<Position> rps = p.getRandomPositions(false, SwarmProperties.maxDronesNumber());
+        Rectangle br = p.getBoundingRectangle();
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(br::contains))));
+    }
+
+    @Test
+    void getBoundingRectangle_correct() {
+        Polygon p = new Polygon(new ArrayList<>(List.of(
+                new Position(-4, 1),
+                new Position(3, 2),
+                new Position(1, 5),
+                new Position(-1.5, 2.5),
+                new Position(1, 3),
+                new Position(-2, 5),
+                new Position(-2, -1))));
+        Rectangle br = p.getBoundingRectangle();
+        assertAll(
+                () -> assertTrue(br.getCenter().equalTo(new Position(-0.5, 2))),
+                () -> assertTrue(br.getWidthHeight().equalTo(new Position(7, 6))),
+                () -> assertTrue(br.vertices.get(0).equalTo(new Position(-4, -1))),
+                () -> assertTrue(br.vertices.get(1).equalTo(new Position(3, -1))),
+                () -> assertTrue(br.vertices.get(2).equalTo(new Position(3, 5))),
+                () -> assertTrue(br.vertices.get(3).equalTo(new Position(-4, 5))));
     }
 }

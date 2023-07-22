@@ -5,11 +5,12 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser;
  */
 public class StrategyParserException extends Exception {
     /**
-     * Strategy parser exception constructor with message.
+     * Strategy parser exception constructor with message and inner cause.
      *
      * @param message cause of the exception
+     * @param cause   inner cause
      */
-    public StrategyParserException(String message) {
-        super(message);
+    public StrategyParserException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

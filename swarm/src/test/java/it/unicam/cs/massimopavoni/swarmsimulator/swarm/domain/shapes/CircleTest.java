@@ -1,29 +1,29 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class CircleTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
-
     @BeforeAll
-    static void setUp() {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(CircleTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(CircleTest.class.getSimpleName());
     }
 
     @Test
@@ -61,5 +61,26 @@ class CircleTest {
                 () -> assertTrue(c.contains(new Position(-3, 1))),
                 () -> assertTrue(c.contains(new Position(-8, -8))),
                 () -> assertTrue(c.contains(new Position(0, -6))));
+    }
+
+    @Test
+    void getRandomPositions_onBoundary() {
+        Circle c = new Circle(new Position(1, 2), 10);
+        List<Position> rps = c.getRandomPositions(true, SwarmProperties.maxDronesNumber());
+        double radius = c.getRadius().x();
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(rp -> SwarmUtils.compare(rp.distanceTo(c.getCenter()), radius) == 0))));
+    }
+
+    @Test
+    void getRandomPositions_notOnBoundary() {
+        Circle c = new Circle(new Position(1, 2), 10);
+        List<Position> rps = c.getRandomPositions(false, SwarmProperties.maxDronesNumber());
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(c::contains))));
     }
 }

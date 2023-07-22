@@ -107,17 +107,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code><a href="#CONTINUE" class="member-name-link">CONTINUE</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">
- Directive for continuation of previous execution.</div>
+ Jump directive for continuation of previous movement.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#DOFOREVER" class="member-name-link">DOFOREVER</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">
- Loop directive for infinite execution of a loop body.</div>
+ Jump directive for infinite execution of a loop body.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#DONE" class="member-name-link">DONE</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">
- Loop directive for closing a loop body.</div>
+ Jump directive for closing a loop body.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#FOLLOW" class="member-name-link">FOLLOW</a></code></div>
 <div class="col-last odd-row-color">
@@ -132,7 +132,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code><a href="#REPEAT" class="member-name-link">REPEAT</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">
- Loop directive for finite execution of a loop body.</div>
+ Jump directive for finite execution of a loop body.</div>
 </div>
 <div class="col-first even-row-color"><code><a href="#SIGNAL" class="member-name-link">SIGNAL</a></code></div>
 <div class="col-last even-row-color">
@@ -147,12 +147,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code><a href="#UNSIGNAL" class="member-name-link">UNSIGNAL</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">
- Echo radiation dual directive.</div>
+ Echo absorption directive.</div>
 </div>
 <div class="col-first odd-row-color"><code><a href="#UNTIL" class="member-name-link">UNTIL</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">
- Loop directive for conditional execution of a loop body.</div>
+ Jump directive for conditional execution of a loop body.</div>
 </div>
 </div>
 </section>
@@ -162,25 +162,30 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab1" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab1', 3)" class="table-tab">Static Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel">
 <div class="summary-table three-column-summary" aria-labelledby="method-summary-table-tab0">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromLine(java.lang.String)" class="member-name-link">fromLine</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;line)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#fromString(java.lang.String)" class="member-name-link">fromString</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;directiveName)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Selects the corresponding directive from a strategy line.</div>
+<div class="block">Selects the corresponding directive from a string.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends <a href="Directive.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Directive</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDirectiveClass()" class="member-name-link">getDirectiveClass</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Corresponding directive class getter.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a>[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a>[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#values()" class="member-name-link">values</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </div>
@@ -209,11 +214,11 @@ the order they are declared.</div>
 <h3>CONTINUE</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></span>&nbsp;<span class="element-name">CONTINUE</span></div>
 <div class="block"><p>
- Directive for continuation of previous execution.
+ Jump directive for continuation of previous movement.
  </p>
  <p>
  Takes one argument that represents a number of time units for which
- execution of previous directive shall continue.
+ execution of previous movement shall continue.
  </p></div>
 </section>
 </li>
@@ -222,7 +227,7 @@ the order they are declared.</div>
 <h3>DOFOREVER</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></span>&nbsp;<span class="element-name">DOFOREVER</span></div>
 <div class="block"><p>
- Loop directive for infinite execution of a loop body.
+ Jump directive for infinite execution of a loop body.
  </p>
  <p>
  Takes no arguments, but must be closed by a done directive.
@@ -236,7 +241,7 @@ the order they are declared.</div>
 <h3>DONE</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></span>&nbsp;<span class="element-name">DONE</span></div>
 <div class="block"><p>
- Loop directive for closing a loop body.
+ Jump directive for closing a loop body.
  </p>
  <p>
  Takes no arguments.
@@ -276,7 +281,7 @@ the order they are declared.</div>
 <h3>REPEAT</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></span>&nbsp;<span class="element-name">REPEAT</span></div>
 <div class="block"><p>
- Loop directive for finite execution of a loop body.
+ Jump directive for finite execution of a loop body.
  </p>
  <p>
  Takes one argument specifying the amount of times the loop body must be executed.
@@ -315,12 +320,10 @@ the order they are declared.</div>
 <h3>UNSIGNAL</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></span>&nbsp;<span class="element-name">UNSIGNAL</span></div>
 <div class="block"><p>
- Echo radiation dual directive.
+ Echo absorption directive.
  </p>
  <p>
  Takes one argument specifying the echo of which radiation must cease.
- This is actually only a way of simplifying the writing of the swarm strategy,
- since echoes radiation acts as a simple toggle.
  </p></div>
 </section>
 </li>
@@ -329,7 +332,7 @@ the order they are declared.</div>
 <h3>UNTIL</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></span>&nbsp;<span class="element-name">UNTIL</span></div>
 <div class="block"><p>
- Loop directive for conditional execution of a loop body.
+ Jump directive for conditional execution of a loop body.
  </p>
  <p>
  Takes one argument specifying the signal that must be sensed by the drone to exit the loop.
@@ -378,15 +381,28 @@ not permitted.)</div>
 </section>
 </li>
 <li>
-<section class="detail" id="fromLine(java.lang.String)">
-<h3>fromLine</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a>&gt;</span>&nbsp;<span class="element-name">fromLine</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;line)</span></div>
-<div class="block">Selects the corresponding directive from a strategy line.</div>
+<section class="detail" id="fromString(java.lang.String)">
+<h3>fromString</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="ParserDirective.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">ParserDirective</a></span>&nbsp;<span class="element-name">fromString</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;directiveName)</span></div>
+<div class="block">Selects the corresponding directive from a string.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>line</code> - line to be parsed</dd>
+<dd><code>directiveName</code> - directive string representation</dd>
 <dt>Returns:</dt>
-<dd>an optional with the directive, if found</dd>
+<dd>directive type</dd>
+<dt>Throws:</dt>
+<dd><code><a href="DirectiveException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">DirectiveException</a></code> - if a directive for the provided directive name is not found</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getDirectiveClass()">
+<h3>getDirectiveClass</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;? extends <a href="Directive.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Directive</a>&gt;</span>&nbsp;<span class="element-name">getDirectiveClass</span>()</div>
+<div class="block">Corresponding directive class getter.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>shape class</dd>
 </dl>
 </section>
 </li>

@@ -1,30 +1,27 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class SwarmShapeFactoryTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
     SwarmShapeFactory swarmShapeFactory = new SwarmShapeFactory();
 
     @BeforeAll
-    static void setUp() {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
-        swarmPropertiesMockedStatic.when(SwarmProperties::maxPolygonVertices).thenReturn(256);
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(SwarmShapeFactoryTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(SwarmShapeFactoryTest.class.getSimpleName());
     }
 
     @Test

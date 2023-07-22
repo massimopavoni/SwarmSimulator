@@ -6,7 +6,7 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 /**
  * Class defining a circle shape.
  */
-public class Circle extends Ellipse implements Shape {
+public final class Circle extends Ellipse implements Shape {
     /**
      * Constructor for a circle shape from its center and radius.
      *

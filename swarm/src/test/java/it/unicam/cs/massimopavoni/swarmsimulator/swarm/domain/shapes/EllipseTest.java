@@ -1,29 +1,29 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class EllipseTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
-
     @BeforeAll
-    static void setUp() {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(EllipseTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(EllipseTest.class.getSimpleName());
     }
 
     @Test
@@ -62,5 +62,30 @@ class EllipseTest {
                 () -> assertTrue(e.contains(new Position(3.5, 3.1))),
                 () -> assertTrue(e.contains(new Position(2, 2))),
                 () -> assertTrue(e.contains(new Position(4, 1))));
+    }
+
+    @Test
+    void getRandomPositions_onBoundary() {
+        Ellipse e = new Ellipse(new Position(1, 2), new Position(3, 9));
+        List<Position> rps = e.getRandomPositions(true, SwarmProperties.maxDronesNumber());
+        double centerX = e.center.x();
+        double radiusX = e.radius.x();
+        double centerY = e.center.y();
+        double radiusY = e.radius.y();
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(rp -> SwarmUtils.compare(Math.pow((rp.x() - centerX) / radiusX, 2) +
+                                Math.pow((rp.y() - centerY) / radiusY, 2), 1) == 0))));
+    }
+
+    @Test
+    void getRandomPositions_notOnBoundary() {
+        Ellipse e = new Ellipse(new Position(1, 2), new Position(3, 9));
+        List<Position> rps = e.getRandomPositions(false, SwarmProperties.maxDronesNumber());
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(e::contains))));
     }
 }

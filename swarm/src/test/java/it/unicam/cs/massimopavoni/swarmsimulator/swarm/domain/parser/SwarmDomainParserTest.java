@@ -1,6 +1,7 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.DomainException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeException;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
-import org.mockito.MockedStatic;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,28 +18,21 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class SwarmDomainParserTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
     DomainParser swarmDomainParser = new SwarmDomainParser(new SwarmShapeFactory());
     AtomicReference<List<Region>> domain = new AtomicReference<>();
 
     @BeforeAll
-    static void setUp() {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
-        swarmPropertiesMockedStatic.when(SwarmProperties::maxPolygonVertices).thenReturn(256);
-        swarmPropertiesMockedStatic.when(SwarmProperties::signalPattern)
-                .thenReturn(Pattern.compile("^[A-Za-z\\d_]+$"));
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(SwarmDomainParserTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(SwarmDomainParserTest.class.getSimpleName());
     }
 
     @Test
@@ -69,6 +62,20 @@ class SwarmDomainParserTest {
                                 "it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/" +
                                         "testDomain.swarm"
                         )).getPath()))));
+    }
+
+    @Test
+    void parseDomain_tooManyRegions() {
+        AtomicReference<Exception> e = new AtomicReference<>();
+        assertAll(
+                () -> e.set(assertThrowsExactly(DomainParserException.class,
+                        () -> swarmDomainParser.parseDomain("""
+                                first_shape
+                                second_shape
+                                third_shape
+                                fourth_shape
+                                fifth_shape"""))),
+                () -> assertEquals(DomainException.class, e.get().getCause().getClass()));
     }
 
     @Test

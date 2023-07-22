@@ -1,6 +1,7 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.DomainException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeException;
@@ -16,6 +17,9 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
  * Swarm implementation of the domain parser.
  */
 public final class SwarmDomainParser implements DomainParser {
+    /**
+     * Factory class object for creating shapes.
+     */
     private final ShapeFactory shapeFactory;
 
     /**
@@ -49,6 +53,9 @@ public final class SwarmDomainParser implements DomainParser {
     private List<Region> parseDomain(List<String> lines) throws DomainParserException {
         AtomicInteger lineCounter = new AtomicInteger(-1);
         try {
+            if (lines.size() > SwarmProperties.maxDomainRegions())
+                throw new DomainException("The domain cannot have more regions than " +
+                        "what is specified in the swarm properties file.");
             return lines.stream()
                     .map(l -> {
                         lineCounter.getAndIncrement();
@@ -72,7 +79,7 @@ public final class SwarmDomainParser implements DomainParser {
     private Region parseLine(String line) {
         String[] args = line.trim().split(" ");
         if (args.length < 3)
-            throw new DomainException("Not enough arguments for region creation.");
+            throw new DomainException("Not enough arguments for region parsing.");
         ShapeType shapeType = ShapeType.fromString(args[1].toLowerCase());
         return new Region(args[0], shapeType,
                 shapeFactory.createShape(shapeType, SwarmUtils.toDoubleArray(args, 2)));

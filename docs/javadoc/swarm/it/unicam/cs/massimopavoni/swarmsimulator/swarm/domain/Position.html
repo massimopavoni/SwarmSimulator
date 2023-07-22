@@ -142,24 +142,30 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Calculate the Manhattan distance to another position.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scale(double)" class="member-name-link">scale</a><wbr>(double&nbsp;scalar)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Scale the position by a scalar.</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#random(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">random</a><wbr>(<a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;llp,
+ <a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;urp)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Get random position within a rectangle area.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translate(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">translate</a><wbr>(<a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;dp)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scale(double)" class="member-name-link">scale</a><wbr>(double&nbsp;scalar)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Scale the position by a scalar.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translate(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">translate</a><wbr>(<a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;dp)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate the position by a delta position.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#x()" class="member-name-link">x</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#x()" class="member-name-link">x</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">First coordinate getter.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#y()" class="member-name-link">y</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#y()" class="member-name-link">y</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Second coordinate getter.</div>
 </div>
 </div>
@@ -213,6 +219,21 @@ loadScripts(document, 'script');</script>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="random(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)">
+<h3>random</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></span>&nbsp;<span class="element-name">random</span><wbr><span class="parameters">(<a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;llp,
+ <a href="Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;urp)</span></div>
+<div class="block">Get random position within a rectangle area.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>llp</code> - lower left position</dd>
+<dd><code>urp</code> - upper right position</dd>
+<dt>Returns:</dt>
+<dd>random position</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="averageOf(java.util.List)">
 <h3>averageOf</h3>

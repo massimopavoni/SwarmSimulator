@@ -72,12 +72,16 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
-<dt>Functional Interface:</dt>
-<dd>This is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference.</dd>
+<dt>All Known Subinterfaces:</dt>
+<dd><code><a href="EchoDirective.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">EchoDirective</a></code>, <code><a href="JumpDirective.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">JumpDirective</a></code>, <code><a href="MovementDirective.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">MovementDirective</a></code></dd>
+</dl>
+<dl class="notes">
+<dt>All Known Implementing Classes:</dt>
+<dd><code><a href="Absorb.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Absorb</a></code>, <code><a href="Continue.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Continue</a></code>, <code><a href="Done.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Done</a></code>, <code><a href="Follow.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Follow</a></code>, <code><a href="Move.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Move</a></code>, <code><a href="Radiate.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Radiate</a></code>, <code><a href="Repeat.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Repeat</a></code>, <code><a href="Stop.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Stop</a></code>, <code><a href="Until.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Until</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="annotations"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/FunctionalInterface.html" title="class or interface in java.lang" class="external-link">@FunctionalInterface</a>
-</span><span class="modifiers">public interface </span><span class="element-name type-name-label">Directive</span></div>
+<div class="type-signature"><span class="modifiers">public sealed interface </span><span class="element-name type-name-label">Directive</span>
+<span class="permits">permits <a href="EchoDirective.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">EchoDirective</a>, <a href="JumpDirective.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">JumpDirective</a>, <a href="MovementDirective.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">MovementDirective</a></span></div>
 <div class="block">Interface for swarm strategy directives.</div>
 </section>
 <section class="summary">
@@ -94,8 +98,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#execute()" class="member-name-link">execute</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#execute(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState,it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone)" class="member-name-link">execute</a><wbr>(<a href="../../core/SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a>&nbsp;swarmState,
+ <a href="../../Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a>&nbsp;drone)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Executes the directive on the given drone.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="DirectiveType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">DirectiveType</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Returns the type of the directive.</div>
+</div>
 </div>
 </div>
 </div>
@@ -111,9 +123,27 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="execute()">
+<section class="detail" id="getType()">
+<h3>getType</h3>
+<div class="member-signature"><span class="return-type"><a href="DirectiveType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">DirectiveType</a></span>&nbsp;<span class="element-name">getType</span>()</div>
+<div class="block">Returns the type of the directive.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>directive type</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="execute(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState,it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone)">
 <h3>execute</h3>
-<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">execute</span>()</div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">execute</span><wbr><span class="parameters">(<a href="../../core/SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a>&nbsp;swarmState,
+ <a href="../../Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a>&nbsp;drone)</span></div>
+<div class="block">Executes the directive on the given drone.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>swarmState</code> - swarm state for swarm-wide operations</dd>
+<dd><code>drone</code> - drone executing the directive</dd>
+</dl>
 </section>
 </li>
 </ul>

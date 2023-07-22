@@ -1,30 +1,27 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class PositionTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
-
     @BeforeAll
-    static void setUp() {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(PositionTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(PositionTest.class.getSimpleName());
     }
 
     @Test
@@ -65,6 +62,16 @@ class PositionTest {
         assertAll(
                 () -> assertEquals(8, pp.x()),
                 () -> assertEquals(-4, pp.y()));
+    }
+
+    @Test
+    void random() {
+        Position llp = new Position(-1, -2);
+        Position urp = new Position(3, 4);
+        Position p = Position.random(llp, urp);
+        assertAll(
+                () -> assertTrue(SwarmUtils.compare(p.x(), -1) >= 0 && SwarmUtils.compare(p.x(), 3) <= 0),
+                () -> assertTrue(SwarmUtils.compare(p.x(), -2) >= 0 && SwarmUtils.compare(p.x(), 4) <= 0));
     }
 
     @Test

@@ -3,7 +3,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
 
 /**
- * Runtime exception for domain..
+ * Runtime exception for domain.
  */
 public class DomainException extends SwarmException {
     /**

@@ -64,7 +64,6 @@ public final class SwarmShapeFactory implements ShapeFactory {
         return new Rectangle(new Position(args[0], args[1]), new Position(args[2], args[3]));
     }
 
-
     /**
      * Checks the arguments passed to a shape factory method.
      *

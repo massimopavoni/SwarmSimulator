@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">SwarmUtils</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Static class for math operations.</div>
+<div class="block">Static utility class for swarm operations.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -92,11 +92,33 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#checkEcho(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException)" class="member-name-link">checkEcho</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;echo,
+ <a href="SwarmException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmException</a>&nbsp;exception)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Check if a string is a valid echo.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#checkSignal(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException)" class="member-name-link">checkSignal</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signal,
+ <a href="SwarmException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmException</a>&nbsp;exception)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Check if a string is a valid signal.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#compare(double,double)" class="member-name-link">compare</a><wbr>(double&nbsp;a,
  double&nbsp;b)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Compare two doubles with the configured tolerance.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isPositive(double)" class="member-name-link">isPositive</a><wbr>(double&nbsp;a)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Check if a double is finite and positive.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;T</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parallelize(java.util.concurrent.Callable)" class="member-name-link">parallelize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html" title="class or interface in java.util.concurrent" class="external-link">Callable</a>&lt;T&gt;&nbsp;task)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Swarm parallel task execution.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#toDoubleArray(java.lang.String%5B%5D,int)" class="member-name-link">toDoubleArray</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args,
@@ -137,6 +159,19 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="isPositive(double)">
+<h3>isPositive</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPositive</span><wbr><span class="parameters">(double&nbsp;a)</span></div>
+<div class="block">Check if a double is finite and positive.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>a</code> - double to check</dd>
+<dt>Returns:</dt>
+<dd>true if the double is finite and positive, false otherwise</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="toDoubleArray(java.lang.String[],int)">
 <h3>toDoubleArray</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">double[]</span>&nbsp;<span class="element-name">toDoubleArray</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args,
@@ -150,6 +185,51 @@ loadScripts(document, 'script');</script>
 <dd>double array</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NumberFormatException.html" title="class or interface in java.lang" class="external-link">NumberFormatException</a></code> - if the string array contains non-double elements</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="checkSignal(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException)">
+<h3>checkSignal</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkSignal</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;signal,
+ <a href="SwarmException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmException</a>&nbsp;exception)</span></div>
+<div class="block">Check if a string is a valid signal.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>signal</code> - string to check</dd>
+<dd><code>exception</code> - exception to throw</dd>
+<dt>Throws:</dt>
+<dd><code><a href="SwarmException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmException</a></code> - if the string is not a valid signal</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="checkEcho(java.lang.String,it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException)">
+<h3>checkEcho</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkEcho</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;echo,
+ <a href="SwarmException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmException</a>&nbsp;exception)</span></div>
+<div class="block">Check if a string is a valid echo.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>echo</code> - string to check</dd>
+<dd><code>exception</code> - exception to throw</dd>
+<dt>Throws:</dt>
+<dd><code><a href="SwarmException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmException</a></code> - if the string is not a valid echo</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="parallelize(java.util.concurrent.Callable)">
+<h3>parallelize</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">T</span>&nbsp;<span class="element-name">parallelize</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html" title="class or interface in java.util.concurrent" class="external-link">Callable</a>&lt;T&gt;&nbsp;task)</span></div>
+<div class="block">Swarm parallel task execution.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - task result type</dd>
+<dt>Parameters:</dt>
+<dd><code>task</code> - task to execute</dd>
+<dt>Returns:</dt>
+<dd>task result</dd>
 </dl>
 </section>
 </li>

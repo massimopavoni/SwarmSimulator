@@ -49,7 +49,6 @@ public enum ShapeType {
      * String representation of the shape type.
      */
     private final String shapeName;
-
     /**
      * Class of the corresponding shape to be created.
      */
@@ -70,7 +69,7 @@ public enum ShapeType {
      * Selects the corresponding shape from a string.
      *
      * @param shapeName shape string representation
-     * @return an optional with the shape, if found
+     * @return shape type
      * @throws ShapeException if a shape for the provided shape name is not found
      */
     public static ShapeType fromString(String shapeName) {

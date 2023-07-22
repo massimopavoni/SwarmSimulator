@@ -3,6 +3,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Immutable class for all swarm positions representation.
@@ -39,6 +40,18 @@ public final class Position {
     public Position(Position p) {
         this.x = p.x;
         this.y = p.y;
+    }
+
+    /**
+     * Get random position within a rectangle area.
+     *
+     * @param llp lower left position
+     * @param urp upper right position
+     * @return random position
+     */
+    public static Position random(Position llp, Position urp) {
+        return new Position(ThreadLocalRandom.current().nextDouble(llp.x, urp.x),
+                ThreadLocalRandom.current().nextDouble(llp.y, urp.y));
     }
 
     /**

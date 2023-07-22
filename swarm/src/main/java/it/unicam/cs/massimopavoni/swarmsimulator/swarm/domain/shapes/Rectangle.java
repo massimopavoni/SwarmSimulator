@@ -5,19 +5,23 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
+
+import static com.google.common.collect.ImmutableList.toImmutableList;
 
 /**
  * Class defining a rectangle shape.
  */
-public class Rectangle extends Polygon implements Shape {
+public final class Rectangle extends Polygon implements Shape {
     /**
      * Rectangle center position.
      */
-    protected final Position center;
+    private final Position center;
     /**
      * Rectangle width and height.
      */
-    protected final Position widthHeight;
+    private final Position widthHeight;
 
     /**
      * Constructor for a rectangle shape from a list of vertices' positions.
@@ -77,5 +81,48 @@ public class Rectangle extends Polygon implements Shape {
                 SwarmUtils.compare(p.x(), vertices.get(2).x()) <= 0 &&
                 SwarmUtils.compare(p.y(), vertices.get(0).y()) >= 0 &&
                 SwarmUtils.compare(p.y(), vertices.get(2).y()) <= 0;
+    }
+
+    /**
+     * Get a list of random positions contained in the rectangle shape.
+     *
+     * @param onBoundary if true, positions are generated on the rectangle shape boundary
+     * @param amount     number of positions to generate
+     * @return list of random positions
+     */
+    @Override
+    public List<Position> getRandomPositions(boolean onBoundary, int amount) {
+        if (onBoundary)
+            return SwarmUtils.parallelize(() -> IntStream.range(0, amount).parallel()
+                    .mapToObj(i -> getRandomPositionOnBoundary()).collect(toImmutableList()));
+        else
+            return SwarmUtils.parallelize(() -> IntStream.range(0, amount).parallel()
+                    .mapToObj(i -> new Position(
+                            ThreadLocalRandom.current().nextDouble(vertices.get(0).x(), vertices.get(2).x()),
+                            ThreadLocalRandom.current().nextDouble(vertices.get(0).y(), vertices.get(2).y())))
+                    .collect(toImmutableList()));
+    }
+
+    /**
+     * Get a random position on the rectangle shape boundary.
+     *
+     * @return random position
+     */
+    private Position getRandomPositionOnBoundary() {
+        return switch (ThreadLocalRandom.current().nextInt(4)) {
+            case 0 -> new Position(
+                    ThreadLocalRandom.current().nextDouble(vertices.get(0).x(), vertices.get(2).x()),
+                    vertices.get(0).y());
+            case 1 -> new Position(
+                    vertices.get(2).x(),
+                    ThreadLocalRandom.current().nextDouble(vertices.get(0).y(), vertices.get(2).y()));
+            case 2 -> new Position(
+                    ThreadLocalRandom.current().nextDouble(vertices.get(0).x(), vertices.get(2).x()),
+                    vertices.get(2).y());
+            case 3 -> new Position(
+                    vertices.get(0).x(),
+                    ThreadLocalRandom.current().nextDouble(vertices.get(0).y(), vertices.get(2).y()));
+            default -> throw new ShapeException("Invalid random edge value");
+        };
     }
 }

@@ -82,7 +82,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="domain/DomainException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">DomainException</a></code>, <code><a href="domain/PositionException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">PositionException</a></code>, <code><a href="domain/shapes/ShapeException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeException</a></code></dd>
+<dd><code><a href="strategy/directives/DirectiveException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">DirectiveException</a></code>, <code><a href="domain/DomainException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">DomainException</a></code>, <code><a href="domain/PositionException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">PositionException</a></code>, <code><a href="domain/shapes/ShapeException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeException</a></code>, <code><a href="strategy/StrategyException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy">StrategyException</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SwarmException</span>
@@ -110,6 +110,11 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">SwarmException</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Swarm exception constructor with message.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.Throwable)" class="member-name-link">SwarmException</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" title="class or interface in java.lang" class="external-link">Throwable</a>&nbsp;cause)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Swarm exception constructor with message and inner cause.</div>
 </div>
 </div>
 </section>
@@ -143,6 +148,19 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>message</code> - cause of the exception</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.Throwable)">
+<h3>SwarmException</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwarmException</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" title="class or interface in java.lang" class="external-link">Throwable</a>&nbsp;cause)</span></div>
+<div class="block">Swarm exception constructor with message and inner cause.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>message</code> - cause of the exception</dd>
+<dd><code>cause</code> - inner cause</dd>
 </dl>
 </section>
 </li>

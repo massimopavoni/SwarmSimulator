@@ -12,7 +12,7 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 /**
  * Class defining a polygon shape.
  */
-public class Polygon implements Shape {
+public sealed class Polygon implements Shape permits Rectangle {
     /**
      * List of vertices' positions.
      */
@@ -70,7 +70,7 @@ public class Polygon implements Shape {
      */
     @Override
     public double[] getProperties() {
-        return IntStream.iterate(0, i -> i + 1).limit(vertices.size() * 2L)
+        return IntStream.range(0, vertices.size() * 2)
                 .mapToDouble(i -> i % 2 == 0 ?
                         vertices.get(i / 2).x()
                         : vertices.get(i / 2).y()).toArray();
@@ -104,5 +104,31 @@ public class Polygon implements Shape {
             j = i;
         }
         return result;
+    }
+
+    /**
+     * Get a list of random positions contained in the polygon shape (outside rectangle).
+     *
+     * @param onBoundary if true, positions are generated on the outside rectangle shape boundary
+     * @param amount     number of positions to generate
+     * @return list of random positions
+     */
+    @Override
+    public List<Position> getRandomPositions(boolean onBoundary, int amount) {
+        return getBoundingRectangle().getRandomPositions(onBoundary, amount);
+    }
+
+    /**
+     * Get the bounding rectangle of the polygon shape.
+     *
+     * @return bounding rectangle
+     */
+    public Rectangle getBoundingRectangle() {
+        double xMin = vertices.stream().mapToDouble(Position::x).min().orElseThrow();
+        double xMax = vertices.stream().mapToDouble(Position::x).max().orElseThrow();
+        double yMin = vertices.stream().mapToDouble(Position::y).min().orElseThrow();
+        double yMax = vertices.stream().mapToDouble(Position::y).max().orElseThrow();
+        Position widthHeight = new Position(xMax - xMin, yMax - yMin);
+        return new Rectangle(new Position(xMin + widthHeight.x() / 2, yMin + widthHeight.y() / 2), widthHeight);
     }
 }

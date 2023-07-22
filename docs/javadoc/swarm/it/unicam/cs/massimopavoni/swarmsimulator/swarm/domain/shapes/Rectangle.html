@@ -50,7 +50,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -81,7 +81,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Rectangle</span>
+<div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">Rectangle</span>
 <span class="extends-implements">extends <a href="Polygon.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Polygon</a>
 implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></span></div>
 <div class="block">Class defining a rectangle shape.</div>
@@ -92,22 +92,6 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 <li>
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
-<div class="caption"><span>Fields</span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Field</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected final <a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
-<div class="col-second even-row-color"><code><a href="#center" class="member-name-link">center</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Rectangle center position.</div>
-</div>
-<div class="col-first odd-row-color"><code>protected final <a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#widthHeight" class="member-name-link">widthHeight</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Rectangle width and height.</div>
-</div>
-</div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Polygon">Fields inherited from class&nbsp;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="Polygon.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Polygon</a></h3>
 <code><a href="Polygon.html#vertices">vertices</a></code></div>
@@ -155,9 +139,15 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get rectangle center and width and height coordinates.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidthHeight()" class="member-name-link">getWidthHeight</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRandomPositions(boolean,int)" class="member-name-link">getRandomPositions</a><wbr>(boolean&nbsp;onBoundary,
+ int&nbsp;amount)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get a list of random positions contained in the rectangle shape.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidthHeight()" class="member-name-link">getWidthHeight</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Rectangle width and height getter.</div>
 </div>
 </div>
@@ -165,7 +155,7 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Polygon">Methods inherited from class&nbsp;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.<a href="Polygon.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Polygon</a></h3>
-<code><a href="Polygon.html#getVertices()">getVertices</a></code></div>
+<code><a href="Polygon.html#getBoundingRectangle()">getBoundingRectangle</a>, <a href="Polygon.html#getVertices()">getVertices</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -175,28 +165,6 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ============ FIELD DETAIL =========== -->
-<li>
-<section class="field-details" id="field-detail">
-<h2>Field Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="center">
-<h3>center</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></span>&nbsp;<span class="element-name">center</span></div>
-<div class="block">Rectangle center position.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="widthHeight">
-<h3>widthHeight</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></span>&nbsp;<span class="element-name">widthHeight</span></div>
-<div class="block">Rectangle width and height.</div>
-</section>
-</li>
-</ul>
-</section>
-</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -274,6 +242,25 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 <dd><code>p</code> - position to check</dd>
 <dt>Returns:</dt>
 <dd>true if the position is contained in the shape, false otherwise</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getRandomPositions(boolean,int)">
+<h3>getRandomPositions</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&gt;</span>&nbsp;<span class="element-name">getRandomPositions</span><wbr><span class="parameters">(boolean&nbsp;onBoundary,
+ int&nbsp;amount)</span></div>
+<div class="block">Get a list of random positions contained in the rectangle shape.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Shape.html#getRandomPositions(boolean,int)">getRandomPositions</a></code>&nbsp;in interface&nbsp;<code><a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></code></dd>
+<dt>Overrides:</dt>
+<dd><code><a href="Polygon.html#getRandomPositions(boolean,int)">getRandomPositions</a></code>&nbsp;in class&nbsp;<code><a href="Polygon.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Polygon</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>onBoundary</code> - if true, positions are generated on the rectangle shape boundary</dd>
+<dd><code>amount</code> - number of positions to generate</dd>
+<dt>Returns:</dt>
+<dd>list of random positions</dd>
 </dl>
 </section>
 </li>

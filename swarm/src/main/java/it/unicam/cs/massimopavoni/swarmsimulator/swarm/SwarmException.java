@@ -12,4 +12,14 @@ public class SwarmException extends RuntimeException {
     public SwarmException(String message) {
         super(message);
     }
+
+    /**
+     * Swarm exception constructor with message and inner cause.
+     *
+     * @param message cause of the exception
+     * @param cause   inner cause
+     */
+    public SwarmException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

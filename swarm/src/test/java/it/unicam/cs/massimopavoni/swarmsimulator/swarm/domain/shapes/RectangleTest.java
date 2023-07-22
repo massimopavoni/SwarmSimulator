@@ -1,30 +1,29 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes;
 
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class RectangleTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
-
     @BeforeAll
-    static void setUp() {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
-        swarmPropertiesMockedStatic.when(SwarmProperties::maxPolygonVertices).thenReturn(256);
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(RectangleTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(RectangleTest.class.getSimpleName());
     }
 
     @Test
@@ -73,5 +72,32 @@ class RectangleTest {
                 () -> assertTrue(r.contains(new Position(1, -7.5))),
                 () -> assertTrue(r.contains(new Position(-1.7, -5))),
                 () -> assertTrue(r.contains(new Position(0.1, 2.4))));
+    }
+
+    @Test
+    void getRandomPositions_onBoundary() {
+        Rectangle r = new Rectangle(new Position(-3, 2), new Position(5, 7));
+        List<Position> rps = r.getRandomPositions(true, SwarmProperties.maxDronesNumber());
+        double xMin = r.getVertices().get(0).x();
+        double xMax = r.getVertices().get(2).x();
+        double yMin = r.getVertices().get(0).y();
+        double yMax = r.getVertices().get(2).y();
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(rp -> (SwarmUtils.compare(rp.x(), xMin) >= 0 && SwarmUtils.compare(rp.x(), xMax) <= 0
+                                && (SwarmUtils.compare(rp.y(), yMin) == 0 || SwarmUtils.compare(rp.y(), yMax) == 0))
+                                || (SwarmUtils.compare(rp.y(), yMin) >= 0 && SwarmUtils.compare(rp.y(), yMax) <= 0 &&
+                                (SwarmUtils.compare(rp.x(), xMin) == 0 || SwarmUtils.compare(rp.x(), xMax) == 0))))));
+    }
+
+    @Test
+    void getRandomPositions_notOnBoundary() {
+        Rectangle r = new Rectangle(new Position(-3, 2), new Position(5, 7));
+        List<Position> rps = r.getRandomPositions(false, SwarmProperties.maxDronesNumber());
+        assertAll(
+                () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
+                () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
+                        .allMatch(r::contains))));
     }
 }

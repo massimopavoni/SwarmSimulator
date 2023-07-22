@@ -1,36 +1,30 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Circle;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.SwarmShapeFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mockStatic;
 
 class RegionTest {
-    static MockedStatic<SwarmProperties> swarmPropertiesMockedStatic;
     SwarmShapeFactory swarmShapeFactory = new SwarmShapeFactory();
 
     @BeforeAll
-    static void setUp() {
-        swarmPropertiesMockedStatic = mockStatic(SwarmProperties.class);
-        swarmPropertiesMockedStatic.when(SwarmProperties::tolerance).thenReturn(Math.pow(10, -12));
-        swarmPropertiesMockedStatic.when(SwarmProperties::maxPolygonVertices).thenReturn(256);
-        swarmPropertiesMockedStatic.when(SwarmProperties::signalPattern)
-                .thenReturn(Pattern.compile("^[A-Za-z\\d_]+$"));
+    static void setUp() throws HiveMindException {
+        TestUtils.initializeProperties(RegionTest.class.getSimpleName());
     }
 
     @AfterAll
-    static void tearDown() {
-        swarmPropertiesMockedStatic.close();
+    static void tearDown() throws IOException {
+        TestUtils.deleteProperties(RegionTest.class.getSimpleName());
     }
 
     @Test

@@ -1,6 +1,6 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType;
 
@@ -21,8 +21,7 @@ public record Region(String signal, ShapeType shapeType, Shape shape) {
      * @throws DomainException if the signal does not match the pattern
      */
     public Region {
-        if (!SwarmProperties.signalPattern().matcher(signal).matches())
-            throw new DomainException("A domain region's signal must match " +
-                    "the pattern defined in the swarm properties file.");
+        SwarmUtils.checkSignal(signal, new DomainException("A domain region's signal must match " +
+                "the pattern defined in the swarm properties file."));
     }
 }

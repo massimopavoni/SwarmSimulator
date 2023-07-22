@@ -1,6 +1,5 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -9,17 +8,17 @@ import java.util.stream.Stream;
 public enum ParserDirective {
     /**
      * <p>
-     * Directive for continuation of previous execution.
+     * Jump directive for continuation of previous movement.
      * </p>
      * <p>
      * Takes one argument that represents a number of time units for which
-     * execution of previous directive shall continue.
+     * execution of previous movement shall continue.
      * </p>
      */
-    CONTINUE("continue"),
+    CONTINUE("continue", Continue.class),
     /**
      * <p>
-     * Loop directive for infinite execution of a loop body.
+     * Jump directive for infinite execution of a loop body.
      * </p>
      * <p>
      * Takes no arguments, but must be closed by a done directive.
@@ -27,16 +26,16 @@ public enum ParserDirective {
      * but it is parsed with a different syntax.
      * </p>
      */
-    DOFOREVER("do forever"),
+    DOFOREVER("do forever", Repeat.class),
     /**
      * <p>
-     * Loop directive for closing a loop body.
+     * Jump directive for closing a loop body.
      * </p>
      * <p>
      * Takes no arguments.
      * </p>
      */
-    DONE("done"),
+    DONE("done", Done.class),
     /**
      * <p>
      * Movement directive for following a certain echo, radiated by other drones.
@@ -47,7 +46,7 @@ public enum ParserDirective {
      * If no echo is found, the drone will aimlessly wander in a random direction.
      * </p>
      */
-    FOLLOW("follow"),
+    FOLLOW("follow", Follow.class),
     /**
      * <p>
      * Default movement directive.
@@ -58,17 +57,17 @@ public enum ParserDirective {
      * specifying a range of directions from which to choose a random one, and a speed.
      * </p>
      */
-    MOVE("move"),
+    MOVE("move", Move.class),
     /**
      * <p>
-     * Loop directive for finite execution of a loop body.
+     * Jump directive for finite execution of a loop body.
      * </p>
      * <p>
      * Takes one argument specifying the amount of times the loop body must be executed.
      * Must be closed by a done directive.
      * </p>
      */
-    REPEAT("repeat"),
+    REPEAT("repeat", Repeat.class),
     /**
      * <p>
      * Echo radiation directive.
@@ -77,7 +76,7 @@ public enum ParserDirective {
      * Takes one argument specifying the echo to radiate.
      * </p>
      */
-    SIGNAL("signal"),
+    SIGNAL("signal", Radiate.class),
     /**
      * <p>
      * Special movement directive which also identifies the termination of a drone's life.
@@ -88,21 +87,19 @@ public enum ParserDirective {
      * but it continues to radiate its current echoes, to provide guidance for the swarm.
      * </p>
      */
-    STOP("stop"),
+    STOP("stop", Stop.class),
     /**
      * <p>
-     * Echo radiation dual directive.
+     * Echo absorption directive.
      * </p>
      * <p>
      * Takes one argument specifying the echo of which radiation must cease.
-     * This is actually only a way of simplifying the writing of the swarm strategy,
-     * since echoes radiation acts as a simple toggle.
      * </p>
      */
-    UNSIGNAL("unsignal"),
+    UNSIGNAL("unsignal", Absorb.class),
     /**
      * <p>
-     * Loop directive for conditional execution of a loop body.
+     * Jump directive for conditional execution of a loop body.
      * </p>
      * <p>
      * Takes one argument specifying the signal that must be sensed by the drone to exit the loop.
@@ -110,40 +107,48 @@ public enum ParserDirective {
      * Signals can only be emitted by region beacons within the swarm's domain.
      * </p>
      */
-    UNTIL("until");
+    UNTIL("until", Until.class);
 
     /**
-     * String representation of the directive to be parsed.
+     * String representation of the directive type.
      */
     private final String directiveName;
+    /**
+     * Class of the corresponding directive to be created.
+     */
+    private final Class<? extends Directive> directiveClass;
 
     /**
-     * Constructor for a parser directive from string representation.
+     * Constructor for a directive type from string representation.
+     *
+     * @param directiveName  directive string representation
+     * @param directiveClass directive class
+     */
+    ParserDirective(String directiveName, Class<? extends Directive> directiveClass) {
+        this.directiveName = directiveName;
+        this.directiveClass = directiveClass;
+    }
+
+    /**
+     * Selects the corresponding directive from a string.
      *
      * @param directiveName directive string representation
+     * @return directive type
+     * @throws DirectiveException if a directive for the provided directive name is not found
      */
-    ParserDirective(String directiveName) {
-        this.directiveName = directiveName;
+    public static ParserDirective fromString(String directiveName) {
+        return Stream.of(ParserDirective.values())
+                .filter(pd -> pd.directiveName.equals(directiveName))
+                .findFirst()
+                .orElseThrow(() -> new DirectiveException("Specified directive is unavailable."));
     }
 
     /**
-     * Selects the corresponding directive from a strategy line.
+     * Corresponding directive class getter.
      *
-     * @param line line to be parsed
-     * @return an optional with the directive, if found
+     * @return shape class
      */
-    public static Optional<ParserDirective> fromLine(String line) {
-        return Stream.of(ParserDirective.values()).filter(d -> d.isDirectiveOf(line)).findFirst();
-    }
-
-
-    /**
-     * Checks if a line contains this directive.
-     *
-     * @param line line to be parsed
-     * @return true if line starts with this directive, false otherwise
-     */
-    private boolean isDirectiveOf(String line) {
-        return line.startsWith(directiveName);
+    public Class<? extends Directive> getDirectiveClass() {
+        return directiveClass;
     }
 }
