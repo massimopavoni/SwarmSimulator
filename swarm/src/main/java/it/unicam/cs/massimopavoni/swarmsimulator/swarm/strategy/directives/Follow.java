@@ -57,7 +57,8 @@ public final class Follow implements MovementDirective {
                 .map(Drone::position).toList();
         drone.setDirection(drone.position().directionTo(
                 radiatingDronePositions.isEmpty() ?
-                        Position.random(new Position(-range, -range), new Position(range, range))
+                        Position.random(new Position(dp.x() - range, dp.y() - range),
+                                new Position(dp.x() + range, dp.y() + range))
                         : Position.averageOf(radiatingDronePositions)));
         drone.setSpeed(speed);
     }
