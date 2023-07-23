@@ -91,14 +91,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#CUSTOM_SWARM_PROPERTIES_FILE_NAME" class="member-name-link">CUSTOM_SWARM_PROPERTIES_FILE_NAME</a></code></div>
+<div class="col-second even-row-color"><code><a href="#DEFAULT_SWARM_FOLDER" class="member-name-link">DEFAULT_SWARM_FOLDER</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Custom swarm properties file name for user defined properties.</div>
+<div class="block">Default swarm folder location within the user's home directory.</div>
 </div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#DEFAULT_SWARM_FOLDER" class="member-name-link">DEFAULT_SWARM_FOLDER</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#DEFAULT_SWARM_PROPERTIES_FILE_NAME" class="member-name-link">DEFAULT_SWARM_PROPERTIES_FILE_NAME</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Swarm folder location within the user's home directory.</div>
+<div class="block">Default custom swarm properties file name for user defined properties.</div>
+</div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION" class="member-name-link">DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Default swarm properties resource location if no custom file is found.</div>
 </div>
 </div>
 </section>
@@ -125,9 +130,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Initialize the swarm properties.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#initialize(java.lang.String)" class="member-name-link">initialize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;swarmFolder)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#initialize(java.lang.String,java.lang.String)" class="member-name-link">initialize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;swarmFolder,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fileName)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Initialize the swarm properties.</div>
+<div class="block">Initialize the swarm properties with a custom folder and file name.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#maxDomainRegions()" class="member-name-link">maxDomainRegions</a>()</code></div>
@@ -149,14 +155,19 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Getter for parallelism level.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#signalPattern()" class="member-name-link">signalPattern</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Reset the swarm properties.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html" title="class or interface in java.util.regex" class="external-link">Pattern</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#signalPattern()" class="member-name-link">signalPattern</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Getter for signal pattern.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tolerance()" class="member-name-link">tolerance</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#tolerance()" class="member-name-link">tolerance</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Getter for tolerance.</div>
 </div>
 </div>
@@ -180,19 +191,34 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="DEFAULT_SWARM_FOLDER">
 <h3>DEFAULT_SWARM_FOLDER</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEFAULT_SWARM_FOLDER</span></div>
-<div class="block">Swarm folder location within the user's home directory.</div>
+<div class="block">Default swarm folder location within the user's home directory.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="CUSTOM_SWARM_PROPERTIES_FILE_NAME">
-<h3>CUSTOM_SWARM_PROPERTIES_FILE_NAME</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">CUSTOM_SWARM_PROPERTIES_FILE_NAME</span></div>
-<div class="block">Custom swarm properties file name for user defined properties.</div>
+<section class="detail" id="DEFAULT_SWARM_PROPERTIES_FILE_NAME">
+<h3>DEFAULT_SWARM_PROPERTIES_FILE_NAME</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEFAULT_SWARM_PROPERTIES_FILE_NAME</span></div>
+<div class="block">Default custom swarm properties file name for user defined properties.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
-<li><a href="../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties.CUSTOM_SWARM_PROPERTIES_FILE_NAME">Constant Field Values</a></li>
+<li><a href="../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties.DEFAULT_SWARM_PROPERTIES_FILE_NAME">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION">
+<h3>DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION</span></div>
+<div class="block">Default swarm properties resource location if no custom file is found.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties.DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>
@@ -207,14 +233,16 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="initialize(java.lang.String)">
+<section class="detail" id="initialize(java.lang.String,java.lang.String)">
 <h3>initialize</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initialize</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;swarmFolder)</span>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initialize</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;swarmFolder,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fileName)</span>
                        throws <span class="exceptions"><a href="HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></span></div>
-<div class="block">Initialize the swarm properties.</div>
+<div class="block">Initialize the swarm properties with a custom folder and file name.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>swarmFolder</code> - swarm folder location</dd>
+<dd><code>fileName</code> - swarm properties file name</dd>
 <dt>Throws:</dt>
 <dd><code><a href="HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></code> - if an error occurs while getting the properties file or parsing it</dd>
 </dl>
@@ -230,6 +258,13 @@ loadScripts(document, 'script');</script>
 <dt>Throws:</dt>
 <dd><code><a href="HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></code> - if an error occurs while getting the properties file or parsing it</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="reset()">
+<h3>reset</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
+<div class="block">Reset the swarm properties.</div>
 </section>
 </li>
 <li>

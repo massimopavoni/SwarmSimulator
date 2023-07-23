@@ -3,6 +3,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.core;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,18 +17,18 @@ import java.util.regex.Pattern;
  */
 public final class SwarmProperties {
     /**
-     * Swarm folder location within the user's home directory.
+     * Default swarm folder location within the user's home directory.
      */
     public static final String DEFAULT_SWARM_FOLDER =
             String.format("%s/.swarm/", System.getProperty("user.home"));
     /**
-     * Custom swarm properties file name for user defined properties.
+     * Default custom swarm properties file name for user defined properties.
      */
-    public static final String CUSTOM_SWARM_PROPERTIES_FILE_NAME = "swarmProperties.json";
+    public static final String DEFAULT_SWARM_PROPERTIES_FILE_NAME = "swarmProperties.json";
     /**
      * Default swarm properties resource location if no custom file is found.
      */
-    private static final String DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION = "defaultSwarmProperties.json";
+    public static final String DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION = "defaultSwarmProperties.json";
     /**
      * Tolerance for double comparisons.
      */
@@ -67,14 +68,15 @@ public final class SwarmProperties {
     }
 
     /**
-     * Initialize the swarm properties.
+     * Initialize the swarm properties with a custom folder and file name.
      *
      * @param swarmFolder swarm folder location
+     * @param fileName    swarm properties file name
      * @throws HiveMindException if an error occurs while getting the properties file or parsing it
      */
-    public static void initialize(String swarmFolder) throws HiveMindException {
+    public static void initialize(String swarmFolder, String fileName) throws HiveMindException {
         if (signalPattern == null)
-            loadFile(swarmFolder);
+            loadFile(swarmFolder, fileName);
     }
 
     /**
@@ -83,8 +85,7 @@ public final class SwarmProperties {
      * @throws HiveMindException if an error occurs while getting the properties file or parsing it
      */
     public static void initialize() throws HiveMindException {
-        if (signalPattern == null)
-            loadFile(DEFAULT_SWARM_FOLDER);
+        initialize(DEFAULT_SWARM_FOLDER, DEFAULT_SWARM_PROPERTIES_FILE_NAME);
     }
 
     /**
@@ -94,9 +95,9 @@ public final class SwarmProperties {
      * @param swarmFolder swarm folder location
      * @throws HiveMindException if an error occurs while getting the properties file or parsing it
      */
-    private static void loadFile(String swarmFolder) throws HiveMindException {
+    private static void loadFile(String swarmFolder, String fileName) throws HiveMindException {
         InputStream swarmPropertiesStream;
-        Path customSwarmPropertiesPath = Path.of(swarmFolder + CUSTOM_SWARM_PROPERTIES_FILE_NAME);
+        Path customSwarmPropertiesPath = Path.of(swarmFolder + fileName);
         try {
             if (Files.notExists(customSwarmPropertiesPath)) {
                 Path swarmFolderPath = Path.of(swarmFolder);
@@ -144,16 +145,16 @@ public final class SwarmProperties {
      * @throws SwarmException if a property is invalid
      */
     private static void checkProperties() {
-        if (!(Double.isFinite(tolerance) && tolerance >= 0))
-            throw new SwarmException("Tolerance must be finite and non-negative.");
+        if (!SwarmUtils.isPositive(tolerance))
+            throw new SwarmException("Tolerance must be finite and positive.");
         if (parallelism < 4 || parallelism > 32)
-            throw new SwarmException("Parallelism level must be between 1 and 32.");
-        if (maxPolygonVertices < 3)
-            throw new SwarmException("Maximum number of vertices for a polygon must be at least 3.");
-        if (maxDomainRegions < 0)
-            throw new SwarmException("Maximum number of regions in the domain must be at least 0.");
-        if (maxDronesNumber < 1 || maxDronesNumber > 1048576)
-            throw new SwarmException("Maximum number of drones in the swarm must be between 1 and 1048576.");
+            throw new SwarmException("Parallelism level must be between 4 and 32.");
+        if (maxPolygonVertices < 3 || maxPolygonVertices > 256)
+            throw new SwarmException("Maximum number of vertices for a polygon must be between 3 and 256.");
+        if (maxDomainRegions < 0 || maxDomainRegions > 64)
+            throw new SwarmException("Maximum number of regions in the domain must be between 0 and 256.");
+        if (maxDronesNumber < 16 || maxDronesNumber > 1048576)
+            throw new SwarmException("Maximum number of drones in the swarm must be between 16 and 1048576.");
         if (isInvalidSwarmRegex(signalPattern) || isInvalidSwarmRegex(echoPattern))
             throw new SwarmException("Signal and echo patterns must be valid regular expressions " +
                     "that do not match spaces.");
@@ -167,6 +168,19 @@ public final class SwarmProperties {
      */
     private static boolean isInvalidSwarmRegex(Pattern regex) {
         return regex.matcher(" ").matches();
+    }
+
+    /**
+     * Reset the swarm properties.
+     */
+    public static void reset() {
+        tolerance = 0;
+        parallelism = 0;
+        maxPolygonVertices = 0;
+        maxDomainRegions = 0;
+        maxDronesNumber = 0;
+        signalPattern = null;
+        echoPattern = null;
     }
 
     /**
