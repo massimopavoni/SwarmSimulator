@@ -1,9 +1,12 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm;
 
-import com.google.common.collect.Maps;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Class representing a swarm drone.
@@ -45,7 +48,7 @@ public class Drone {
      * @param jumpIndexes     list of jump indexes
      */
     public Drone(Position initialPosition, List<Integer> jumpIndexes) {
-        jumpCounters = new HashMap<>(Maps.uniqueIndex(jumpIndexes, c -> 0));
+        jumpCounters = jumpIndexes.stream().collect(Collectors.toMap(i -> i, i -> 0));
         echoes = new HashSet<>();
         alive = true;
         currentDirective = 0;
@@ -95,8 +98,11 @@ public class Drone {
      *
      * @param jumpIndex jump directive index
      * @return corresponding directive's jump counter
+     * @throws SwarmException if jump directive index is not found
      */
     public int jumpCounter(int jumpIndex) {
+        if (!jumpCounters.containsKey(jumpIndex))
+            throw new SwarmException("Jump directive index not found.");
         return jumpCounters.get(jumpIndex);
     }
 
@@ -104,8 +110,11 @@ public class Drone {
      * Increments a specified jump directive counter.
      *
      * @param jumpIndex jump directive index
+     * @throws SwarmException if jump directive index is not found
      */
     public void incrementJumpCounter(int jumpIndex) {
+        if (!jumpCounters.containsKey(jumpIndex))
+            throw new SwarmException("Jump directive index not found.");
         jumpCounters.put(jumpIndex, jumpCounters.get(jumpIndex) + 1);
     }
 
