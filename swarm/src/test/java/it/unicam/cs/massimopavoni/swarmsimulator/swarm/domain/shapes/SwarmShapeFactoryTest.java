@@ -12,7 +12,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SwarmShapeFactoryTest {
-    SwarmShapeFactory swarmShapeFactory = new SwarmShapeFactory();
+    ShapeFactory swarmShapeFactory = new SwarmShapeFactory();
+    AtomicReference<Shape> shape = new AtomicReference<>();
 
     @BeforeAll
     static void setUp() throws HiveMindException {
@@ -25,28 +26,39 @@ class SwarmShapeFactoryTest {
     }
 
     @Test
-    void createShape_correctShape() {
-        AtomicReference<Shape> circle = new AtomicReference<>();
-        AtomicReference<Shape> ellipse = new AtomicReference<>();
-        AtomicReference<Shape> polygon = new AtomicReference<>();
-        AtomicReference<Shape> rectangle = new AtomicReference<>();
+    void createShape_correctShapeCircle() {
         assertAll(
                 () -> assertDoesNotThrow(
-                        () -> circle.set(
+                        () -> shape.set(
                                 swarmShapeFactory.createShape(ShapeType.CIRCLE, new double[]{0, 0, 1}))),
-                () -> assertEquals(ShapeType.CIRCLE.getShapeClass(), circle.get().getClass()),
+                () -> assertEquals(ShapeType.CIRCLE.getShapeClass(), shape.get().getClass()));
+    }
+
+    @Test
+    void createShape_correctShapeEllipse() {
+        assertAll(
                 () -> assertDoesNotThrow(
-                        () -> ellipse.set(
+                        () -> shape.set(
                                 swarmShapeFactory.createShape(ShapeType.ELLIPSE, new double[]{0, 0, 1, 2}))),
-                () -> assertEquals(ShapeType.ELLIPSE.getShapeClass(), ellipse.get().getClass()),
+                () -> assertEquals(ShapeType.ELLIPSE.getShapeClass(), shape.get().getClass()));
+    }
+
+    @Test
+    void createShape_correctShapePolygon() {
+        assertAll(
                 () -> assertDoesNotThrow(
-                        () -> polygon.set(
+                        () -> shape.set(
                                 swarmShapeFactory.createShape(ShapeType.POLYGON, new double[]{0, 0, 1, 1, 2, 2}))),
-                () -> assertEquals(ShapeType.POLYGON.getShapeClass(), polygon.get().getClass()),
+                () -> assertEquals(ShapeType.POLYGON.getShapeClass(), shape.get().getClass()));
+    }
+
+    @Test
+    void createShape_correctShapeRectangle() {
+        assertAll(
                 () -> assertDoesNotThrow(
-                        () -> rectangle.set(
+                        () -> shape.set(
                                 swarmShapeFactory.createShape(ShapeType.RECTANGLE, new double[]{0, 0, 1, 2}))),
-                () -> assertEquals(ShapeType.RECTANGLE.getShapeClass(), rectangle.get().getClass()));
+                () -> assertEquals(ShapeType.RECTANGLE.getShapeClass(), shape.get().getClass()));
     }
 
     @Test

@@ -14,7 +14,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return continue directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
+     * @throws NumberFormatException if the number arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -28,7 +28,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return do forever directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
+     * @throws NumberFormatException if the number arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -42,7 +42,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return done directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
+     * @throws NumberFormatException if the number arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -56,7 +56,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return follow directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
+     * @throws NumberFormatException if the number arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -70,7 +70,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return move directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
+     * @throws NumberFormatException if the number arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -92,7 +92,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return repeat directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
+     * @throws NumberFormatException if the number arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -107,7 +107,6 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return signal directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -122,7 +121,6 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return stop directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -137,7 +135,6 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return unsignal directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override
@@ -152,7 +149,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return until directive
-     * @throws IllegalArgumentException if the arguments could not be parsed
+     * @throws NumberFormatException if the number arguments could not be parsed
      * @throws DirectiveException       if the directive could not be created
      */
     @Override

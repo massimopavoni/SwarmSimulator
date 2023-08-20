@@ -1,17 +1,13 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.core;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
