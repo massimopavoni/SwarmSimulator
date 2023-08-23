@@ -29,6 +29,10 @@ public class Drone {
      */
     private int currentDirective;
     /**
+     * Flag for strategy completion.
+     */
+    private boolean strategyDone;
+    /**
      * Current drone position.
      */
     private Position position;
@@ -52,6 +56,7 @@ public class Drone {
         echoes = new HashSet<>();
         alive = true;
         currentDirective = 0;
+        strategyDone = false;
         position = initialPosition;
         direction = new Position(0, 0);
         speed = 0;
@@ -91,6 +96,22 @@ public class Drone {
      */
     public void setCurrentDirective(int index) {
         this.currentDirective = index;
+    }
+
+    /**
+     * Setter for strategy completion flag.
+     */
+    public void setStrategyDone() {
+        strategyDone = true;
+    }
+
+    /**
+     * Getter for strategy completion flag.
+     *
+     * @return true if strategy is done, false otherwise
+     */
+    public boolean isStrategyDone() {
+        return strategyDone;
     }
 
     /**
@@ -177,8 +198,11 @@ public class Drone {
      * Starts radiating a specified echo.
      *
      * @param echo echo to radiate
+     * @throws SwarmException if the echo string does not match the defined pattern
      */
     public void radiate(String echo) {
+        SwarmUtils.checkEcho(echo, new SwarmException("A drone echo must match " +
+                "the pattern defined in the swarm properties file."));
         echoes.add(echo);
     }
 
@@ -186,8 +210,11 @@ public class Drone {
      * Stops radiating a specified echo.
      *
      * @param echo echo to absorb
+     * @throws SwarmException if the echo string does not match the defined pattern
      */
     public void absorb(String echo) {
+        SwarmUtils.checkEcho(echo, new SwarmException("A drone echo must match " +
+                "the pattern defined in the swarm properties file."));
         echoes.remove(echo);
     }
 
@@ -195,7 +222,6 @@ public class Drone {
      * Moves the drone one step in the current direction.
      */
     public void stepMove() {
-        if (alive)
-            position = position.translate(direction.scale(speed));
+        position = position.translate(direction.scale(speed));
     }
 }

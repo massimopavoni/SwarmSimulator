@@ -136,7 +136,7 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#initializeParsers(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeFactory,it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.DirectiveFactory)" class="member-name-link">initializeParsers</a><wbr>(<a href="../domain/shapes/ShapeFactory.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeFactory</a>&nbsp;shapeFactory,
  <a href="../strategy/directives/DirectiveFactory.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">DirectiveFactory</a>&nbsp;directiveFactory)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Initializes the parsers if they are not already initialized.</div>
+<div class="block">Initializes or reassigns the parsers.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../strategy/directives/Directive.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">Directive</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#strategy()" class="member-name-link">strategy</a>()</code></div>
@@ -253,11 +253,11 @@ loadScripts(document, 'script');</script>
 <h3>initializeParsers</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initializeParsers</span><wbr><span class="parameters">(<a href="../domain/shapes/ShapeFactory.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">ShapeFactory</a>&nbsp;shapeFactory,
  <a href="../strategy/directives/DirectiveFactory.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives">DirectiveFactory</a>&nbsp;directiveFactory)</span></div>
-<div class="block">Initializes the parsers if they are not already initialized.</div>
+<div class="block">Initializes or reassigns the parsers.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>shapeFactory</code> - factory class object for creating shapes</dd>
-<dd><code>directiveFactory</code> - factory class object for creating directives</dd>
+<dd><code>shapeFactory</code> - factory class object for creating shapes, null for new default</dd>
+<dd><code>directiveFactory</code> - factory class object for creating directives, null for new default</dd>
 </dl>
 </section>
 </li>

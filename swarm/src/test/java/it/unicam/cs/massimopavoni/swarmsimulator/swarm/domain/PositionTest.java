@@ -3,6 +3,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -65,13 +66,47 @@ class PositionTest {
     }
 
     @Test
-    void random() {
+    void random_normal() {
         Position llp = new Position(-1, -2);
         Position urp = new Position(3, 4);
         Position p = Position.random(llp, urp);
         assertAll(
                 () -> assertTrue(SwarmUtils.compare(p.x(), -1) >= 0 && SwarmUtils.compare(p.x(), 3) <= 0),
-                () -> assertTrue(SwarmUtils.compare(p.x(), -2) >= 0 && SwarmUtils.compare(p.x(), 4) <= 0));
+                () -> assertTrue(SwarmUtils.compare(p.y(), -2) >= 0 && SwarmUtils.compare(p.y(), 4) <= 0));
+    }
+
+    @Test
+    void random_inverted() {
+        Position llp = new Position(3, 4);
+        Position urp = new Position(-1, -2);
+        Position p = Position.random(llp, urp);
+        assertAll(
+                () -> assertTrue(SwarmUtils.compare(p.x(), -1) >= 0 && SwarmUtils.compare(p.x(), 3) <= 0),
+                () -> assertTrue(SwarmUtils.compare(p.y(), -2) >= 0 && SwarmUtils.compare(p.y(), 4) <= 0));
+    }
+
+    @Test
+    void random_equal() {
+        Position llp0 = new Position(1, 2);
+        Position urp0 = new Position(1, 3);
+        Position llp1 = new Position(1, 2);
+        Position urp1 = new Position(2, 2);
+        Position llp2 = new Position(1, 2);
+        Position urp2 = new Position(1, 2);
+        Position p0 = Position.random(llp0, urp0);
+        Position p1 = Position.random(llp1, urp1);
+        Position p2 = Position.random(llp2, urp2);
+        assertAll(
+                () -> assertTrue(SwarmUtils.compare(p0.x(), 1 - SwarmProperties.tolerance()) >= 0 &&
+                        SwarmUtils.compare(p0.x(), 1 + SwarmProperties.tolerance()) <= 0),
+                () -> assertTrue(SwarmUtils.compare(p0.y(), 2) >= 0 && SwarmUtils.compare(p0.y(), 3) <= 0),
+                () -> assertTrue(SwarmUtils.compare(p1.x(), 1) >= 0 && SwarmUtils.compare(p1.x(), 2) <= 0),
+                () -> assertTrue(SwarmUtils.compare(p1.y(), 2 - SwarmProperties.tolerance()) >= 0 &&
+                        SwarmUtils.compare(p1.y(), 2 + SwarmProperties.tolerance()) <= 0),
+                () -> assertTrue(SwarmUtils.compare(p2.x(), 1 - SwarmProperties.tolerance()) >= 0 &&
+                        SwarmUtils.compare(p2.x(), 1 + SwarmProperties.tolerance()) <= 0),
+                () -> assertTrue(SwarmUtils.compare(p2.y(), 2 - SwarmProperties.tolerance()) >= 0 &&
+                        SwarmUtils.compare(p2.y(), 2 + SwarmProperties.tolerance()) <= 0));
     }
 
     @Test

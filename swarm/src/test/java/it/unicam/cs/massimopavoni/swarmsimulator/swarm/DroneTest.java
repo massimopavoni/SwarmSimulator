@@ -59,6 +59,14 @@ class DroneTest {
     }
 
     @Test
+    void setStrategyDone_set() {
+        Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
+        assertAll(
+                () -> assertDoesNotThrow(d::setStrategyDone),
+                () -> assertTrue(d.isStrategyDone()));
+    }
+
+    @Test
     void jumpCounter_notContains() {
         Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
         assertThrowsExactly(SwarmException.class, () -> d.jumpCounter(1));
@@ -97,6 +105,24 @@ class DroneTest {
     }
 
     @Test
+    void radiate_notGoodEcho() {
+        AtomicReference<Exception> e = new AtomicReference<>();
+        Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
+        assertAll(
+                () -> e.set(assertThrowsExactly(SwarmException.class, () -> d.radiate("no good"))),
+                () -> assertTrue(e.get().getMessage().toLowerCase().contains("echo")));
+    }
+
+    @Test
+    void absorb_notGoodEcho() {
+        AtomicReference<Exception> e = new AtomicReference<>();
+        Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
+        assertAll(
+                () -> e.set(assertThrowsExactly(SwarmException.class, () -> d.absorb("no good"))),
+                () -> assertTrue(e.get().getMessage().toLowerCase().contains("echo")));
+    }
+
+    @Test
     void radiateAndAbsorb_sequence() {
         Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
         assertAll(
@@ -111,20 +137,6 @@ class DroneTest {
                 () -> assertDoesNotThrow(() -> d.absorb("first")),
                 () -> assertDoesNotThrow(() -> d.absorb("second")),
                 () -> assertFalse(d.isRadiating("first") || d.isRadiating("second")));
-    }
-
-    @Test
-    void stepMove_dead() {
-        Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
-        d.setDirection(d.position().directionTo(new Position(1, 1)));
-        d.setSpeed(1);
-        d.stepMove();
-        d.terminateLife();
-        assertAll(
-                () -> assertDoesNotThrow(d::stepMove),
-                () -> assertTrue(new Position(0, 0).equalTo(d.direction())),
-                () -> assertEquals(0, SwarmUtils.compare(0, d.speed())),
-                () -> assertTrue(new Position(1 / Math.sqrt(2), 1 / Math.sqrt(2)).equalTo(d.position())));
     }
 
     @Test

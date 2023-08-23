@@ -9,9 +9,11 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser.DomainParse
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser.SwarmDomainParser;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeFactory;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.SwarmShapeFactory;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.Directive;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.DirectiveFactory;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.DirectiveType;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.SwarmDirectiveFactory;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser.StrategyParser;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser.StrategyParserException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser.SwarmStrategyParser;
@@ -131,16 +133,16 @@ public final class SwarmState {
     }
 
     /**
-     * Initializes the parsers if they are not already initialized.
+     * Initializes or reassigns the parsers.
      *
-     * @param shapeFactory     factory class object for creating shapes
-     * @param directiveFactory factory class object for creating directives
+     * @param shapeFactory     factory class object for creating shapes, null for new default
+     * @param directiveFactory factory class object for creating directives, null for new default
      */
     public static void initializeParsers(ShapeFactory shapeFactory, DirectiveFactory directiveFactory) {
-        if (domainParser == null)
-            domainParser = new SwarmDomainParser(shapeFactory);
-        if (strategyParser == null)
-            strategyParser = new SwarmStrategyParser(directiveFactory);
+        domainParser = new SwarmDomainParser(shapeFactory == null ?
+                new SwarmShapeFactory() : shapeFactory);
+        strategyParser = new SwarmStrategyParser(directiveFactory == null ?
+                new SwarmDirectiveFactory() : directiveFactory);
     }
 
     /**

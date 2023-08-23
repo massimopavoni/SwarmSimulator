@@ -9,21 +9,12 @@ import java.util.List;
 
 /**
  * Follow movement directive, for setting a drone direction to the average position of drones radiating a specific echo.
+ *
+ * @param echo  echo to follow
+ * @param range range within which the drone can hear the echo
+ * @param speed movement speed to set
  */
-public final class Follow implements MovementDirective {
-    /**
-     * Echo to follow.
-     */
-    private final String echo;
-    /**
-     * Range within which the drone can hear the echo.
-     */
-    private final double range;
-    /**
-     * Movement speed to set.
-     */
-    private final double speed;
-
+public record Follow(String echo, double range, double speed) implements MovementDirective {
     /**
      * Constructor for a follow movement directive.
      *
@@ -33,14 +24,11 @@ public final class Follow implements MovementDirective {
      * @throws DirectiveException if the echo does not match the defined pattern or
      *                            if the range or speed are not positive
      */
-    public Follow(String echo, double range, double speed) {
+    public Follow {
         SwarmUtils.checkEcho(echo, new DirectiveException("A follow directive's echo must match " +
                 "the pattern defined in the swarm properties file."));
         if (!(SwarmUtils.isPositive(range) && SwarmUtils.isPositive(speed)))
             throw new DirectiveException("A follow directive's range and speed must be finite positive numbers.");
-        this.echo = echo;
-        this.range = range;
-        this.speed = speed;
     }
 
     /**

@@ -7,17 +7,11 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
 /**
  * Move movement directive, for setting the drone's direction and speed.
+ *
+ * @param destination destination position to move towards
+ * @param speed       movement speed to set
  */
-public final class Move implements MovementDirective {
-    /**
-     * Destination position to move towards.
-     */
-    private final Position destination;
-    /**
-     * Movement speed to set.
-     */
-    private final double speed;
-
+public record Move(Position destination, double speed) implements MovementDirective {
     /**
      * Constructor for a move movement directive.
      *
@@ -25,11 +19,9 @@ public final class Move implements MovementDirective {
      * @param speed       movement speed
      * @throws DirectiveException if the speed is not positive
      */
-    public Move(Position destination, double speed) {
+    public Move {
         if (!SwarmUtils.isPositive(speed))
             throw new DirectiveException("A move directive's speed must be finite and positive.");
-        this.destination = destination;
-        this.speed = speed;
     }
 
     /**

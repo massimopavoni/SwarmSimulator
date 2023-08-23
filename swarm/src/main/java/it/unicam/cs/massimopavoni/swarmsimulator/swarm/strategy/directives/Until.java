@@ -7,17 +7,11 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 
 /**
  * Until jump directive, for repeating the execution of set of directives until a specific signal is perceived.
+ *
+ * @param jumpIndex index of the directive to jump to when the condition is met
+ * @param signal    signal to perceive
  */
-public final class Until implements JumpDirective {
-    /**
-     * Index of the directive to jump to when the condition is met.
-     */
-    private final int jumpIndex;
-    /**
-     * Signal to perceive.
-     */
-    private final String signal;
-
+public record Until(int jumpIndex, String signal) implements JumpDirective {
     /**
      * Constructor for an until jump directive.
      *
@@ -25,11 +19,9 @@ public final class Until implements JumpDirective {
      * @param signal    signal string
      * @throws DirectiveException if the signal string does not match the defined pattern
      */
-    public Until(int jumpIndex, String signal) {
+    public Until {
         SwarmUtils.checkSignal(signal, new DirectiveException("An until directive's signal must match " +
                 "the pattern defined in the swarm properties file."));
-        this.jumpIndex = jumpIndex;
-        this.signal = signal;
     }
 
     /**

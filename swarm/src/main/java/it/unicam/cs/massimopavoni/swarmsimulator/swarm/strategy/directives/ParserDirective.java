@@ -130,15 +130,15 @@ public enum ParserDirective {
     }
 
     /**
-     * Selects the corresponding directive from a string.
+     * Selects the corresponding directive given a line.
      *
-     * @param directiveName directive string representation
+     * @param line line containing the directive string representation
      * @return directive type
      * @throws DirectiveException if a directive for the provided directive name is not found
      */
-    public static ParserDirective fromString(String directiveName) {
+    public static ParserDirective fromLine(String line) {
         return Stream.of(ParserDirective.values())
-                .filter(pd -> pd.directiveName.equals(directiveName))
+                .filter(pd -> line.startsWith(pd.directiveName))
                 .findFirst()
                 .orElseThrow(() -> new DirectiveException("Specified directive is unavailable."));
     }

@@ -5,22 +5,10 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
 
 /**
  * Continue jump directive, for continuing the execution of a previous movement.
+ *
+ * @param jumpLimit jumps limit in time units
  */
-public final class Continue implements JumpDirective {
-    /**
-     * Jumps limit in time units.
-     */
-    private final int jumpLimit;
-
-    /**
-     * Constructor for a continue jump directive.
-     *
-     * @param jumpLimit jumps limit time units
-     */
-    public Continue(int jumpLimit) {
-        this.jumpLimit = jumpLimit;
-    }
-
+public record Continue(int jumpLimit) implements JumpDirective {
     /**
      * Executes the continue directive on the given drone.
      *

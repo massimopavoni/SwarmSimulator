@@ -18,7 +18,7 @@ public sealed interface Directive permits EchoDirective, JumpDirective, Movement
      * Executes the directive on the given drone.
      *
      * @param swarmState swarm state for swarm-wide operations
-     * @param drone drone executing the directive
+     * @param drone      drone executing the directive
      */
     void execute(SwarmState swarmState, Drone drone);
 }

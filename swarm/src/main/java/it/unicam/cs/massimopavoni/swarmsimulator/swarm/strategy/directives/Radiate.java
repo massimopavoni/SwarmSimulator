@@ -6,23 +6,19 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
 
 /**
  * Radiate echo directive, for starting the radiation of a certain echo.
+ *
+ * @param echo echo to be radiated
  */
-public final class Radiate implements EchoDirective {
-    /**
-     * Echo to be radiated.
-     */
-    private final String echo;
-
+public record Radiate(String echo) implements EchoDirective {
     /**
      * Constructor for a radiate echo directive.
      *
      * @param echo echo string
      * @throws DirectiveException if the echo string does not match the defined pattern
      */
-    public Radiate(String echo) {
+    public Radiate {
         SwarmUtils.checkEcho(echo, new DirectiveException("A radiate directive's echo must match " +
                 "the pattern defined in the swarm properties file."));
-        this.echo = echo;
     }
 
     /**

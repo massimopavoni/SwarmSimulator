@@ -5,22 +5,10 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
 
 /**
  * Done jump directive, for ending a loop.
+ *
+ * @param jumpIndex index of the directive to unconditionally jump to
  */
-public final class Done implements JumpDirective {
-    /**
-     * Index of the directive to unconditionally jump to.
-     */
-    private final int jumpIndex;
-
-    /**
-     * Constructor for a done jump directive.
-     *
-     * @param jumpIndex directive index to jump to
-     */
-    public Done(int jumpIndex) {
-        this.jumpIndex = jumpIndex;
-    }
-
+public record Done(int jumpIndex) implements JumpDirective {
     /**
      * Executes the done directive on the given drone.
      *

@@ -97,9 +97,7 @@ public final class Rectangle extends Polygon implements Shape {
                     .mapToObj(i -> getRandomPositionOnBoundary()).collect(toImmutableList()));
         else
             return SwarmUtils.parallelize(() -> IntStream.range(0, amount).parallel()
-                    .mapToObj(i -> new Position(
-                            ThreadLocalRandom.current().nextDouble(vertices.get(0).x(), vertices.get(2).x()),
-                            ThreadLocalRandom.current().nextDouble(vertices.get(0).y(), vertices.get(2).y())))
+                    .mapToObj(i -> Position.random(vertices.get(0), vertices.get(2)))
                     .collect(toImmutableList()));
     }
 

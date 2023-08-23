@@ -86,7 +86,7 @@ class SwarmDomainParserTest {
                         () -> swarmDomainParser.parseDomain("""
                                 first_shape"""))),
                 () -> assertEquals(DomainException.class, e.get().getCause().getClass()),
-                () -> assertTrue(e.get().getMessage().contains("line 0")));
+                () -> assertTrue(e.get().getMessage().toLowerCase().contains("line 0")));
     }
 
     @Test

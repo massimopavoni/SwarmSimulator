@@ -1,12 +1,13 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser;
 
+import com.google.common.collect.Iterables;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.StrategyException;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.Directive;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.DirectiveException;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.DirectiveFactory;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.ParserDirective;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.*;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 
@@ -68,15 +69,13 @@ public final class SwarmStrategyParser implements StrategyParser {
      * @throws StrategyParserException if a line could not be parsed
      */
     private List<Directive> parseStrategy(List<String> lines) throws StrategyParserException {
-        lineCounter = -1;
-        strategy = new ArrayList<>();
-        uncompletedJumpDirectives = new ArrayDeque<>();
-        uncompletedJumpIndexes = new ArrayDeque<>();
-        uncompletedJumpArgs = new ArrayDeque<>();
+        resetParsing();
         try {
             lines.forEach(this::parseLine);
             if (!uncompletedJumpDirectives.isEmpty())
                 throw new StrategyException("Inconsistent loop directives detected.");
+            if (Iterables.getLast(strategy, null).getClass() != Stop.class)
+                throw new StrategyException("Strategy must end with a stop directive.");
             return strategy.stream().collect(toImmutableList());
         } catch (DirectiveException | StrategyException | IllegalArgumentException e) {
             throw new StrategyParserException(
@@ -85,38 +84,91 @@ public final class SwarmStrategyParser implements StrategyParser {
     }
 
     /**
+     * Resets the parsing state.
+     */
+    private void resetParsing() {
+        lineCounter = -1;
+        strategy = new ArrayList<>();
+        uncompletedJumpDirectives = new ArrayDeque<>();
+        uncompletedJumpIndexes = new ArrayDeque<>();
+        uncompletedJumpArgs = new ArrayDeque<>();
+    }
+
+    /**
      * Parses a single line of the strategy file, creating directives and adding them to the strategy.
      *
      * @param line line to parse
      * @throws DirectiveException       if the directive could not be created
-     * @throws StrategyException        if the strategy loops are inconsistent
+     * @throws StrategyException        if the strategy directives are inconsistent
      * @throws IllegalArgumentException if the arguments could not be parsed
      */
     private void parseLine(String line) {
-        List<String> args = Arrays.asList(line.trim().split(" "));
-        if (args.isEmpty())
-            throw new DirectiveException("Not enough arguments for directive parsing.");
-        ParserDirective parserDirective = ParserDirective.fromString(args.get(0).toLowerCase());
-        args.remove(0);
         lineCounter++;
+        if (line.isBlank())
+            throw new DirectiveException("Not enough arguments for directive parsing.");
+        List<String> args = new ArrayList<>(List.of(line.trim().split(" ")));
+        ParserDirective parserDirective = ParserDirective.fromLine(line.toLowerCase());
+        args.remove(0);
+        if (JumpDirective.isPermittedDirective(parserDirective.getDirectiveClass()))
+            parseJumpDirective(parserDirective, args);
+        else
+            addDirective(parserDirective, args);
+    }
+
+    /**
+     * Parses a jump directive, adding directives to the strategy or preparing for future backtracking.
+     *
+     * @param parserDirective directive to parse
+     * @param args            arguments for the directive
+     */
+    private void parseJumpDirective(ParserDirective parserDirective, List<String> args) {
         switch (parserDirective) {
-            case DOFOREVER, REPEAT, UNTIL -> {
+            case DONE -> completeLoop(parserDirective, args);
+            case CONTINUE -> addDirective(parserDirective, args);
+            default -> {
                 uncompletedJumpDirectives.push(parserDirective);
                 uncompletedJumpIndexes.push(lineCounter);
                 uncompletedJumpArgs.push(args);
             }
-            case DONE -> {
-                if (uncompletedJumpDirectives.isEmpty())
-                    throw new StrategyException("Unexpected inconsistent loop directive received.");
-                int index = uncompletedJumpIndexes.pop();
-                uncompletedJumpArgs.getFirst().add(0, String.valueOf(lineCounter + 1));
-                strategy.add(index, directiveFactory.createDirective(
-                        uncompletedJumpDirectives.pop(), uncompletedJumpArgs.pop().toArray(String[]::new)));
-                args.add(0, String.valueOf(index));
-                strategy.add(directiveFactory.createDirective(parserDirective, args.toArray(String[]::new)));
-            }
-            default -> strategy.add(directiveFactory.createDirective(
-                    parserDirective, args.toArray(String[]::new)));
         }
+    }
+
+    /**
+     * Completes a loop directive, adding the two delimiting directives to the strategy.
+     *
+     * @param parserDirective done parser directive
+     * @param args            arguments for the done directive
+     */
+    private void completeLoop(ParserDirective parserDirective, List<String> args) {
+        if (uncompletedJumpDirectives.isEmpty())
+            throw new StrategyException("Unexpected inconsistent loop directive received.");
+        int index = uncompletedJumpIndexes.pop();
+        uncompletedJumpArgs.getFirst().add(0, String.valueOf(lineCounter + 1));
+        addDirective(index - uncompletedJumpIndexes.size(),
+                uncompletedJumpDirectives.pop(), uncompletedJumpArgs.pop());
+        args.add(0, String.valueOf(index));
+        addDirective(parserDirective, args);
+    }
+
+    /**
+     * Adds a directive to the strategy.
+     *
+     * @param parserDirective directive to add
+     * @param args            arguments for the directive
+     */
+    private void addDirective(ParserDirective parserDirective, List<String> args) {
+        strategy.add(directiveFactory.createDirective(parserDirective, args.toArray(String[]::new)));
+    }
+
+
+    /**
+     * Adds a directive to the strategy at the given index.
+     *
+     * @param index           index to add the directive at
+     * @param parserDirective directive to add
+     * @param args            arguments for the directive
+     */
+    private void addDirective(int index, ParserDirective parserDirective, List<String> args) {
+        strategy.add(index, directiveFactory.createDirective(parserDirective, args.toArray(String[]::new)));
     }
 }

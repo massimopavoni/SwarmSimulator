@@ -40,7 +40,8 @@ class SwarmDirectiveFactoryTest {
         assertAll(
                 () -> assertDoesNotThrow(
                         () -> directive.set(
-                                swarmDirectiveFactory.createDirective(ParserDirective.DOFOREVER, new String[]{"10"}))),
+                                swarmDirectiveFactory.createDirective(ParserDirective.DOFOREVER,
+                                        new String[]{"10", "FoReVeR"}))),
                 () -> assertEquals(DirectiveType.JUMP, directive.get().getType()),
                 () -> assertEquals(ParserDirective.DOFOREVER.getDirectiveClass(), directive.get().getClass()));
     }
@@ -160,16 +161,16 @@ class SwarmDirectiveFactoryTest {
     void createDoForever_invalidArguments() {
         assertAll(
                 () -> assertThrowsExactly(DirectiveException.class,
-                        () -> swarmDirectiveFactory.createDoForever(new String[]{})),
+                        () -> swarmDirectiveFactory.createDoForever(new String[]{"10"})),
                 () -> assertThrowsExactly(DirectiveException.class,
-                        () -> swarmDirectiveFactory.createDoForever(new String[]{"10", "11"})),
+                        () -> swarmDirectiveFactory.createDoForever(new String[]{"10", "FoReVeR", "11"})),
                 () -> assertThrowsExactly(NumberFormatException.class,
-                        () -> swarmDirectiveFactory.createDoForever(new String[]{"a"})));
+                        () -> swarmDirectiveFactory.createDoForever(new String[]{"a", "FoReVeR"})));
     }
 
     @Test
     void createDoForever_validArguments() {
-        assertDoesNotThrow(() -> swarmDirectiveFactory.createDoForever(new String[]{"10"}));
+        assertDoesNotThrow(() -> swarmDirectiveFactory.createDoForever(new String[]{"10", "FoReVeR"}));
     }
 
     @Test

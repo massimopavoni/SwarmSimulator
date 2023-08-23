@@ -6,7 +6,7 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
 /**
  * Stop movement directive, for stopping the drone and terminating its life.
  */
-public final class Stop implements MovementDirective {
+public record Stop() implements MovementDirective {
     /**
      * Executes the stop directive on the given drone.
      *

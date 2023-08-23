@@ -15,7 +15,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      * @param args directive arguments
      * @return continue directive
      * @throws NumberFormatException if the number arguments could not be parsed
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException    if the directive could not be created
      */
     @Override
     public Directive createContinue(String[] args) {
@@ -24,26 +24,12 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
     }
 
     /**
-     * Creates a do forever directive.
-     *
-     * @param args directive arguments
-     * @return do forever directive
-     * @throws NumberFormatException if the number arguments could not be parsed
-     * @throws DirectiveException       if the directive could not be created
-     */
-    @Override
-    public Directive createDoForever(String[] args) {
-        acceptArgumentsOrThrow(args.length, l -> l == 1, "A repeat forever directive requires 1 argument.");
-        return new Repeat(Integer.parseInt(args[0]));
-    }
-
-    /**
      * Creates a done directive.
      *
      * @param args directive arguments
      * @return done directive
      * @throws NumberFormatException if the number arguments could not be parsed
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException    if the directive could not be created
      */
     @Override
     public Directive createDone(String[] args) {
@@ -57,7 +43,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      * @param args directive arguments
      * @return follow directive
      * @throws NumberFormatException if the number arguments could not be parsed
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException    if the directive could not be created
      */
     @Override
     public Directive createFollow(String[] args) {
@@ -71,7 +57,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      * @param args directive arguments
      * @return move directive
      * @throws NumberFormatException if the number arguments could not be parsed
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException    if the directive could not be created
      */
     @Override
     public Directive createMove(String[] args) {
@@ -93,12 +79,14 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      * @param args directive arguments
      * @return repeat directive
      * @throws NumberFormatException if the number arguments could not be parsed
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException    if the directive could not be created
      */
     @Override
     public Directive createRepeat(String[] args) {
         acceptArgumentsOrThrow(args.length, l -> l == 2,
                 "A repeat directive requires 2 arguments.");
+        if (args[1].equalsIgnoreCase("forever"))
+            return new Repeat(Integer.parseInt(args[0]));
         return new Repeat(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
     }
 
@@ -107,7 +95,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return signal directive
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException if the directive could not be created
      */
     @Override
     public Directive createSignal(String[] args) {
@@ -121,7 +109,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return stop directive
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException if the directive could not be created
      */
     @Override
     public Directive createStop(String[] args) {
@@ -135,7 +123,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      *
      * @param args directive arguments
      * @return unsignal directive
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException if the directive could not be created
      */
     @Override
     public Directive createUnsignal(String[] args) {
@@ -150,7 +138,7 @@ public class SwarmDirectiveFactory implements DirectiveFactory {
      * @param args directive arguments
      * @return until directive
      * @throws NumberFormatException if the number arguments could not be parsed
-     * @throws DirectiveException       if the directive could not be created
+     * @throws DirectiveException    if the directive could not be created
      */
     @Override
     public Directive createUntil(String[] args) {

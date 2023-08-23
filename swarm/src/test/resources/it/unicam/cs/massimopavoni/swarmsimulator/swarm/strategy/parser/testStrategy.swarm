@@ -1,0 +1,6 @@
+UNTIL first_shape
+FOLLOW in_first_shape 100 5
+CONTINUE 10
+DONE
+SIGNAL in_first_shape
+STOP

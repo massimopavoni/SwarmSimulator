@@ -11,7 +11,7 @@ public interface DirectiveFactory {
      * @param args            arguments of the directive
      * @return the created directive
      * @throws IllegalArgumentException if the arguments could not be parsed
-     * @throws DirectiveException if the directive could not be created
+     * @throws DirectiveException       if the directive could not be created
      */
     default Directive createDirective(ParserDirective parserDirective, String[] args) {
         return switch (parserDirective) {
@@ -42,7 +42,9 @@ public interface DirectiveFactory {
      * @param args directive arguments
      * @return do forever directive
      */
-    Directive createDoForever(String[] args);
+    default Directive createDoForever(String[] args) {
+        return createRepeat(args);
+    }
 
     /**
      * Creates a done directive for the swarm strategy.

@@ -5,36 +5,18 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
 
 /**
  * Repeat jump directive, for repeating the execution of set of directives for several times.
+ *
+ * @param jumpIndex index of the directive to jump to when the jumps reach the limit
+ * @param jumpLimit jumps limit in time units
  */
-public final class Repeat implements JumpDirective {
-    /**
-     * Index of the directive to jump to when the jumps reach the limit.
-     */
-    private final int jumpIndex;
-    /**
-     * Jumps limit in time units.
-     */
-    private final int jumpLimit;
-
-    /**
-     * Constructor for a repeat jump directive.
-     *
-     * @param jumpIndex directive index to jump to
-     * @param jumpLimit jumps limit time units
-     */
-    public Repeat(int jumpIndex, int jumpLimit) {
-        this.jumpIndex = jumpIndex;
-        this.jumpLimit = jumpLimit;
-    }
-
+public record Repeat(int jumpIndex, int jumpLimit) implements JumpDirective {
     /**
      * Constructor for a repeat forever jump directive.
      *
      * @param jumpIndex directive index to jump to
      */
     public Repeat(int jumpIndex) {
-        this.jumpIndex = jumpIndex;
-        this.jumpLimit = 0;
+        this(jumpIndex, 0);
     }
 
     /**

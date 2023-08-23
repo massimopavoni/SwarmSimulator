@@ -1,6 +1,7 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -50,8 +51,15 @@ public final class Position {
      * @return random position
      */
     public static Position random(Position llp, Position urp) {
-        return new Position(ThreadLocalRandom.current().nextDouble(llp.x, urp.x),
-                ThreadLocalRandom.current().nextDouble(llp.y, urp.y));
+        // The following shenanigans are hereby put in place because of the shortcomings of
+        // the bounded nextDouble implementation of the RandomGenerator interface (implemented by
+        // ThreadLocalRandom), caused by the RandomSupport utility class' check (double) range method.
+        double xDelta = llp.x == urp.x ? SwarmProperties.tolerance() : 0;
+        double yDelta = llp.y == urp.y ? SwarmProperties.tolerance() : 0;
+        return new Position(ThreadLocalRandom.current().nextDouble(
+                Math.min(llp.x, urp.x) - xDelta, Math.max(llp.x, urp.x) + xDelta),
+                ThreadLocalRandom.current().nextDouble(
+                        Math.min(llp.y, urp.y) - yDelta, Math.max(llp.y, urp.y) + yDelta));
     }
 
     /**
