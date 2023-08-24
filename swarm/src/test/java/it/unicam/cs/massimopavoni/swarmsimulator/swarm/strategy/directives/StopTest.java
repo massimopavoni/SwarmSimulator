@@ -17,53 +17,49 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UntilTest {
+class StopTest {
     @BeforeAll
     static void setUp() throws HiveMindException {
-        TestUtils.initializeProperties(UntilTest.class.getSimpleName());
+        TestUtils.initializeProperties(StopTest.class.getSimpleName());
     }
 
     @AfterAll
     static void tearDown() throws IOException {
-        TestUtils.deleteProperties(UntilTest.class.getSimpleName());
+        TestUtils.deleteProperties(StopTest.class.getSimpleName());
     }
 
     @Test
-    void Until_illegalSignal() {
+    void Move_negativeSpeed() {
         AtomicReference<Exception> e = new AtomicReference<>();
         assertAll(
                 () -> e.set(assertThrowsExactly(DirectiveException.class,
-                        () -> new Until(9, "no luck"))),
-                () -> assertTrue(e.get().getMessage().toLowerCase().contains("signal")));
+                        () -> new Move(new Position(5, 7), -80))),
+                () -> assertTrue(e.get().getMessage().toLowerCase().contains("speed")));
     }
 
     @Test
-    void Until_correct() {
-        AtomicReference<Until> d = new AtomicReference<>();
-        assertAll(
-                () -> assertDoesNotThrow(() -> d.set(new Until(9, "lucky13"))),
-                () -> assertEquals(9, d.get().jumpIndex()),
-                () -> assertEquals("lucky13", d.get().signal()));
-    }
-
-    @Test
-    void execute_until() throws DomainParserException, StrategyParserException {
+    void execute_stop() throws DomainParserException, StrategyParserException {
         SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
-        Until d = new Until(9, "first_shape");
         Drone oneDrone = swarmState.swarm().get(0);
-        oneDrone.setCurrentDirective(3);
+        Position start = new Position(-3, 6);
+        oneDrone.setDirection(oneDrone.position().directionTo(start));
+        oneDrone.setSpeed(oneDrone.position().distanceTo(start));
+        oneDrone.stepMove();
+        Position destination = new Position(8, -4);
+        Position direction = oneDrone.position().directionTo(destination);
+        oneDrone.setDirection(direction);
+        double speed = oneDrone.position().distanceTo(destination) / 2;
+        oneDrone.setSpeed(speed);
+        Stop d = new Stop();
         assertAll(
-                () -> assertEquals(0, oneDrone.jumpCounter(3)),
-                () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
-                () -> assertEquals(4, oneDrone.currentDirective()),
-                () -> assertEquals(1, oneDrone.jumpCounter(3)),
-                () -> oneDrone.setDirection(oneDrone.position().directionTo(new Position(1, 2))),
-                () -> oneDrone.setSpeed(oneDrone.position().distanceTo(new Position(1, 2))),
+                () -> assertTrue(start.equalTo(oneDrone.position())),
                 oneDrone::stepMove,
-                () -> oneDrone.setCurrentDirective(3),
+                () -> assertTrue(start.translate(direction.scale(speed)).equalTo(oneDrone.position())),
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
-                () -> assertEquals(9, oneDrone.currentDirective()),
-                () -> assertEquals(1, oneDrone.jumpCounter(3)));
+                () -> assertTrue(new Position(0, 0).equalTo(oneDrone.direction())),
+                () -> assertEquals(0, oneDrone.speed()),
+                oneDrone::stepMove,
+                () -> assertTrue(start.translate(direction.scale(speed)).equalTo(oneDrone.position())));
     }
 }

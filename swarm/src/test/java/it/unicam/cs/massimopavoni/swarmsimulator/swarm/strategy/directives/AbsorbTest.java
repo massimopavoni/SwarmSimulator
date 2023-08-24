@@ -5,17 +5,13 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser.DomainParserException;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeFactory;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.SwarmShapeFactory;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser.StrategyParserException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +28,7 @@ class AbsorbTest {
     }
 
     @Test
-    void Absorb_throw() {
+    void Absorb_illegalEcho() {
         AtomicReference<Exception> e = new AtomicReference<>();
         assertAll(
                 () -> e.set(assertThrowsExactly(DirectiveException.class, () -> new Absorb("no luck"))),
@@ -49,17 +45,8 @@ class AbsorbTest {
 
     @Test
     void execute_absorb() throws DomainParserException, StrategyParserException {
-        ShapeFactory shapeFactory = new SwarmShapeFactory();
-        SwarmState.initializeParsers(shapeFactory, null);
-        SwarmState swarmState = new SwarmState(new File(
-                Objects.requireNonNull(AbsorbTest.class.getClassLoader().getResource(
-                        "it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/" +
-                                "testDomain.swarm")).getPath()),
-                new File(Objects.requireNonNull(AbsorbTest.class.getClassLoader().getResource(
-                        "it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/" +
-                                "testStrategy.swarm")).getPath()),
-                256, shapeFactory.createShape(
-                ShapeType.CIRCLE, new double[]{0, 0, 20}), true);
+        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+                ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Absorb d = new Absorb("lucky13");
         Drone oneDrone = swarmState.swarm().get(0);
         oneDrone.radiate("lucky13");
