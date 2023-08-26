@@ -1,7 +1,10 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm.core;
 
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,7 +26,7 @@ class SwarmPropertiesTest {
                 () -> assertEquals(16, SwarmProperties.parallelism()),
                 () -> assertEquals(256, SwarmProperties.maxPolygonVertices()),
                 () -> assertEquals(4, SwarmProperties.maxDomainRegions()),
-                () -> assertEquals(Math.pow(2, 18), SwarmProperties.maxDronesNumber()),
+                () -> assertEquals(Math.pow(2, 16), SwarmProperties.maxDronesNumber()),
                 () -> assertEquals("^[A-Za-z\\d_]+$", SwarmProperties.signalPattern().pattern()),
                 () -> assertEquals("^[A-Za-z\\d_]+$", SwarmProperties.echoPattern().toString()));
         Files.delete(customFile);
@@ -57,6 +60,19 @@ class SwarmPropertiesTest {
     }
 
     @Test
+    void initialize_illegalSwarmFolder() {
+        String testFileName = "/";
+        String testSwarmFolder = "/";
+        AtomicReference<Throwable> e = new AtomicReference<>();
+        assertAll(
+                () -> e.set(assertThrowsExactly(HiveMindException.class,
+                        () -> SwarmProperties.initialize(testSwarmFolder, testFileName))),
+                () -> assertInstanceOf(IOException.class, e.get().getCause()),
+                () -> assertTrue(e.get().getMessage().toLowerCase().contains("folder")));
+        SwarmProperties.reset();
+    }
+
+    @Test
     void initialize_borkedNotJson() {
         String testFileName = "borkedNotJsonSwarmProperties.test";
         String testSwarmFolder = Objects.requireNonNull(HiveMind.class.getResource(
@@ -81,6 +97,23 @@ class SwarmPropertiesTest {
                 () -> e.set(assertThrowsExactly(HiveMindException.class,
                         () -> SwarmProperties.initialize(testSwarmFolder, testFileName))),
                 () -> assertInstanceOf(IllegalArgumentException.class, e.get().getCause()));
+        SwarmProperties.reset();
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0,tolerance", "1,parallelism", "2,parallelism", "3,vertices", "4,vertices",
+            "5,regions", "6,regions", "7,drones", "8,drones", "9,pattern", "10,pattern", "11,pattern"})
+    void initialize_borkedInvalid(String testFileNumber, String containsCheck) {
+        String testFileName = String.format("borkedInvalidSwarmProperties%s.json", testFileNumber);
+        String testSwarmFolder = Objects.requireNonNull(HiveMind.class.getResource(
+                        SwarmProperties.DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION)).getPath()
+                .replace(SwarmProperties.DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION, "");
+        AtomicReference<Throwable> e = new AtomicReference<>();
+        assertAll(
+                () -> e.set(assertThrowsExactly(HiveMindException.class,
+                        () -> SwarmProperties.initialize(testSwarmFolder, testFileName))),
+                () -> assertInstanceOf(SwarmException.class, e.get().getCause()),
+                () -> assertTrue(e.get().getCause().getMessage().toLowerCase().contains(containsCheck)));
         SwarmProperties.reset();
     }
 }

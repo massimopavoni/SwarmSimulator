@@ -30,8 +30,8 @@ public final class TestUtils {
         SwarmProperties.reset();
     }
 
-    public static SwarmState getNewTestSwarmState(int dronesNumber, ShapeType shapeType,
-                                                  double[] shapeArgs, boolean onBoundary)
+    public static SwarmState getNewDefaultTestSwarmState(int dronesNumber, ShapeType shapeType,
+                                                         double[] shapeArgs, boolean onBoundary)
             throws DomainParserException, StrategyParserException {
         ShapeFactory shapeFactory = new SwarmShapeFactory();
         SwarmState.initializeParsers(shapeFactory, null);

@@ -109,9 +109,11 @@ public final class SwarmStrategyParser implements StrategyParser {
         List<String> args = new ArrayList<>(List.of(line.trim().split(" ")));
         ParserDirective parserDirective = ParserDirective.fromLine(line.toLowerCase());
         args.remove(0);
-        if (JumpDirective.isPermittedDirective(parserDirective.getDirectiveClass()))
+        if (EchoDirective.isPermittedDirective(parserDirective.getDirectiveClass()))
+            addDirective(parserDirective, args);
+        else if (JumpDirective.isPermittedDirective(parserDirective.getDirectiveClass()))
             parseJumpDirective(parserDirective, args);
-        else
+        else if (MovementDirective.isPermittedDirective(parserDirective.getDirectiveClass()))
             addDirective(parserDirective, args);
     }
 

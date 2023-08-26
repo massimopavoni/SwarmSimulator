@@ -1,0 +1,6 @@
+UNTIL shape
+FOLLOW in_shape 100 1
+DONE
+STOP
+SIGNAL in_shape
+STOP

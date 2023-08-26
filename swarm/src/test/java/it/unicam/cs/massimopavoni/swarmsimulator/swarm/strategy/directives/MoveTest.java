@@ -61,7 +61,7 @@ class MoveTest {
 
     @Test
     void execute_move() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Drone oneDrone = swarmState.swarm().get(0);
         Position start = new Position(5, 17);
@@ -84,7 +84,7 @@ class MoveTest {
 
     @Test
     void execute_moveRandom() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Drone oneDrone = swarmState.swarm().get(0);
         Position start = new Position(4, 4);

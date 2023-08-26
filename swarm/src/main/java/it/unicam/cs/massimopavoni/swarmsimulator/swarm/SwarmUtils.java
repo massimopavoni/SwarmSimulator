@@ -88,7 +88,21 @@ public final class SwarmUtils {
     }
 
     /**
-     * Swarm parallel task execution.
+     * Swarm parallel task execution without final result.
+     *
+     * @param task task to execute
+     */
+    public static void parallelize(Runnable task) {
+        try {
+            customThreadPool.submit(task).get();
+        } catch (InterruptedException | ExecutionException e) {
+            Thread.currentThread().interrupt();
+            throw new SwarmException("Error during parallel task execution.", e);
+        }
+    }
+
+    /**
+     * Swarm parallel task execution with final result.
      *
      * @param task task to execute
      * @param <T>  task result type

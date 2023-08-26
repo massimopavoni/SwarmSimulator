@@ -38,7 +38,7 @@ class ContinueTest {
 
     @Test
     void execute_continue() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Continue d = new Continue(8);
         Drone oneDrone = swarmState.swarm().get(0);
@@ -48,9 +48,10 @@ class ContinueTest {
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertEquals(2, oneDrone.currentDirective()),
                 () -> assertEquals(1, oneDrone.jumpCounter(2)),
-                () -> IntStream.range(0, 6).forEach(i -> oneDrone.incrementJumpCounter(2)),
+                () -> IntStream.range(0, 6).forEach(i -> oneDrone.increaseJumpCounter(2)),
+                () -> assertEquals(7, oneDrone.jumpCounter(2)),
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertEquals(3, oneDrone.currentDirective()),
-                () -> assertEquals(7, oneDrone.jumpCounter(2)));
+                () -> assertEquals(0, oneDrone.jumpCounter(2)));
     }
 }

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * Class representing a swarm drone.
  */
 public class Drone {
+    private static final String JUMP_INDEX_404 = "Jump directive index not found.";
     /**
      * Map of jump directive counters.
      */
@@ -28,10 +29,6 @@ public class Drone {
      * Index of current directive.
      */
     private int currentDirective;
-    /**
-     * Flag for strategy completion.
-     */
-    private boolean strategyDone;
     /**
      * Current drone position.
      */
@@ -56,7 +53,6 @@ public class Drone {
         echoes = new HashSet<>();
         alive = true;
         currentDirective = 0;
-        strategyDone = false;
         position = initialPosition;
         direction = new Position(0, 0);
         speed = 0;
@@ -95,23 +91,14 @@ public class Drone {
      * @param index new current directive index
      */
     public void setCurrentDirective(int index) {
-        this.currentDirective = index;
+        currentDirective = index;
     }
 
     /**
-     * Setter for strategy completion flag.
+     * Increments current directive index.
      */
-    public void setStrategyDone() {
-        strategyDone = true;
-    }
-
-    /**
-     * Getter for strategy completion flag.
-     *
-     * @return true if strategy is done, false otherwise
-     */
-    public boolean isStrategyDone() {
-        return strategyDone;
+    public void incrementCurrentDirective() {
+        currentDirective++;
     }
 
     /**
@@ -123,20 +110,32 @@ public class Drone {
      */
     public int jumpCounter(int jumpIndex) {
         if (!jumpCounters.containsKey(jumpIndex))
-            throw new SwarmException("Jump directive index not found.");
+            throw new SwarmException(JUMP_INDEX_404);
         return jumpCounters.get(jumpIndex);
     }
 
     /**
-     * Increments a specified jump directive counter.
+     * Increases a specified jump directive counter.
      *
      * @param jumpIndex jump directive index
      * @throws SwarmException if jump directive index is not found
      */
-    public void incrementJumpCounter(int jumpIndex) {
+    public void increaseJumpCounter(int jumpIndex) {
         if (!jumpCounters.containsKey(jumpIndex))
-            throw new SwarmException("Jump directive index not found.");
+            throw new SwarmException(JUMP_INDEX_404);
         jumpCounters.put(jumpIndex, jumpCounters.get(jumpIndex) + 1);
+    }
+
+    /**
+     * Resets a specified jump directive counter.
+     *
+     * @param jumpIndex jump directive index
+     * @throws SwarmException if jump directive index is not found
+     */
+    public void resetJumpCounter(int jumpIndex) {
+        if (!jumpCounters.containsKey(jumpIndex))
+            throw new SwarmException(JUMP_INDEX_404);
+        jumpCounters.put(jumpIndex, 0);
     }
 
     /**

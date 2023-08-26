@@ -124,24 +124,24 @@ loadScripts(document, 'script');</script>
 <div class="block">Getter for current direction.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#incrementJumpCounter(int)" class="member-name-link">incrementJumpCounter</a><wbr>(int&nbsp;jumpIndex)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#increaseJumpCounter(int)" class="member-name-link">increaseJumpCounter</a><wbr>(int&nbsp;jumpIndex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Increments a specified jump directive counter.</div>
+<div class="block">Increases a specified jump directive counter.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAlive()" class="member-name-link">isAlive</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#incrementCurrentDirective()" class="member-name-link">incrementCurrentDirective</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Getter for drone life status.</div>
+<div class="block">Increments current directive index.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRadiating(java.lang.String)" class="member-name-link">isRadiating</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;echo)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAlive()" class="member-name-link">isAlive</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if a specified echo is currently being radiated.</div>
+<div class="block">Getter for drone life status.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isStrategyDone()" class="member-name-link">isStrategyDone</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRadiating(java.lang.String)" class="member-name-link">isRadiating</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;echo)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Getter for strategy completion flag.</div>
+<div class="block">Checks if a specified echo is currently being radiated.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#jumpCounter(int)" class="member-name-link">jumpCounter</a><wbr>(int&nbsp;jumpIndex)</code></div>
@@ -159,24 +159,24 @@ loadScripts(document, 'script');</script>
 <div class="block">Starts radiating a specified echo.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurrentDirective(int)" class="member-name-link">setCurrentDirective</a><wbr>(int&nbsp;index)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetJumpCounter(int)" class="member-name-link">resetJumpCounter</a><wbr>(int&nbsp;jumpIndex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Resets a specified jump directive counter.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurrentDirective(int)" class="member-name-link">setCurrentDirective</a><wbr>(int&nbsp;index)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Setter for current directive index.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDirection(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">setDirection</a><wbr>(<a href="domain/Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;direction)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDirection(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">setDirection</a><wbr>(<a href="domain/Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&nbsp;direction)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Setter for current direction.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSpeed(double)" class="member-name-link">setSpeed</a><wbr>(double&nbsp;speed)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Setter for current speed.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setStrategyDone()" class="member-name-link">setStrategyDone</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSpeed(double)" class="member-name-link">setSpeed</a><wbr>(double&nbsp;speed)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Setter for strategy completion flag.</div>
+<div class="block">Setter for current speed.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#speed()" class="member-name-link">speed</a>()</code></div>
@@ -272,21 +272,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="setStrategyDone()">
-<h3>setStrategyDone</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setStrategyDone</span>()</div>
-<div class="block">Setter for strategy completion flag.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="isStrategyDone()">
-<h3>isStrategyDone</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isStrategyDone</span>()</div>
-<div class="block">Getter for strategy completion flag.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>true if strategy is done, false otherwise</dd>
-</dl>
+<section class="detail" id="incrementCurrentDirective()">
+<h3>incrementCurrentDirective</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">incrementCurrentDirective</span>()</div>
+<div class="block">Increments current directive index.</div>
 </section>
 </li>
 <li>
@@ -305,10 +294,23 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="incrementJumpCounter(int)">
-<h3>incrementJumpCounter</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">incrementJumpCounter</span><wbr><span class="parameters">(int&nbsp;jumpIndex)</span></div>
-<div class="block">Increments a specified jump directive counter.</div>
+<section class="detail" id="increaseJumpCounter(int)">
+<h3>increaseJumpCounter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">increaseJumpCounter</span><wbr><span class="parameters">(int&nbsp;jumpIndex)</span></div>
+<div class="block">Increases a specified jump directive counter.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>jumpIndex</code> - jump directive index</dd>
+<dt>Throws:</dt>
+<dd><code><a href="SwarmException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmException</a></code> - if jump directive index is not found</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="resetJumpCounter(int)">
+<h3>resetJumpCounter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetJumpCounter</span><wbr><span class="parameters">(int&nbsp;jumpIndex)</span></div>
+<div class="block">Resets a specified jump directive counter.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>jumpIndex</code> - jump directive index</dd>

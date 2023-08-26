@@ -45,7 +45,7 @@ class AbsorbTest {
 
     @Test
     void execute_absorb() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Absorb d = new Absorb("lucky13");
         Drone oneDrone = swarmState.swarm().get(0);

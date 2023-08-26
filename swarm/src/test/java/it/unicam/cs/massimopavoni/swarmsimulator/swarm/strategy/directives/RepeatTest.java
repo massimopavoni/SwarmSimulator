@@ -48,7 +48,7 @@ class RepeatTest {
 
     @Test
     void execute_repeat() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Repeat d = new Repeat(5, 3);
         Drone oneDrone = swarmState.swarm().get(0);
@@ -58,16 +58,17 @@ class RepeatTest {
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertEquals(4, oneDrone.currentDirective()),
                 () -> assertEquals(1, oneDrone.jumpCounter(3)),
-                () -> oneDrone.incrementJumpCounter(3),
+                () -> oneDrone.increaseJumpCounter(3),
                 () -> oneDrone.setCurrentDirective(3),
+                () -> assertEquals(2, oneDrone.jumpCounter(3)),
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertEquals(5, oneDrone.currentDirective()),
-                () -> assertEquals(2, oneDrone.jumpCounter(3)));
+                () -> assertEquals(0, oneDrone.jumpCounter(3)));
     }
 
     @Test
     void execute_repeatForever() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Repeat d = new Repeat(5);
         Drone oneDrone = swarmState.swarm().get(0);
@@ -77,8 +78,9 @@ class RepeatTest {
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertEquals(4, oneDrone.currentDirective()),
                 () -> assertEquals(1, oneDrone.jumpCounter(3)),
-                () -> IntStream.range(0, 8192).forEach(i -> oneDrone.incrementJumpCounter(3)),
+                () -> IntStream.range(0, 8192).forEach(i -> oneDrone.increaseJumpCounter(3)),
                 () -> oneDrone.setCurrentDirective(3),
+                () -> assertEquals(8193, oneDrone.jumpCounter(3)),
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertEquals(4, oneDrone.currentDirective()),
                 () -> assertEquals(8194, oneDrone.jumpCounter(3)));

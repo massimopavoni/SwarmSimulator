@@ -33,14 +33,15 @@ public record Until(int jumpIndex, String signal) implements JumpDirective {
     @Override
     public void execute(SwarmState swarmState, Drone drone) {
         Position dp = drone.position();
+        int currentDirective = drone.currentDirective();
         if (swarmState.domain().stream()
                 .filter(r -> r.signal().equals(signal))
-                .anyMatch(r -> r.shape().contains(dp)))
+                .anyMatch(r -> r.shape().contains(dp))) {
+            drone.resetJumpCounter(currentDirective);
             drone.setCurrentDirective(jumpIndex);
-        else {
-            int currentDirective = drone.currentDirective();
-            drone.setCurrentDirective(currentDirective + 1);
-            drone.incrementJumpCounter(currentDirective);
+        } else {
+            drone.incrementCurrentDirective();
+            drone.increaseJumpCounter(currentDirective);
         }
     }
 }

@@ -77,6 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">HiveMind</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Class managing every type of macroscopic operation on the swarm.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -88,8 +89,10 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">HiveMind</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState)" class="member-name-link">HiveMind</a><wbr>(<a href="SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a>&nbsp;swarmState)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Constructor for the hive mind from a swarm state.</div>
+</div>
 </div>
 </section>
 </li>
@@ -104,9 +107,31 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#state()" class="member-name-link">state</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSwarmAlive()" class="member-name-link">isSwarmAlive</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Getter for the swarm life status.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#state()" class="member-name-link">state</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Getter for the swarm state.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stepCount()" class="member-name-link">stepCount</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Getter for the number of steps executed by the hive mind.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#swarmLifeDuration()" class="member-name-link">swarmLifeDuration</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Getter for the swarm life duration.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#swarmStep()" class="member-name-link">swarmStep</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Execute a swarm step, executing the current directives for each drone and moving them.</div>
+</div>
 </div>
 </div>
 </div>
@@ -125,13 +150,16 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;()">
+<section class="detail" id="&lt;init&gt;(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState)">
 <h3>HiveMind</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">HiveMind</span>()
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">HiveMind</span><wbr><span class="parameters">(<a href="SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a>&nbsp;swarmState)</span>
          throws <span class="exceptions"><a href="HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></span></div>
+<div class="block">Constructor for the hive mind from a swarm state.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>swarmState</code> - starting state of the swarm</dd>
 <dt>Throws:</dt>
-<dd><code><a href="HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></code></dd>
+<dd><code><a href="HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></code> - if the swarm properties cannot be initialized</dd>
 </dl>
 </section>
 </li>
@@ -147,6 +175,51 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="state()">
 <h3>state</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a></span>&nbsp;<span class="element-name">state</span>()</div>
+<div class="block">Getter for the swarm state.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current state of the swarm</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="stepCount()">
+<h3>stepCount</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">stepCount</span>()</div>
+<div class="block">Getter for the number of steps executed by the hive mind.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of steps</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isSwarmAlive()">
+<h3>isSwarmAlive</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isSwarmAlive</span>()</div>
+<div class="block">Getter for the swarm life status.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if the swarm is alive, false otherwise</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="swarmLifeDuration()">
+<h3>swarmLifeDuration</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">swarmLifeDuration</span>()</div>
+<div class="block">Getter for the swarm life duration.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the number of steps the swarm was able to live</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="swarmStep()">
+<h3>swarmStep</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">swarmStep</span>()</div>
+<div class="block">Execute a swarm step, executing the current directives for each drone and moving them.</div>
 </section>
 </li>
 </ul>

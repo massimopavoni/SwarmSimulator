@@ -60,7 +60,7 @@ class FollowTest {
 
     @Test
     void execute_follow() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 100}, true);
         Follow d = new Follow("follow_me_origin", 200, Math.sqrt(50));
         Drone oneDrone = swarmState.swarm().get(0);
@@ -101,7 +101,7 @@ class FollowTest {
 
     @Test
     void execute_followRandom() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 100}, true);
         Follow d = new Follow("follow_me_origin", 200, Math.sqrt(50));
         Drone oneDrone = swarmState.swarm().get(0);

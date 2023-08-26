@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -103,15 +104,15 @@ public final class SwarmProperties {
                 Path swarmFolderPath = Path.of(swarmFolder);
                 if (Files.notExists(swarmFolderPath))
                     Files.createDirectories(swarmFolderPath);
-                swarmPropertiesStream = HiveMind.class.getResourceAsStream(DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION);
-                if (swarmPropertiesStream == null)
-                    throw new HiveMindException("Error while getting default swarm properties resource.");
+                swarmPropertiesStream = Objects.requireNonNull(
+                        HiveMind.class.getResourceAsStream(DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION),
+                        "Default swarm properties resource not found inside library.");
                 Files.copy(swarmPropertiesStream, customSwarmPropertiesPath);
                 swarmPropertiesStream.close();
             }
             swarmPropertiesStream = new FileInputStream(customSwarmPropertiesPath.toFile());
-        } catch (IOException ie) {
-            throw new HiveMindException("Error while creating swarm folder or copying swarm properties file.", ie);
+        } catch (IOException e) {
+            throw new HiveMindException("Error while creating swarm folder or copying swarm properties file.", e);
         }
         parseProperties(swarmPropertiesStream);
     }
@@ -153,8 +154,8 @@ public final class SwarmProperties {
             throw new SwarmException("Maximum number of vertices for a polygon must be between 3 and 256.");
         if (maxDomainRegions < 0 || maxDomainRegions > 64)
             throw new SwarmException("Maximum number of regions in the domain must be between 0 and 256.");
-        if (maxDronesNumber < 16 || maxDronesNumber > 1048576)
-            throw new SwarmException("Maximum number of drones in the swarm must be between 16 and 1048576.");
+        if (maxDronesNumber < 16 || maxDronesNumber > 262144)
+            throw new SwarmException("Maximum number of drones in the swarm must be between 16 and 262144.");
         if (isInvalidSwarmRegex(signalPattern) || isInvalidSwarmRegex(echoPattern))
             throw new SwarmException("Signal and echo patterns must be valid regular expressions " +
                     "that do not match spaces.");

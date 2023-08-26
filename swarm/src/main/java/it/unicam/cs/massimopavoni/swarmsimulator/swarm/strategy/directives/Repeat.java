@@ -28,11 +28,12 @@ public record Repeat(int jumpIndex, int jumpLimit) implements JumpDirective {
     @Override
     public void execute(SwarmState swarmState, Drone drone) {
         int currentDirective = drone.currentDirective();
-        if (drone.jumpCounter(currentDirective) == jumpLimit - 1)
+        if (drone.jumpCounter(currentDirective) == jumpLimit - 1) {
+            drone.resetJumpCounter(currentDirective);
             drone.setCurrentDirective(jumpIndex);
-        else {
-            drone.setCurrentDirective(currentDirective + 1);
-            drone.incrementJumpCounter(currentDirective);
+        } else {
+            drone.incrementCurrentDirective();
+            drone.increaseJumpCounter(currentDirective);
         }
     }
 }

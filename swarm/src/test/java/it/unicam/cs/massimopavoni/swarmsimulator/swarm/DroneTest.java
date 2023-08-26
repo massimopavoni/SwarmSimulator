@@ -54,16 +54,16 @@ class DroneTest {
     void setCurrentDirective_set() {
         Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
         assertAll(
-                () -> assertDoesNotThrow(() -> d.setCurrentDirective(1)),
-                () -> assertEquals(1, d.currentDirective()));
+                () -> assertDoesNotThrow(() -> d.setCurrentDirective(3)),
+                () -> assertEquals(3, d.currentDirective()));
     }
 
     @Test
-    void setStrategyDone_set() {
+    void incrementCurrentDirective_increment() {
         Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
         assertAll(
-                () -> assertDoesNotThrow(d::setStrategyDone),
-                () -> assertTrue(d.isStrategyDone()));
+                () -> assertDoesNotThrow(d::incrementCurrentDirective),
+                () -> assertEquals(1, d.currentDirective()));
     }
 
     @Test
@@ -73,19 +73,35 @@ class DroneTest {
     }
 
     @Test
-    void incrementJumpCounter_notContains() {
+    void increaseJumpCounter_notContains() {
         Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
-        assertThrowsExactly(SwarmException.class, () -> d.incrementJumpCounter(1));
+        assertThrowsExactly(SwarmException.class, () -> d.increaseJumpCounter(1));
     }
 
     @Test
-    void incrementJumpCounter_increment() {
+    void increaseJumpCounter_increment() {
         Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
         assertAll(
-                () -> assertDoesNotThrow(() -> d.incrementJumpCounter(4)),
+                () -> assertDoesNotThrow(() -> d.increaseJumpCounter(4)),
                 () -> assertEquals(0, d.jumpCounter(0)),
                 () -> assertEquals(1, d.jumpCounter(4)),
                 () -> assertEquals(0, d.jumpCounter(9)));
+    }
+
+    @Test
+    void resetJumpCounter_notContains() {
+        Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
+        assertThrowsExactly(SwarmException.class, () -> d.resetJumpCounter(1));
+    }
+
+    @Test
+    void resetJumpCounter_increment() {
+        Drone d = new Drone(new Position(0, 0), List.of(0, 4, 9));
+        d.increaseJumpCounter(4);
+        assertAll(
+                () -> assertEquals(1, d.jumpCounter(4)),
+                () -> assertDoesNotThrow(() -> d.resetJumpCounter(4)),
+                () -> assertEquals(0, d.jumpCounter(4)));
     }
 
     @Test

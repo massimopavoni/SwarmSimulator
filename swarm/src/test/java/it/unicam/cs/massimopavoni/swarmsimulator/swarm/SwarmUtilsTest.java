@@ -1,11 +1,15 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.swarm;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,5 +74,31 @@ class SwarmUtilsTest {
     @Test
     void checkEcho_goodCheck() {
         assertDoesNotThrow(() -> SwarmUtils.checkEcho("google_en_passant", new SwarmException("r/anarchychess")));
+    }
+
+    @Test
+    void parallelize_runnableExecutionThrow() {
+        AtomicReference<Throwable> e = new AtomicReference<>();
+        assertAll(
+                () -> e.set(assertThrowsExactly(SwarmException.class,
+                        () -> SwarmUtils.parallelize(() -> IntStream.range(0, 4)
+                                .parallel()
+                                .forEach(i -> Position.random(new Position(Double.NEGATIVE_INFINITY, i),
+                                        new Position(i, Double.POSITIVE_INFINITY)))))),
+                () -> assertInstanceOf(ExecutionException.class, e.get().getCause()),
+                () -> assertTrue(e.get().getMessage().contains("parallel")));
+    }
+
+    @Test
+    void parallelize_callableExecutionThrow() {
+        AtomicReference<Throwable> e = new AtomicReference<>();
+        assertAll(
+                () -> e.set(assertThrowsExactly(SwarmException.class,
+                        () -> SwarmUtils.parallelize(() -> IntStream.range(0, 4)
+                                .parallel()
+                                .mapToObj(i -> new Position(i, Double.NaN))
+                                .toList()))),
+                () -> assertInstanceOf(ExecutionException.class, e.get().getCause()),
+                () -> assertTrue(e.get().getMessage().contains("parallel")));
     }
 }

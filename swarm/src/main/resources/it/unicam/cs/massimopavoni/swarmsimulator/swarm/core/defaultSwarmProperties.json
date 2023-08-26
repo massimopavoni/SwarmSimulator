@@ -3,7 +3,7 @@
   "parallelism": 16,
   "maxPolygonVertices": 64,
   "maxDomainRegions": 32,
-  "maxDronesNumber": 1048576,
+  "maxDronesNumber": 65536,
   "signalRegex": "^[A-Za-z\\d_]+$",
   "echoRegex": "^[A-Za-z\\d_]+$"
 }

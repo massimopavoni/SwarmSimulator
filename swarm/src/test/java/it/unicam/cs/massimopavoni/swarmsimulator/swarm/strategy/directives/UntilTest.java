@@ -48,7 +48,7 @@ class UntilTest {
 
     @Test
     void execute_until() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Until d = new Until(9, "first_shape");
         Drone oneDrone = swarmState.swarm().get(0);
@@ -62,8 +62,9 @@ class UntilTest {
                 () -> oneDrone.setSpeed(oneDrone.position().distanceTo(new Position(1, 2))),
                 oneDrone::stepMove,
                 () -> oneDrone.setCurrentDirective(3),
+                () -> assertEquals(1, oneDrone.jumpCounter(3)),
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertEquals(9, oneDrone.currentDirective()),
-                () -> assertEquals(1, oneDrone.jumpCounter(3)));
+                () -> assertEquals(0, oneDrone.jumpCounter(3)));
     }
 }

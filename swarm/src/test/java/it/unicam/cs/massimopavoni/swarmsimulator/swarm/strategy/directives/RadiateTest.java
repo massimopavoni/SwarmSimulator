@@ -45,7 +45,7 @@ class RadiateTest {
 
     @Test
     void execute_radiate() throws DomainParserException, StrategyParserException {
-        SwarmState swarmState = TestUtils.getNewTestSwarmState(256,
+        SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Radiate d = new Radiate("neo_ooo");
         Drone oneDrone = swarmState.swarm().get(0);

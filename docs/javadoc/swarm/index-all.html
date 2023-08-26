@@ -633,16 +633,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns a hash code value for this object.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a> - Class in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.core</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html#%3Cinit%3E()" class="member-name-link">HiveMind()</a> - Constructor for class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Class managing every type of macroscopic operation on the swarm.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html#%3Cinit%3E(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState)" class="member-name-link">HiveMind(SwarmState)</a> - Constructor for class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a></dt>
+<dd>
+<div class="block">Constructor for the hive mind from a swarm state.</div>
+</dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMindException.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a> - Exception in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.core</a></dt>
 <dd>
 <div class="block">Exception for hive mind errors.</div>
-</dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMindException.html#%3Cinit%3E(java.lang.String)" class="member-name-link">HiveMindException(String)</a> - Constructor for exception it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></dt>
-<dd>
-<div class="block">Hive mind exception constructor with message.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMindException.html#%3Cinit%3E(java.lang.String,java.lang.Throwable)" class="member-name-link">HiveMindException(String, Throwable)</a> - Constructor for exception it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMindException.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMindException</a></dt>
 <dd>
@@ -651,9 +651,13 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#incrementJumpCounter(int)" class="member-name-link">incrementJumpCounter(int)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#increaseJumpCounter(int)" class="member-name-link">increaseJumpCounter(int)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
 <dd>
-<div class="block">Increments a specified jump directive counter.</div>
+<div class="block">Increases a specified jump directive counter.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#incrementCurrentDirective()" class="member-name-link">incrementCurrentDirective()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
+<dd>
+<div class="block">Increments current directive index.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/SwarmProperties.html#initialize()" class="member-name-link">initialize()</a> - Static method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/SwarmProperties.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmProperties</a></dt>
 <dd>
@@ -695,9 +699,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Checks if a specified echo is currently being radiated.</div>
 </dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#isStrategyDone()" class="member-name-link">isStrategyDone()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html#isSwarmAlive()" class="member-name-link">isSwarmAlive()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a></dt>
 <dd>
-<div class="block">Getter for strategy completion flag.</div>
+<div class="block">Getter for the swarm life status.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm</a> - package it.unicam.cs.massimopavoni.swarmsimulator.swarm</dt>
 <dd>&nbsp;</dd>
@@ -801,9 +805,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Getter for parallelism level.</div>
 </dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/SwarmUtils.html#parallelize(java.lang.Runnable)" class="member-name-link">parallelize(Runnable)</a> - Static method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/SwarmUtils.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmUtils</a></dt>
+<dd>
+<div class="block">Swarm parallel task execution without final result.</div>
+</dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/SwarmUtils.html#parallelize(java.util.concurrent.Callable)" class="member-name-link">parallelize(Callable&lt;T&gt;)</a> - Static method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/SwarmUtils.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">SwarmUtils</a></dt>
 <dd>
-<div class="block">Swarm parallel task execution.</div>
+<div class="block">Swarm parallel task execution with final result.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/DomainParser.html#parseDomain(java.io.File)" class="member-name-link">parseDomain(File)</a> - Method in interface it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/DomainParser.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser">DomainParser</a></dt>
 <dd>
@@ -959,6 +967,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Reset the swarm properties.</div>
 </dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#resetJumpCounter(int)" class="member-name-link">resetJumpCounter(int)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
+<dd>
+<div class="block">Resets a specified jump directive counter.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
@@ -977,10 +989,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#setSpeed(double)" class="member-name-link">setSpeed(double)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
 <dd>
 <div class="block">Setter for current speed.</div>
-</dd>
-<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#setStrategyDone()" class="member-name-link">setStrategyDone()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
-<dd>
-<div class="block">Setter for strategy completion flag.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html#shape()" class="member-name-link">shape()</a> - Method in record class it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/Region.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Region</a></dt>
 <dd>
@@ -1040,7 +1048,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns the value of the <a href="./it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/directives/Move.html#param-speed"><code>speed</code></a> record component.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html#state()" class="member-name-link">state()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Getter for the swarm state.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html#stepCount()" class="member-name-link">stepCount()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a></dt>
+<dd>
+<div class="block">Getter for the number of steps executed by the hive mind.</div>
+</dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html#stepMove()" class="member-name-link">stepMove()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/Drone.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm">Drone</a></dt>
 <dd>
 <div class="block">Moves the drone one step in the current direction.</div>
@@ -1112,6 +1126,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Swarm exception constructor with message and inner cause.</div>
 </dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html#swarmLifeDuration()" class="member-name-link">swarmLifeDuration()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a></dt>
+<dd>
+<div class="block">Getter for the swarm life duration.</div>
+</dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/SwarmProperties.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmProperties</a> - Class in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.core</a></dt>
 <dd>
 <div class="block">Static class defining the swarm properties.</div>
@@ -1137,6 +1155,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/SwarmState.html#%3Cinit%3E(java.nio.file.Path,java.nio.file.Path,int,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape,boolean)" class="member-name-link">SwarmState(Path, Path, int, Shape, boolean)</a> - Constructor for class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/SwarmState.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">SwarmState</a></dt>
 <dd>
 <div class="block">Constructor for a swarm state from domain, strategy and swarm information.</div>
+</dd>
+<dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html#swarmStep()" class="member-name-link">swarmStep()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.<a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/core/HiveMind.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.core">HiveMind</a></dt>
+<dd>
+<div class="block">Execute a swarm step, executing the current directives for each drone and moving them.</div>
 </dd>
 <dt><a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/SwarmStrategyParser.html" class="type-name-link" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser">SwarmStrategyParser</a> - Class in <a href="it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/package-summary.html">it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser</a></dt>
 <dd>
