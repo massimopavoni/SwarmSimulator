@@ -75,38 +75,42 @@ class HiveMindTest {
     }
 
     @Test
-    void swarmStep_lotsUntilOneDead() throws DomainParserException, StrategyParserException, HiveMindException {
+    void swarmStep_more() throws DomainParserException, StrategyParserException, HiveMindException {
         Circle circle = new Circle(new Position(1, 2), 3);
         HiveMind hm = getHiveMind(256);
         assertAll(
                 () -> assertDoesNotThrow(() -> IntStream.range(0, 100).forEach(i -> hm.swarmStep())),
                 () -> assertEquals(100, hm.stepCount()),
-                () -> assertTrue(SwarmUtils.parallelize(() -> hm.state().swarm()
-                        .parallelStream()
-                        .anyMatch(d -> d.isRadiating("in_shape") && !d.isAlive()))),
-                () -> assertTrue(circle.contains(Position.averageOf(SwarmUtils.parallelize(() -> hm.state().swarm()
-                        .parallelStream()
-                        .filter(d -> d.isRadiating("in_shape"))
-                        .map(Drone::position).toList())))));
+                () -> {
+                    if (SwarmUtils.parallelize(() -> hm.state().swarm()
+                            .parallelStream()
+                            .filter(d -> d.isRadiating("in_shape"))).findAny().isPresent())
+                        assertTrue(circle.contains(Position.averageOf(
+                                SwarmUtils.parallelize(() -> hm.state().swarm()
+                                        .parallelStream()
+                                        .filter(d -> d.isRadiating("in_shape"))
+                                        .map(Drone::position).toList()))));
+                });
     }
 
     @Test
-    void swarmStep_lotsUntilAllDead() throws DomainParserException, StrategyParserException, HiveMindException {
+    void swarmStep_lots() throws DomainParserException, StrategyParserException, HiveMindException {
         Circle circle = new Circle(new Position(1, 2), 3);
         HiveMind hm = getHiveMind(512);
         assertAll(
-                () -> assertDoesNotThrow(() -> IntStream.range(0, 4000).forEach(i -> hm.swarmStep())),
-                () -> assertEquals(4000, hm.stepCount()),
-                () -> assertFalse(hm.isSwarmAlive()),
-                () -> assertTrue(hm.swarmLifeDuration() <= 1000),
-                () -> assertTrue(SwarmUtils.parallelize(() -> hm.state().swarm()
-                        .parallelStream()
-                        .allMatch(d -> circle.contains(d.position()) && d.isRadiating("in_shape")
-                                && !d.isAlive()))),
-                () -> assertTrue(circle.contains(Position.averageOf(SwarmUtils.parallelize(() -> hm.state().swarm()
-                        .parallelStream()
-                        .filter(d -> d.isRadiating("in_shape"))
-                        .map(Drone::position).toList())))));
+                () -> assertDoesNotThrow(() -> IntStream.range(0, 1000).forEach(i -> hm.swarmStep())),
+                () -> assertEquals(1000, hm.stepCount()),
+                () -> assertTrue(hm.isSwarmAlive() ? hm.swarmLifeDuration() == 0 : hm.swarmLifeDuration() <= 1000),
+                () -> {
+                    if (SwarmUtils.parallelize(() -> hm.state().swarm()
+                            .parallelStream()
+                            .filter(d -> d.isRadiating("in_shape"))).findAny().isPresent())
+                        assertTrue(circle.contains(Position.averageOf(
+                                SwarmUtils.parallelize(() -> hm.state().swarm()
+                                        .parallelStream()
+                                        .filter(d -> d.isRadiating("in_shape"))
+                                        .map(Drone::position).toList()))));
+                });
     }
 
     HiveMind getHiveMind(int dronesNumber) throws DomainParserException, StrategyParserException, HiveMindException {

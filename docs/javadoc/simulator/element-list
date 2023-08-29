@@ -1,1 +1,6 @@
+module:it.unicam.cs.massimopavoni.swarmsimulator.simulator
 it.unicam.cs.massimopavoni.swarmsimulator.simulator
+it.unicam.cs.massimopavoni.swarmsimulator.simulator.launcher
+it.unicam.cs.massimopavoni.swarmsimulator.simulator.view
+it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui
+it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control

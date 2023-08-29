@@ -1,1 +1,1 @@
-moduleSearchIndex = [];updateSearchResults();
+moduleSearchIndex = [{"l":"it.unicam.cs.massimopavoni.swarmsimulator.simulator"}];updateSearchResults();

@@ -1,0 +1,49 @@
+.root {
+	-fx-background-color: #333;
+}
+
+.separator .line {
+	-fx-border-color: #fff;
+	-fx-border-style: solid;
+	-fx-border-width: .25px;
+}
+
+.label {
+	-fx-text-fill: #fff;
+}
+
+.menu-bar {
+	-fx-background-color: #333;
+}
+
+.menu:hover,
+.menu:showing {
+	-fx-background-color: #505050;
+}
+
+
+.menu-item:focused {
+	-fx-background-color: #505050;
+}
+
+.context-menu {
+	-fx-background-color: #393939;
+}
+
+.chart-plot-background {
+	-fx-background-color: transparent;
+}
+
+.chart-horizontal-grid-lines,
+.chart-vertical-grid-lines {
+	-fx-stroke: #505050;
+}
+
+.chart-horizontal-zero-line,
+.chart-vertical-zero-line {
+	-fx-stroke: #909090;
+}
+
+.axis {
+	-fx-tick-label-fill: #fff;
+}

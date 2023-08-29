@@ -1,0 +1,12 @@
+.root,
+.header-panel {
+	-fx-background-color: #464646;
+}
+
+.header-panel .label {
+	-fx-font-weight: bold;
+}
+
+.label {
+	-fx-text-fill: #fff;
+}

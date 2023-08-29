@@ -15,10 +15,6 @@ dependencies {
     implementation("com.google.guava:guava:32.+")
     // Use JUnit Jupiter for testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.+")
-    // Use Mockito for mocking
-    testImplementation("org.mockito:mockito-core:3.+")
-    testImplementation("org.mockito:mockito-inline:3.+")
-    testImplementation("org.mockito:mockito-junit-jupiter:3.+")
 }
 
 tasks.javadoc {
@@ -42,4 +38,3 @@ tasks.jacocoTestReport {
 
 // Add sonar dependency on test reports
 rootProject.tasks.named("sonar").get().dependsOn(tasks.jacocoTestReport)
-

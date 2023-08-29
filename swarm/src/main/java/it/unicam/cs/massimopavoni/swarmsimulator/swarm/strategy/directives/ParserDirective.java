@@ -119,7 +119,7 @@ public enum ParserDirective {
     private final Class<? extends Directive> directiveClass;
 
     /**
-     * Constructor for a directive type from string representation.
+     * Constructor for a parser directive from string representation and corresponding directive class.
      *
      * @param directiveName  directive string representation
      * @param directiveClass directive class
