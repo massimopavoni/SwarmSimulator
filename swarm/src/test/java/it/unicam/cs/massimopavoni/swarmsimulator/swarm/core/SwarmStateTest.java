@@ -67,6 +67,24 @@ class SwarmStateTest {
     }
 
     @Test
+    void SwarmState_tooManyDrones() {
+        AtomicReference<Exception> e = new AtomicReference<>();
+        SwarmState.initializeParsers(shapeFactory, null);
+        assertAll(
+                () -> e.set(assertThrowsExactly(SwarmException.class,
+                        () -> swarmState.set(new SwarmState(new File(
+                                Objects.requireNonNull(SwarmStateTest.class.getClassLoader().getResource(
+                                        "it/unicam/cs/massimopavoni/swarmsimulator/swarm/domain/parser/" +
+                                                "testDomain.swarm")).getPath()),
+                                new File(Objects.requireNonNull(SwarmStateTest.class.getClassLoader().getResource(
+                                        "it/unicam/cs/massimopavoni/swarmsimulator/swarm/strategy/parser/" +
+                                                "testStrategy.swarm")).getPath()),
+                                65537, shapeFactory.createShape(
+                                ShapeType.CIRCLE, new double[]{0, 0, 20}), true)))),
+                () -> assertTrue(e.get().getMessage().toLowerCase().contains("drone")));
+    }
+
+    @Test
     void SwarmState_fromFile() {
         SwarmState.initializeParsers(shapeFactory, null);
         SwarmState_fromSomething(

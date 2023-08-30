@@ -54,8 +54,8 @@ public final class SwarmDomainParser implements DomainParser {
         AtomicInteger lineCounter = new AtomicInteger(-1);
         try {
             if (lines.size() > SwarmProperties.maxDomainRegions())
-                throw new DomainException("The domain cannot have more regions than " +
-                        "what is specified in the swarm properties file.");
+                throw new DomainException(String.format("The domain shape must have between 0 and %d regions.",
+                        SwarmProperties.maxDomainRegions()));
             return lines.stream()
                     .map(l -> {
                         lineCounter.getAndIncrement();

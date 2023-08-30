@@ -55,10 +55,12 @@ public final class GUIApplication extends Application {
     public void start(Stage stage) throws IOException {
         setHostServices(getHostServices());
         FXMLLoader fxmlLoader = new FXMLLoader(GUIApplication.class.getResource("simulator.fxml"));
-        fxmlLoader.setController(new GUIController(stage));
+        GUIController controller = new GUIController(stage);
+        fxmlLoader.setController(controller);
         stage.setScene(new Scene(fxmlLoader.load()));
         initializeStage(stage);
         stage.show();
+        controller.completeInitialization();
     }
 
     /**

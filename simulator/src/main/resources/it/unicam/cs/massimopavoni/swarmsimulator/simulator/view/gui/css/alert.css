@@ -1,6 +1,7 @@
 .root,
 .header-panel {
-	-fx-background-color: #464646;
+	-fx-background-color: #3f3f3f;
+	-fx-focus-color: #00cc1c;
 }
 
 .header-panel .label {
@@ -9,4 +10,14 @@
 
 .label {
 	-fx-text-fill: #fff;
+}
+
+.button {
+	-fx-color: #444;
+	-fx-background-radius: 7;
+	-fx-shadow-highlight-color: transparent;
+}
+
+.button:pressed {
+	-fx-color: #333;
 }

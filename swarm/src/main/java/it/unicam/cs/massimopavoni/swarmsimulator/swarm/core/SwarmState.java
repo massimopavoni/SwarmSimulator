@@ -120,8 +120,9 @@ public final class SwarmState {
      */
     private SwarmState(List<Region> domain, List<Directive> strategy,
                        int dronesNumber, Shape spawnShape, boolean onBoundary) {
-        if (dronesNumber < 1)
-            throw new SwarmException("The number of drones must be greater than 0.");
+        if (dronesNumber < 1 || dronesNumber > SwarmProperties.maxDronesNumber())
+            throw new SwarmException(String.format("The number of drones must be greater than 0 and smaller than %d.",
+                    SwarmProperties.maxDronesNumber()));
         this.domain = domain;
         this.strategy = strategy;
         List<Integer> jumpDirectiveIndexes = IntStream.range(0, strategy.size())

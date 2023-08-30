@@ -50,6 +50,9 @@
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Button>
          </children>
       </HBox>

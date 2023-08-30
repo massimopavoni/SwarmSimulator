@@ -31,6 +31,38 @@ public final class SwarmProperties {
      */
     public static final String DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION = "defaultSwarmProperties.json";
     /**
+     * Minimum parallelism level.
+     */
+    public static final int MIN_PARALLELISM = 4;
+    /**
+     * Maximum parallelism level.
+     */
+    public static final int MAX_PARALLELISM = 32;
+    /**
+     * Minimum max polygon vertices.
+     */
+    public static final int MIN_MAX_POLYGON_VERTICES = 3;
+    /**
+     * Maximum max polygon vertices.
+     */
+    public static final int MAX_MAX_POLYGON_VERTICES = 256;
+    /**
+     * Minimum max domain regions.
+     */
+    public static final int MIN_MAX_DOMAIN_REGIONS = 0;
+    /**
+     * Maximum max domain regions.
+     */
+    public static final int MAX_MAX_DOMAIN_REGIONS = 64;
+    /**
+     * Minimum max drones number.
+     */
+    public static final int MIN_MAX_DRONES_NUMBER = 16;
+    /**
+     * Maximum max drones number.
+     */
+    public static final int MAX_MAX_DRONES_NUMBER = 262144;
+    /**
      * Tolerance for double comparisons.
      */
     private static double tolerance;
@@ -149,13 +181,21 @@ public final class SwarmProperties {
         if (!SwarmUtils.isPositive(tolerance))
             throw new SwarmException("Tolerance must be finite and positive.");
         if (parallelism < 4 || parallelism > 32)
-            throw new SwarmException("Parallelism level must be between 4 and 32.");
+            throw new SwarmException(String.format(
+                    "Parallelism level must be between %d and %d.",
+                    MIN_PARALLELISM, MAX_PARALLELISM));
         if (maxPolygonVertices < 3 || maxPolygonVertices > 256)
-            throw new SwarmException("Maximum number of vertices for a polygon must be between 3 and 256.");
+            throw new SwarmException(String.format(
+                    "Maximum number of vertices for a polygon must be between %d and %d.",
+                    MIN_MAX_POLYGON_VERTICES, MAX_MAX_POLYGON_VERTICES));
         if (maxDomainRegions < 0 || maxDomainRegions > 64)
-            throw new SwarmException("Maximum number of regions in the domain must be between 0 and 256.");
+            throw new SwarmException(String.format(
+                    "Maximum number of regions in the domain must be between %d and %d.",
+                    MIN_MAX_DOMAIN_REGIONS, MAX_MAX_DOMAIN_REGIONS));
         if (maxDronesNumber < 16 || maxDronesNumber > 262144)
-            throw new SwarmException("Maximum number of drones in the swarm must be between 16 and 262144.");
+            throw new SwarmException(String.format(
+                    "Maximum number of drones in the swarm must be between %d and %d.",
+                    MIN_MAX_DRONES_NUMBER, MAX_MAX_DRONES_NUMBER));
         if (isInvalidSwarmRegex(signalPattern) || isInvalidSwarmRegex(echoPattern))
             throw new SwarmException("Signal and echo patterns must be valid regular expressions " +
                     "that do not match spaces.");

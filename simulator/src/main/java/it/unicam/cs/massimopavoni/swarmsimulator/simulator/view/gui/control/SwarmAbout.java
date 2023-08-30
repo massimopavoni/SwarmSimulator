@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Class representing about dialog control.
  */
-public class SwarmAbout {
+public final class SwarmAbout {
     /**
      * About dialog stage.
      */
