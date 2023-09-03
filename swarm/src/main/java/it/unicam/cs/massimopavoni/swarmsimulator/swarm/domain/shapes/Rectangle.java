@@ -123,4 +123,14 @@ public final class Rectangle extends Polygon implements Shape {
             default -> throw new ShapeException("Invalid random edge value");
         };
     }
+
+    /**
+     * Get the bounding rectangle of the rectangle shape.
+     *
+     * @return bounding rectangle
+     */
+    @Override
+    public Rectangle getBoundingRectangle() {
+        return this;
+    }
 }

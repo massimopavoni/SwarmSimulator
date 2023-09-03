@@ -68,10 +68,11 @@
 .text-area .content {
 	-fx-background-color: #393939;
 	-fx-border-color: #393939;
+	-fx-border-radius: 7;
 }
 
 .text-field {
-	-fx-background-color: #343434;
+	-fx-background-color: #393939;
 	-fx-border-color: #555;
 	-fx-border-radius: 7;
 }
@@ -131,6 +132,9 @@
 	-fx-text-box-border: transparent;
 	-fx-base: transparent;
 	-fx-background-radius: 7;
+}
+
+.spinner:focused {
 	-fx-background-insets: -0.8;
 }
 
@@ -160,6 +164,52 @@
 	-fx-shadow-highlight-color: transparent;
 }
 
+.choice-box:pressed {
+	-fx-color: #333;
+}
+
 .choice-box .arrow {
 	-fx-background-color: #fff;
+}
+
+.toggle-switch {
+	-fx-color: #444;
+	-thumb-move-animation-time: 200;
+}
+
+.toggle-switch .thumb {
+	-fx-background-color: #444;
+	-fx-background-insets: -0.2, 0, -1.4, 1, 2;
+	-fx-padding: 0.8em;
+	-fx-alignment: CENTER;
+	-fx-content-display: LEFT;
+}
+
+.toggle-switch:hover .thumb {
+	-fx-color: #444;
+}
+
+.toggle-switch:focused .thumb {
+	-fx-background-color: #444;
+	-fx-background-insets: -0.2, 0, -1.4, 1, 2;
+}
+
+.toggle-switch .thumb-area {
+	-fx-background-color: #666;
+	-fx-background-insets: 1;
+	-fx-padding: 0.7em 1.7em 0.7em 1.7em;
+}
+
+.toggle-switch:focused .thumb-area {
+	-fx-color: #666;
+}
+
+.toggle-switch:selected .thumb-area {
+	-fx-background-color: #00a816;
+	-fx-background-insets: 1;
+}
+
+.toggle-switch:selected:focused .thumb-area {
+	-fx-background-color: #00a816;
+	-fx-background-insets: 1;
 }

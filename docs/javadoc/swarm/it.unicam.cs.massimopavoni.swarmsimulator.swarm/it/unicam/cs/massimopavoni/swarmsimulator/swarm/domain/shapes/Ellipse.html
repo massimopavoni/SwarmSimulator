@@ -146,25 +146,30 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks if a position is contained in the ellipse shape.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCenter()" class="member-name-link">getCenter</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Rectangle.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Rectangle</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBoundingRectangle()" class="member-name-link">getBoundingRectangle</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the bounding rectangle of the ellipse shape.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCenter()" class="member-name-link">getCenter</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Center position getter.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProperties()" class="member-name-link">getProperties</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProperties()" class="member-name-link">getProperties</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get ellipse center and radius coordinates.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRadius()" class="member-name-link">getRadius</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRadius()" class="member-name-link">getRadius</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Radius position getter.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRandomPositions(boolean,int)" class="member-name-link">getRandomPositions</a><wbr>(boolean&nbsp;onBoundary,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Position.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain">Position</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRandomPositions(boolean,int)" class="member-name-link">getRandomPositions</a><wbr>(boolean&nbsp;onBoundary,
  int&nbsp;amount)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get a list of random positions contained in the ellipse shape.</div>
 </div>
 </div>
@@ -293,6 +298,19 @@ implements <a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.s
 <dd><code>amount</code> - number of positions to generate</dd>
 <dt>Returns:</dt>
 <dd>list of random positions</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getBoundingRectangle()">
+<h3>getBoundingRectangle</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Rectangle.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Rectangle</a></span>&nbsp;<span class="element-name">getBoundingRectangle</span>()</div>
+<div class="block">Get the bounding rectangle of the ellipse shape.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Shape.html#getBoundingRectangle()">getBoundingRectangle</a></code>&nbsp;in interface&nbsp;<code><a href="Shape.html" title="interface in it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes">Shape</a></code></dd>
+<dt>Returns:</dt>
+<dd>bounding rectangle</dd>
 </dl>
 </section>
 </li>

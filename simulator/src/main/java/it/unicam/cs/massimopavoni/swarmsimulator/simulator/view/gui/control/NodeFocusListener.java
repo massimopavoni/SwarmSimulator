@@ -6,13 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 
 /**
- * Class representing a listener for focus events on a node and show the corresponding help text.
+ * Class representing a listener for focus change events on a node.
  */
 public final class NodeFocusListener implements ChangeListener<Boolean> {
     /**
      * Help label for GUI elements information.
      */
-    private final Label help;
+    private final Label helpLabel;
     /**
      * Observed node.
      */
@@ -21,11 +21,11 @@ public final class NodeFocusListener implements ChangeListener<Boolean> {
     /**
      * Constructor for the listener.
      *
-     * @param help         help label
+     * @param helpLabel    help label
      * @param observedNode observed node
      */
-    public NodeFocusListener(Label help, Node observedNode) {
-        this.help = help;
+    public NodeFocusListener(Label helpLabel, Node observedNode) {
+        this.helpLabel = helpLabel;
         this.observedNode = observedNode;
     }
 
@@ -39,6 +39,6 @@ public final class NodeFocusListener implements ChangeListener<Boolean> {
     @Override
     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
         if (newValue != null && newValue)
-            help.setText(observedNode.getAccessibleHelp());
+            helpLabel.setText(observedNode.getAccessibleHelp());
     }
 }

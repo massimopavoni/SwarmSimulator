@@ -88,4 +88,13 @@ class EllipseTest {
                 () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
                         .allMatch(e::contains))));
     }
+
+    @Test
+    void getBoundingRectangle_correct() {
+        Ellipse e = new Ellipse(new Position(1, 2), new Position(3, 9));
+        Rectangle br = e.getBoundingRectangle();
+        assertAll(
+                () -> assertTrue(br.getCenter().equalTo(new Position(1, 2))),
+                () -> assertTrue(br.getWidthHeight().equalTo(new Position(6, 18))));
+    }
 }

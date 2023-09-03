@@ -3,13 +3,16 @@ plugins {
     // JavaFX plugin for graphics support
     id("org.openjfx.javafxplugin") version "0.0.14"
     // John Rengelman's shadow plugin for fat JAR packaging
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.github.johnrengelman.shadow") version "8.+"
     // Beryx's jlink plugin for final application packaging
-    id("org.beryx.jlink") version "2.26.0"
+    id("org.beryx.jlink") version "2.+"
 }
 
 dependencies {
     implementation(project(":swarm"))
+    // JavaFX additional UI controls
+    implementation("org.controlsfx:controlsfx:11.+")
+
 }
 
 javafx {

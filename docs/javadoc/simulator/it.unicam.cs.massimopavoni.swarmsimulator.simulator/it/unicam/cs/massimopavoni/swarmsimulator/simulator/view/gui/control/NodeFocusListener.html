@@ -83,7 +83,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">NodeFocusListener</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements javafx.beans.value.ChangeListener&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;</span></div>
-<div class="block">Class representing a listener for focus events on a node and show the corresponding help text.</div>
+<div class="block">Class representing a listener for focus change events on a node.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -95,7 +95,7 @@ implements javafx.beans.value.ChangeListener&lt;<a href="https://docs.oracle.com
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(javafx.scene.control.Label,javafx.scene.Node)" class="member-name-link">NodeFocusListener</a><wbr>(javafx.scene.control.Label&nbsp;help,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(javafx.scene.control.Label,javafx.scene.Node)" class="member-name-link">NodeFocusListener</a><wbr>(javafx.scene.control.Label&nbsp;helpLabel,
  javafx.scene.Node&nbsp;observedNode)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Constructor for the listener.</div>
@@ -141,12 +141,12 @@ implements javafx.beans.value.ChangeListener&lt;<a href="https://docs.oracle.com
 <li>
 <section class="detail" id="&lt;init&gt;(javafx.scene.control.Label,javafx.scene.Node)">
 <h3>NodeFocusListener</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">NodeFocusListener</span><wbr><span class="parameters">(javafx.scene.control.Label&nbsp;help,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">NodeFocusListener</span><wbr><span class="parameters">(javafx.scene.control.Label&nbsp;helpLabel,
  javafx.scene.Node&nbsp;observedNode)</span></div>
 <div class="block">Constructor for the listener.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>help</code> - help label</dd>
+<dd><code>helpLabel</code> - help label</dd>
 <dd><code>observedNode</code> - observed node</dd>
 </dl>
 </section>

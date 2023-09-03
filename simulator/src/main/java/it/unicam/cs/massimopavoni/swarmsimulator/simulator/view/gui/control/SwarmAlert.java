@@ -29,18 +29,19 @@ public final class SwarmAlert extends Alert {
     }
 
     /**
-     * Show blocking error alert message from exception.
+     * Show blocking error alert message from message and/or exception.
      *
      * @param errorType type of error encountered
+     * @param message   message to show
      * @param exception exception encountered
      */
-    public void showAndWait(ErrorType errorType, Exception exception) {
+    public void showAndWait(ErrorType errorType, String message, Exception exception) {
         setAlertType(errorType.getAlertType());
         setHeaderText(errorType.getTitle());
-        setContentText(
+        setContentText(String.format("%s%n%n%s", message,
                 exception.getCause() == null ? exception.getMessage() :
-                        String.format("%s%n%nCaused by:%n%s",
-                                exception.getMessage(), exception.getCause().getMessage()));
+                String.format("%s%n%nCaused by:%n%s",
+                        exception.getMessage(), exception.getCause().getMessage())));
         // Workaround for alert dialog not resizing to fit content text
         getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         showAndWait();

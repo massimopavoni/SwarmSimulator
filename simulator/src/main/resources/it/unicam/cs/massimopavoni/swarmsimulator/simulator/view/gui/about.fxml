@@ -10,7 +10,7 @@
    <children>
       <HBox alignment="CENTER" VBox.vgrow="NEVER">
          <children>
-            <ImageView fx:id="image" fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logo.png" />
                </image>
@@ -22,7 +22,7 @@
       </HBox>
       <HBox alignment="CENTER" VBox.vgrow="NEVER">
          <children>
-            <Label fx:id="header" text="header">
+            <Label fx:id="headerLabel" text="header">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -34,7 +34,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="content" text="content" wrapText="true">
+            <Label fx:id="contentLabel" text="content" wrapText="true">
                <HBox.margin>
                   <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                </HBox.margin>
@@ -46,7 +46,7 @@
       </HBox>
       <HBox alignment="CENTER" VBox.vgrow="NEVER">
          <children>
-            <Button mnemonicParsing="false" onAction="#ok" text="Ok">
+            <Button mnemonicParsing="false" onAction="#okButtonAction" text="Ok">
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>

@@ -34,12 +34,12 @@ public final class SwarmAbout {
      * About dialog header label.
      */
     @FXML
-    private Label header;
+    private Label headerLabel;
     /**
      * About dialog content label.
      */
     @FXML
-    private Label content;
+    private Label contentLabel;
 
     /**
      * Constructor for about dialog with application information.
@@ -60,8 +60,8 @@ public final class SwarmAbout {
      */
     private void initAbout() {
         stage.setTitle(String.format("About %s", Resources.NAME));
-        header.setText(String.format("%s v%s", Resources.NAME, Resources.VERSION));
-        content.setText(Resources.NOTICE);
+        headerLabel.setText(String.format("%s v%s", Resources.NAME, Resources.VERSION));
+        contentLabel.setText(Resources.NOTICE);
     }
 
     /**
@@ -96,10 +96,10 @@ public final class SwarmAbout {
     }
 
     /**
-     * Closes about dialog.
+     * Ok button action event handler.
      */
     @FXML
-    private void ok() {
+    private void okButtonAction() {
         stage.close();
     }
 }

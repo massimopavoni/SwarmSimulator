@@ -27,8 +27,15 @@ public sealed interface Shape permits Circle, Ellipse, Polygon, Rectangle {
      * Get a list of random positions contained in the shape.
      *
      * @param onBoundary if true, positions are generated on the shape boundary
-     * @param amount number of positions to generate
+     * @param amount     number of positions to generate
      * @return list of random positions
      */
     List<Position> getRandomPositions(boolean onBoundary, int amount);
+
+    /**
+     * Get the bounding rectangle of the shape.
+     *
+     * @return bounding rectangle
+     */
+    Rectangle getBoundingRectangle();
 }

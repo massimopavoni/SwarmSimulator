@@ -2,6 +2,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.core;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.TestUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,6 +16,12 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SwarmPropertiesTest {
+    @BeforeAll
+    static void setUp() throws IOException {
+        Files.deleteIfExists(Path.of(SwarmProperties.DEFAULT_SWARM_FOLDER +
+                SwarmProperties.DEFAULT_SWARM_PROPERTIES_FILE_NAME));
+    }
+
     @Test
     void initialize_default() throws IOException {
         Path customFile = Path.of(SwarmProperties.DEFAULT_SWARM_FOLDER +

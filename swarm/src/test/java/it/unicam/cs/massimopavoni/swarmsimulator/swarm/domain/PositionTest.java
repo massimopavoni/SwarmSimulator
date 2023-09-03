@@ -187,7 +187,15 @@ class PositionTest {
     }
 
     @Test
-    void directionTo() {
+    void directionTo_same() {
+        Position p0 = new Position(2, 9);
+        Position p1 = new Position(2, 9);
+        Position pt = p0.directionTo(p1);
+        assertTrue(pt.equalTo(new Position(0, 0)));
+    }
+
+    @Test
+    void directionTo_different() {
         Position p0 = new Position(2, 9);
         Position p1 = new Position(-8.7, -0.5);
         Position pt = p0.directionTo(p1);

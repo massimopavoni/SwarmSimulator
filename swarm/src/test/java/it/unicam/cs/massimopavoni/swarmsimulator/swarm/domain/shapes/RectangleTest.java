@@ -100,4 +100,17 @@ class RectangleTest {
                 () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
                         .allMatch(r::contains))));
     }
+
+    @Test
+    void getBoundingRectangle_correct() {
+        Rectangle r = new Rectangle(new Position(-3, 2), new Position(5, 7));
+        Rectangle br = r.getBoundingRectangle();
+        assertAll(
+                () -> assertTrue(br.getCenter().equalTo(new Position(-3, 2))),
+                () -> assertTrue(br.getWidthHeight().equalTo(new Position(5, 7))),
+                () -> assertTrue(br.vertices.get(0).equalTo(new Position(-5.5, -1.5))),
+                () -> assertTrue(br.vertices.get(1).equalTo(new Position(-0.5, -1.5))),
+                () -> assertTrue(br.vertices.get(2).equalTo(new Position(-0.5, 5.5))),
+                () -> assertTrue(br.vertices.get(3).equalTo(new Position(-5.5, 5.5))));
+    }
 }

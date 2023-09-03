@@ -83,4 +83,13 @@ class CircleTest {
                 () -> assertTrue(SwarmUtils.parallelize(() -> rps.parallelStream()
                         .allMatch(c::contains))));
     }
+
+    @Test
+    void getBoundingRectangle_correct() {
+        Circle c = new Circle(new Position(1, 2), 10);
+        Rectangle br = c.getBoundingRectangle();
+        assertAll(
+                () -> assertTrue(br.getCenter().equalTo(new Position(1, 2))),
+                () -> assertTrue(br.getWidthHeight().equalTo(new Position(20, 20))));
+    }
 }

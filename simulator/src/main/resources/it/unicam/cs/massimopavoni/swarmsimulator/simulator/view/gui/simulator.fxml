@@ -6,155 +6,210 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
 
 <VBox prefHeight="900.0" prefWidth="1600.0" stylesheets="@css/simulator.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#fileQuitAction" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" onAction="#helpGitHubAction" text="GitHub" />
-                  <MenuItem fx:id="helpAuthor" mnemonicParsing="false" onAction="#helpAuthorAction" text="author" />
-                  <MenuItem mnemonicParsing="false" onAction="#helpLicenseAction" text="License" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#helpAboutAction" text="About" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-      <Separator prefWidth="200.0" />
-      <HBox VBox.vgrow="ALWAYS">
-         <children>
-        <AnchorPane prefWidth="200.0" HBox.hgrow="NEVER">
-               <children>
-                  <VBox layoutX="35.0" layoutY="118.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label text="Simulation">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Separator prefWidth="200.0" />
-                        <GridPane hgap="5.0" vgap="10.0">
-                          <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" prefWidth="70.0" />
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="Swarm" GridPane.halignment="LEFT">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets left="8.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Button fx:id="domainFileChoose" mnemonicParsing="false" prefWidth="70.0" text="Domain" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin></Button>
-                              <TextArea fx:id="domainPath" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin></TextArea>
-                              <Button fx:id="strategyFileChoose" mnemonicParsing="false" prefWidth="70.0" text="Strategy" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin></Button>
-                              <TextArea fx:id="strategyPath" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin></TextArea>
-                              <Label text="Spawn" GridPane.halignment="LEFT" GridPane.rowIndex="5">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets left="8.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <Label focusTraversable="false" text="# drones" GridPane.halignment="LEFT" GridPane.rowIndex="6">
-                                 <GridPane.margin>
-                                    <Insets left="8.0" />
-                                 </GridPane.margin></Label>
-                              <Spinner fx:id="dronesSpinner" onScroll="#dronesSpinnerScroll" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Label text="Shape" GridPane.halignment="LEFT" GridPane.rowIndex="7">
-                                 <GridPane.margin>
-                                    <Insets left="8.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <ChoiceBox fx:id="spawnShape" onScroll="#spawnShapeScroll" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <TextArea fx:id="shapeArgs" onKeyPressed="#shapeArgsKeyPressed" prefHeight="80.0" prefWidth="200.0" promptText="Shape arguments" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </GridPane>
-                     </children></VBox>
-               </children></AnchorPane>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <AnchorPane HBox.hgrow="ALWAYS">
-               <children>
-                  <LineChart fx:id="swarmChart" alternativeColumnFillVisible="true" layoutX="265.0" layoutY="92.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="12.0">
-                    <xAxis>
-                      <NumberAxis lowerBound="-35.0" minorTickCount="0" tickUnit="1.0" upperBound="35.0" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis lowerBound="-25.0" minorTickCount="0" side="LEFT" upperBound="25.0" />
-                    </yAxis>
-                  </LineChart>
-               </children>
-            </AnchorPane>
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
-        <AnchorPane prefWidth="200.0" HBox.hgrow="NEVER">
-               <children>
-                  <VBox layoutX="38.0" layoutY="76.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <TextArea fx:id="domainText" editable="false" promptText="Domain" wrapText="true" VBox.vgrow="SOMETIMES">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                        <TextArea fx:id="strategyText" editable="false" promptText="Strategy" wrapText="true" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
-                     </children>
-                  </VBox>
-               </children></AnchorPane>
-         </children>
-      </HBox>
-      <Separator prefWidth="200.0" />
-  <Label fx:id="help" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="help">
-    <textFill>
-      <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
-    </textFill>
-         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </VBox.margin>
-  </Label>
-  </children>
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#fileQuitMenuItemAction" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#helpGitHubMenuItemAction" text="GitHub" />
+                        <MenuItem fx:id="helpAuthorMenuItem" mnemonicParsing="false" onAction="#helpAuthorMenuItemAction" text="author" />
+                        <MenuItem mnemonicParsing="false" onAction="#helpLicenseMenuItemAction" text="License" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#helpAboutMenuItemAction" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Separator prefWidth="200.0" />
+        <HBox VBox.vgrow="ALWAYS">
+            <children>
+                <AnchorPane prefWidth="200.0" HBox.hgrow="NEVER">
+                    <children>
+                        <VBox layoutX="35.0" layoutY="118.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Label text="Simulation">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                </GridPane>
+                                <Separator prefWidth="200.0" />
+                                <GridPane hgap="5.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" percentWidth="40.0" />
+                                        <ColumnConstraints halignment="CENTER" percentWidth="10.0" />
+                                        <ColumnConstraints halignment="CENTER" percentWidth="50.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Swarm" GridPane.halignment="LEFT">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                            <GridPane.margin>
+                                                <Insets left="8.0" />
+                                            </GridPane.margin>
+                                        </Label>
+                                        <Button fx:id="domainFileChooseButton" mnemonicParsing="false" onAction="#domainFileChooseButtonAction" prefWidth="70.0" text="Domain" GridPane.rowIndex="1">
+                                            <GridPane.margin>
+                                                <Insets />
+                                            </GridPane.margin>
+                                        </Button>
+                                        <TextArea fx:id="domainPathTextArea" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets right="2.0" />
+                                            </GridPane.margin>
+                                        </TextArea>
+                                        <Button fx:id="strategyFileChooseButton" mnemonicParsing="false" onAction="#strategyFileChooseButtonAction" prefWidth="70.0" text="Strategy" GridPane.rowIndex="3">
+                                            <GridPane.margin>
+                                                <Insets />
+                                            </GridPane.margin>
+                                        </Button>
+                                        <TextArea fx:id="strategyPathTextArea" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets right="2.0" />
+                                            </GridPane.margin>
+                                        </TextArea>
+                                        <Label text="Spawn" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                            <GridPane.margin>
+                                                <Insets left="8.0" />
+                                            </GridPane.margin>
+                                        </Label>
+                                        <Label focusTraversable="false" text="# drones" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+                                            <GridPane.margin>
+                                                <Insets left="8.0" />
+                                            </GridPane.margin>
+                                        </Label>
+                                        <Spinner fx:id="dronesNumberSpinner" onKeyPressed="#dronesNumberSpinnerKeyPressed" onScroll="#dronesNumberSpinnerScroll" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                                            <GridPane.margin>
+                                                <Insets right="2.0" />
+                                            </GridPane.margin>
+                                        </Spinner>
+                                        <Label text="Shape" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+                                            <GridPane.margin>
+                                                <Insets left="8.0" />
+                                            </GridPane.margin>
+                                        </Label>
+                                        <ChoiceBox fx:id="spawnShapeChoiceBox" onKeyPressed="#spawnShapeChoiceBoxKeyPressed" onScroll="#spawnShapeChoiceBoxScroll" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                                            <GridPane.margin>
+                                                <Insets right="2.0" />
+                                            </GridPane.margin>
+                                        </ChoiceBox>
+                                        <TextArea fx:id="shapeArgsTextArea" onKeyPressed="#shapeArgsTextAreaKeyPressed" prefHeight="80.0" prefWidth="200.0" promptText="Shape arguments" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="8">
+                                            <GridPane.margin>
+                                                <Insets right="2.0" />
+                                            </GridPane.margin>
+                                        </TextArea>
+                                        <Label text="On boundary" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="9">
+                                            <GridPane.margin>
+                                                <Insets left="8.0" />
+                                            </GridPane.margin>
+                                        </Label>
+                                        <ToggleSwitch fx:id="onBoundaryToggleSwitch" onMouseClicked="#onBoundaryToggleSwitchMouseClicked" prefWidth="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="9">
+                                            <GridPane.margin>
+                                                <Insets right="2.0" />
+                                            </GridPane.margin>
+                                        </ToggleSwitch>
+                                        <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetButtonAction" prefWidth="70.0" text="Reset" GridPane.columnSpan="2" GridPane.rowIndex="10">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="spawnButton" disable="true" mnemonicParsing="false" onAction="#spawnButtonAction" prefWidth="70.0" text="Spawn" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                            <font>
+                                                <Font size="15.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <Separator orientation="VERTICAL" prefHeight="200.0" />
+                <AnchorPane HBox.hgrow="ALWAYS">
+                    <children>
+                        <ScatterChart fx:id="swarmChart" alternativeColumnFillVisible="true" animated="false" disable="true" layoutX="265.0" layoutY="92.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="12.0">
+                            <xAxis>
+                                <NumberAxis autoRanging="false" lowerBound="-7.0" minorTickCount="0" tickUnit="1.0" upperBound="7.0" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis autoRanging="false" lowerBound="-5.0" minorTickCount="0" side="LEFT" tickUnit="1.0" upperBound="5.0" />
+                            </yAxis>
+                        </ScatterChart>
+                    </children>
+                </AnchorPane>
+                <Separator orientation="VERTICAL" prefHeight="200.0" />
+                <AnchorPane prefWidth="200.0" HBox.hgrow="NEVER">
+                    <children>
+                        <VBox layoutX="38.0" layoutY="76.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <TextArea fx:id="domainTextArea" editable="false" promptText="Domain" wrapText="true" VBox.vgrow="SOMETIMES">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextArea>
+                                <TextArea fx:id="strategyTextArea" editable="false" promptText="Strategy" wrapText="true" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextArea>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </HBox>
+        <Separator prefWidth="200.0" />
+        <Label fx:id="helpLabel" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="help">
+            <textFill>
+                <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
+            </textFill>
+            <VBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </VBox.margin>
+        </Label>
+    </children>
 </VBox>

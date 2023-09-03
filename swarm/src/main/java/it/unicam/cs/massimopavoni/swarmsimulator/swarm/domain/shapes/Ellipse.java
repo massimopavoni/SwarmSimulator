@@ -101,4 +101,14 @@ public sealed class Ellipse implements Shape permits Circle {
                                 center.y() + radius.y() / radius.x() * r * Math.sin(a));
                     }).collect(toImmutableList()));
     }
+
+    /**
+     * Get the bounding rectangle of the ellipse shape.
+     *
+     * @return bounding rectangle
+     */
+    @Override
+    public Rectangle getBoundingRectangle() {
+        return new Rectangle(center, radius.scale(2));
+    }
 }

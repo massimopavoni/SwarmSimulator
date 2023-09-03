@@ -163,6 +163,7 @@ public final class Position {
         double dx = p.x - x;
         double dy = p.y - y;
         double norm = Math.hypot(dx, dy);
+        if (norm == 0) return new Position(0, 0);
         return new Position(dx / norm, dy / norm);
     }
 }

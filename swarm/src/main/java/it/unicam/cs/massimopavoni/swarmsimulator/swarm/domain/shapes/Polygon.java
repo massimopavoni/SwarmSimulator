@@ -123,6 +123,7 @@ public sealed class Polygon implements Shape permits Rectangle {
      *
      * @return bounding rectangle
      */
+    @Override
     public Rectangle getBoundingRectangle() {
         double xMin = vertices.stream().mapToDouble(Position::x).min().orElseThrow();
         double xMax = vertices.stream().mapToDouble(Position::x).max().orElseThrow();
