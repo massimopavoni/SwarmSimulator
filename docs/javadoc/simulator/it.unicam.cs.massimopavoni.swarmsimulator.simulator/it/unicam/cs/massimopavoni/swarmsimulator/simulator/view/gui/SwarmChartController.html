@@ -90,12 +90,21 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static final it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</code></div>
-<div class="col-second even-row-color"><code><a href="#DEFAULT_ORIGIN" class="member-name-link">DEFAULT_ORIGIN</a></code></div>
+<div class="col-first even-row-color"><code>static final double</code></div>
+<div class="col-second even-row-color"><code><a href="#BIGGEST_X_AXIS_SPAN" class="member-name-link">BIGGEST_X_AXIS_SPAN</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static final long</code></div>
-<div class="col-second odd-row-color"><code><a href="#DEFAULT_X_AXIS_SPAN" class="member-name-link">DEFAULT_X_AXIS_SPAN</a></code></div>
+<div class="col-first odd-row-color"><code>static final it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</code></div>
+<div class="col-second odd-row-color"><code><a href="#DEFAULT_ORIGIN" class="member-name-link">DEFAULT_ORIGIN</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>static final double</code></div>
+<div class="col-second even-row-color"><code><a href="#DEFAULT_X_AXIS_SPAN" class="member-name-link">DEFAULT_X_AXIS_SPAN</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>static final double</code></div>
+<div class="col-second odd-row-color"><code><a href="#SMALLEST_X_AXIS_SPAN" class="member-name-link">SMALLEST_X_AXIS_SPAN</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>static final double</code></div>
+<div class="col-second even-row-color"><code><a href="#Y_AXIS_TICK_COUNT" class="member-name-link">Y_AXIS_TICK_COUNT</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -127,6 +136,12 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetPosition()" class="member-name-link">resetPosition</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetZoom()" class="member-name-link">resetZoom</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSources(java.util.List,java.util.List)" class="member-name-link">setSources</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region&gt;&nbsp;domain,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone&gt;&nbsp;swarm)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -144,8 +159,11 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateYAxis(double)" class="member-name-link">translateYAxis</a><wbr>(double&nbsp;dy)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoom(double)" class="member-name-link">zoom</a><wbr>(double&nbsp;zoomFactor)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoom(double)" class="member-name-link">zoom</a><wbr>(double&nbsp;zoomFactor)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -164,9 +182,15 @@ loadScripts(document, 'script');</script>
 <h2>Field Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="DEFAULT_ORIGIN">
+<h3>DEFAULT_ORIGIN</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</span>&nbsp;<span class="element-name">DEFAULT_ORIGIN</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="DEFAULT_X_AXIS_SPAN">
 <h3>DEFAULT_X_AXIS_SPAN</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">DEFAULT_X_AXIS_SPAN</span></div>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">DEFAULT_X_AXIS_SPAN</span></div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -178,9 +202,37 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="DEFAULT_ORIGIN">
-<h3>DEFAULT_ORIGIN</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</span>&nbsp;<span class="element-name">DEFAULT_ORIGIN</span></div>
+<section class="detail" id="SMALLEST_X_AXIS_SPAN">
+<h3>SMALLEST_X_AXIS_SPAN</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">SMALLEST_X_AXIS_SPAN</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="BIGGEST_X_AXIS_SPAN">
+<h3>BIGGEST_X_AXIS_SPAN</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">BIGGEST_X_AXIS_SPAN</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.SwarmChartController.BIGGEST_X_AXIS_SPAN">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="Y_AXIS_TICK_COUNT">
+<h3>Y_AXIS_TICK_COUNT</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">Y_AXIS_TICK_COUNT</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.SwarmChartController.Y_AXIS_TICK_COUNT">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -213,6 +265,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="resetPosition()">
+<h3>resetPosition</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetPosition</span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="translateAxes(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)">
 <h3>translateAxes</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateAxes</span><wbr><span class="parameters">(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position&nbsp;destination)</span></div>
@@ -238,6 +296,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="resetZoom()">
+<h3>resetZoom</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetZoom</span>()</div>
+</section>
+</li>
+<li>
 <section class="detail" id="zoom(double)">
 <h3>zoom</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">zoom</span><wbr><span class="parameters">(double&nbsp;zoomFactor)</span></div>
@@ -247,6 +311,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="reset()">
 <h3>reset</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="update()">
+<h3>update</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
 </section>
 </li>
 </ul>
