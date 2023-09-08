@@ -134,6 +134,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Get the additional key pressed event handler for the simulation.</div>
 </dd>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#getMousePosition(javafx.scene.input.GestureEvent)" class="member-name-link">getMousePosition(GestureEvent)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dd>
+<div class="block">Get the mouse position on the swarm chart from a gesture event.</div>
+</dd>
 <dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/ErrorType.html#getTitle()" class="member-name-link">getTitle()</a> - Method in enum class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/ErrorType.html" title="enum class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view">ErrorType</a></dt>
 <dd>
 <div class="block">Getter for error type title.</div>
@@ -217,13 +221,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Move multiplier value for second modifier.</div>
 </dd>
-<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#moveToCenter(boolean)" class="member-name-link">moveToCenter(boolean)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
-<dd>
-<div class="block">Move axes to the center of the spawn shape or the default origin.</div>
-</dd>
 <dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#moveView(int,double,boolean,boolean)" class="member-name-link">moveView(int, double, boolean, boolean)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
 <dd>
 <div class="block">Move view in a specific direction by a delta.</div>
+</dd>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#moveViewToCenter(boolean)" class="member-name-link">moveViewToCenter(boolean)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dd>
+<div class="block">Move axes to the center of the spawn shape or the default origin.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:N">N</h2>
@@ -254,10 +258,6 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
-<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#refresh()" class="member-name-link">refresh()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
-<dd>
-<div class="block">Refresh chart and simulation state.</div>
-</dd>
 <dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#reset()" class="member-name-link">reset()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
 <dd>
 <div class="block">Reset chart and simulation state.</div>
@@ -277,9 +277,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Scale axes to the default span.</div>
 </dd>
-<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#setSources(java.util.List,java.util.List,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)" class="member-name-link">setSources(List&lt;Region&gt;, List&lt;Drone&gt;, Shape)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#scaleAxesToSpawn()" class="member-name-link">scaleAxesToSpawn()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
 <dd>
-<div class="block">Set domain regions and swarm drones.</div>
+<div class="block">Scale axes to the spawn shape span.</div>
+</dd>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#setSources(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind)" class="member-name-link">setSources(HiveMind)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dd>
+<div class="block">Set hive mind.</div>
 </dd>
 <dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/control/SwarmAbout.html#showAndWait()" class="member-name-link">showAndWait()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/control/SwarmAbout.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control">SwarmAbout</a></dt>
 <dd>
@@ -325,6 +329,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructor for a swarm chart controller.</div>
 </dd>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#swarmStep()" class="member-name-link">swarmStep()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dd>
+<div class="block">Refresh chart and simulation state.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
@@ -336,11 +344,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Translate axes to a destination position.</div>
 </dd>
-<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#translateToDefaultOrigin()" class="member-name-link">translateToDefaultOrigin()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#translateAxesToDefault()" class="member-name-link">translateAxesToDefault()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
 <dd>
 <div class="block">Translate axes to the default origin.</div>
 </dd>
-<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#translateToSpawnOrigin()" class="member-name-link">translateToSpawnOrigin()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#translateAxesToSpawn()" class="member-name-link">translateAxesToSpawn()</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
 <dd>
 <div class="block">Translate axes to the spawn shape origin.</div>
 </dd>
@@ -396,6 +404,10 @@ the order they are declared.</div>
 <dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#zoomView(boolean,boolean,boolean)" class="member-name-link">zoomView(boolean, boolean, boolean)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
 <dd>
 <div class="block">Zoom view in or out.</div>
+</dd>
+<dt><a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html#zoomViewToCenter(boolean)" class="member-name-link">zoomViewToCenter(boolean)</a> - Method in class it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.<a href="it.unicam.cs.massimopavoni.swarmsimulator.simulator/it/unicam/cs/massimopavoni/swarmsimulator/simulator/view/gui/SwarmChartController.html" title="class in it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui">SwarmChartController</a></dt>
+<dd>
+<div class="block">Scale axes to spawn shape span or default span.</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a href="#I:Y">Y</a>&nbsp;<a href="#I:Z">Z</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>

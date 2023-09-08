@@ -1,16 +1,17 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui;
 
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.*;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
+import javafx.scene.input.GestureEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -20,7 +21,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.IntStream;
 
 /**
@@ -124,17 +124,9 @@ public final class SwarmChartController {
      */
     private double tickUnit;
     /**
-     * Domain regions.
+     * Hive mind instance.
      */
-    private List<Region> domain;
-    /**
-     * Swarm drones.
-     */
-    private List<Drone> swarm;
-    /**
-     * Spawn shape.
-     */
-    private Shape spawnShape;
+    private HiveMind hiveMind;
     //endregion
 
     //region Constructor
@@ -165,22 +157,19 @@ public final class SwarmChartController {
     //------------------------------------------------------------------------------------------------
 
     /**
-     * Set domain regions and swarm drones.
+     * Set hive mind.
      *
-     * @param domain     domain regions
-     * @param swarm      swarm drones
-     * @param spawnShape spawn shape
+     * @param hiveMind hive mind
      */
-    public void setSources(List<Region> domain, List<Drone> swarm, Shape spawnShape) {
-        this.domain = domain;
-        this.swarm = swarm;
-        this.spawnShape = spawnShape;
-        if (domain == null || swarm == null || spawnShape == null)
+    public void setSources(HiveMind hiveMind) {
+        this.hiveMind = hiveMind;
+        if (hiveMind == null)
             reset();
         else {
             updateAxesSpan();
             translateAndScaleToSpawn();
-            refresh();
+            drawDomain();
+            drawSwarm();
         }
     }
 
@@ -197,12 +186,8 @@ public final class SwarmChartController {
      * Translate and scale axes to the spawn shape.
      */
     private void translateAndScaleToSpawn() {
-        Rectangle br = spawnShape.getBoundingRectangle();
-        translateAxes(br.getCenter());
-        if (br.getWidthHeight().x() > br.getWidthHeight().y())
-            scaleAxes(br.getWidthHeight().x() + 2 * br.getWidthHeight().x() / 10);
-        else
-            scaleAxes((br.getWidthHeight().y() + 2 * br.getWidthHeight().y() / 10) * xyAxesRatio);
+        translateAxesToSpawn();
+        scaleAxesToSpawn();
     }
 
     /**
@@ -211,16 +196,22 @@ public final class SwarmChartController {
     public void reset() {
         domainSeries.getData().clear();
         swarmSeries.getData().clear();
-        translateToDefaultOrigin();
+        translateAxesToDefault();
         scaleAxesToDefault();
     }
 
     /**
      * Refresh chart and simulation state.
      */
-    public void refresh() {
-        drawDomain();
-        drawSwarm();
+    public void swarmStep() {
+        long startTime = System.nanoTime();
+        if (hiveMind.isSwarmAlive()) {
+            hiveMind.swarmStep();
+            drawDomain();
+            drawSwarm();
+        }
+        long endTime = System.nanoTime();
+        System.out.println("Swarm step time: " + (endTime - startTime) / 1000000 + " ms");
     }
     //endregion
 
@@ -232,7 +223,7 @@ public final class SwarmChartController {
      */
     private void drawDomain() {
         domainSeries.getData().clear();
-        domainSeries.getData().addAll(domain.stream().map(r -> {
+        domainSeries.getData().addAll(hiveMind.state().domain().stream().map(r -> {
             Rectangle br = r.shape().getBoundingRectangle();
             javafx.scene.shape.Shape shape = shapeTransform(r.shape());
             shape.setFill(DEFAULT_REGION_COLOR);
@@ -274,7 +265,7 @@ public final class SwarmChartController {
      */
     private void drawSwarm() {
         swarmSeries.getData().clear();
-        swarmSeries.getData().addAll(swarm.stream().map(d ->
+        swarmSeries.getData().addAll(hiveMind.state().swarm().stream().map(d ->
                 new Data<Number, Number>(d.position().x(), d.position().y())).toList());
     }
     //endregion
@@ -285,15 +276,15 @@ public final class SwarmChartController {
     /**
      * Translate axes to the default origin.
      */
-    public void translateToDefaultOrigin() {
+    public void translateAxesToDefault() {
         translateAxes(DEFAULT_ORIGIN);
     }
 
     /**
      * Translate axes to the spawn shape origin.
      */
-    public void translateToSpawnOrigin() {
-        translateAxes(spawnShape.getBoundingRectangle().getCenter());
+    public void translateAxesToSpawn() {
+        translateAxes(hiveMind.state().spawnShape().getBoundingRectangle().getCenter());
     }
 
     /**
@@ -301,11 +292,11 @@ public final class SwarmChartController {
      *
      * @param defaultOrigin default origin flag
      */
-    public void moveToCenter(boolean defaultOrigin) {
+    public void moveViewToCenter(boolean defaultOrigin) {
         if (defaultOrigin)
-            translateToDefaultOrigin();
+            translateAxesToDefault();
         else
-            translateToSpawnOrigin();
+            translateAxesToSpawn();
     }
 
     /**
@@ -415,6 +406,30 @@ public final class SwarmChartController {
     }
 
     /**
+     * Scale axes to the spawn shape span.
+     */
+    public void scaleAxesToSpawn() {
+        Rectangle br = hiveMind.state().spawnShape().getBoundingRectangle();
+        if (br.getWidthHeight().x() > br.getWidthHeight().y())
+            scaleAxes(br.getWidthHeight().x() + 2 * br.getWidthHeight().x() / 10);
+        else
+            scaleAxes((br.getWidthHeight().y() + 2 * br.getWidthHeight().y() / 10) * xyAxesRatio);
+    }
+
+
+    /**
+     * Scale axes to spawn shape span or default span.
+     *
+     * @param defaultSpan default span flag
+     */
+    public void zoomViewToCenter(boolean defaultSpan) {
+        if (defaultSpan)
+            scaleAxesToDefault();
+        else
+            scaleAxesToSpawn();
+    }
+
+    /**
      * Scale axes by a scaling factor.
      *
      * @param scalingFactor scaling factor
@@ -508,22 +523,57 @@ public final class SwarmChartController {
      */
     private void swarmChartKeyPressed(KeyEvent event) {
         switch (event.getCode()) {
-            case W, NUMPAD8 -> moveView(0, 1, event.isShiftDown(), event.isControlDown());
-            case S, NUMPAD5 -> moveView(1, 1, event.isShiftDown(), event.isControlDown());
-            case A, NUMPAD4 -> moveView(2, 1, event.isShiftDown(), event.isControlDown());
-            case D, NUMPAD6 -> moveView(3, 1, event.isShiftDown(), event.isControlDown());
-            case F, NUMPAD2 -> moveToCenter(event.isShiftDown());
-            case E, ADD -> zoomView(true, event.isShiftDown(), event.isControlDown());
-            case Q, SUBTRACT -> zoomView(false, event.isShiftDown(), event.isControlDown());
-            case R, MULTIPLY -> scaleAxesToDefault();
-            case N, SEPARATOR -> {
-            }
+            case W, NUMPAD8 -> executeAndConsumeEvent(() ->
+                    moveView(0, 1, event.isShiftDown(), event.isControlDown()), event);
+            case S, NUMPAD5 -> executeAndConsumeEvent(() ->
+                    moveView(1, 1, event.isShiftDown(), event.isControlDown()), event);
+            case A, NUMPAD4 -> executeAndConsumeEvent(() ->
+                    moveView(2, 1, event.isShiftDown(), event.isControlDown()), event);
+            case D, NUMPAD6 -> executeAndConsumeEvent(() ->
+                    moveView(3, 1, event.isShiftDown(), event.isControlDown()), event);
+            case F, NUMPAD2 -> executeAndConsumeEvent(() ->
+                    moveViewToCenter(event.isShiftDown()), event);
+            case E, ADD -> executeAndConsumeEvent(() ->
+                    zoomView(true, event.isShiftDown(), event.isControlDown()), event);
+            case Q, SUBTRACT -> executeAndConsumeEvent(() ->
+                    zoomView(false, event.isShiftDown(), event.isControlDown()), event);
+            case R, MULTIPLY -> executeAndConsumeEvent(() ->
+                    zoomViewToCenter(event.isShiftDown()), event);
+            case N, DECIMAL -> executeAndConsumeEvent(this::swarmStep, event);
             case T, NUMPAD0 -> {
             }
             default -> {
                 // Do nothing
             }
         }
+    }
+    //endregion
+
+    //region Additional helper methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Get the mouse position on the swarm chart from a gesture event.
+     *
+     * @param event gesture event
+     * @return mouse position
+     */
+    public Position getMousePosition(GestureEvent event) {
+        Point2D mouseScenePoint = new Point2D(event.getSceneX(), event.getSceneY());
+        return new Position(
+                xAxis.getValueForDisplay(xAxis.sceneToLocal(mouseScenePoint).getX()).doubleValue(),
+                yAxis.getValueForDisplay(yAxis.sceneToLocal(mouseScenePoint).getY()).doubleValue());
+    }
+
+    /**
+     * Execute a runnable and consume an event.
+     *
+     * @param runnable runnable
+     * @param event    event
+     */
+    private void executeAndConsumeEvent(Runnable runnable, KeyEvent event) {
+        runnable.run();
+        event.consume();
     }
     //endregion
 }

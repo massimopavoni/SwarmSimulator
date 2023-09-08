@@ -372,12 +372,10 @@ public final class GUIController implements Initializable {
         hiveMindProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue == null) {
                 setSimulationDisable(true);
-                swarmChartController.setSources(null, null, null);
+                swarmChartController.setSources(null);
             } else {
                 setSimulationDisable(false);
-                swarmChartController.setSources(hiveMindProperty.getValue().state().domain(),
-                        hiveMindProperty.getValue().state().swarm(),
-                        hiveMindProperty.getValue().state().spawnShape());
+                swarmChartController.setSources(hiveMindProperty.getValue());
             }
         });
     }
@@ -428,6 +426,21 @@ public final class GUIController implements Initializable {
     //endregion
 
     //region Simulation event handlers methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Step forward button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void stepForwardButtonMouseClicked(MouseEvent event) {
+        swarmChartController.swarmStep();
+        event.consume();
+    }
+    //endregion
+
+    //region Chart view event handlers methods
     //------------------------------------------------------------------------------------------------
 
     /**
@@ -485,7 +498,7 @@ public final class GUIController implements Initializable {
      */
     @FXML
     private void moveResetButtonMouseClicked(MouseEvent event) {
-        swarmChartController.moveToCenter(event.isShiftDown());
+        swarmChartController.moveViewToCenter(event.isShiftDown());
         event.consume();
     }
 
@@ -518,7 +531,7 @@ public final class GUIController implements Initializable {
      */
     @FXML
     private void zoomResetButtonMouseClicked(MouseEvent event) {
-        swarmChartController.scaleAxesToDefault();
+        swarmChartController.zoomViewToCenter(event.isShiftDown());
         event.consume();
     }
 
@@ -533,9 +546,11 @@ public final class GUIController implements Initializable {
         double deltaX = event.getDeltaX();
         if (event.isAltDown()) {
             if (event.getDeltaY() != 0) {
+                swarmChartController.translateAxes(swarmChartController.getMousePosition(event));
                 swarmChartController.zoomView(deltaY > 0, false, event.isControlDown());
                 event.consume();
             } else if (event.getDeltaX() != 0) {
+                swarmChartController.translateAxes(swarmChartController.getMousePosition(event));
                 swarmChartController.zoomView(deltaX > 0, true, event.isControlDown());
                 event.consume();
             }

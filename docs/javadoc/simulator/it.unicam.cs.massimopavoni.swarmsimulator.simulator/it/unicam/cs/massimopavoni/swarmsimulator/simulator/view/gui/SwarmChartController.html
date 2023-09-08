@@ -199,10 +199,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the additional key pressed event handler for the simulation.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveToCenter(boolean)" class="member-name-link">moveToCenter</a><wbr>(boolean&nbsp;defaultOrigin)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMousePosition(javafx.scene.input.GestureEvent)" class="member-name-link">getMousePosition</a><wbr>(javafx.scene.input.GestureEvent&nbsp;event)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Move axes to the center of the spawn shape or the default origin.</div>
+<div class="block">Get the mouse position on the swarm chart from a gesture event.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveView(int,double,boolean,boolean)" class="member-name-link">moveView</a><wbr>(int&nbsp;direction,
@@ -213,9 +213,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Move view in a specific direction by a delta.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refresh()" class="member-name-link">refresh</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveViewToCenter(boolean)" class="member-name-link">moveViewToCenter</a><wbr>(boolean&nbsp;defaultOrigin)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Refresh chart and simulation state.</div>
+<div class="block">Move axes to the center of the spawn shape or the default origin.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
@@ -233,11 +233,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Scale axes to the default span.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSources(java.util.List,java.util.List,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)" class="member-name-link">setSources</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region&gt;&nbsp;domain,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone&gt;&nbsp;swarm,
- it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape&nbsp;spawnShape)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesToSpawn()" class="member-name-link">scaleAxesToSpawn</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set domain regions and swarm drones.</div>
+<div class="block">Scale axes to the spawn shape span.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSources(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind)" class="member-name-link">setSources</a><wbr>(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind&nbsp;hiveMind)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set hive mind.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#swarmStep()" class="member-name-link">swarmStep</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Refresh chart and simulation state.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(double,double)" class="member-name-link">translateAxes</a><wbr>(double&nbsp;dx,
@@ -251,12 +259,12 @@ loadScripts(document, 'script');</script>
 <div class="block">Translate axes to a destination position.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateToDefaultOrigin()" class="member-name-link">translateToDefaultOrigin</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxesToDefault()" class="member-name-link">translateAxesToDefault</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate axes to the default origin.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateToSpawnOrigin()" class="member-name-link">translateToSpawnOrigin</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxesToSpawn()" class="member-name-link">translateAxesToSpawn</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate axes to the spawn shape origin.</div>
 </div>
@@ -276,6 +284,11 @@ loadScripts(document, 'script');</script>
  boolean&nbsp;secondModifier)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Zoom view in or out.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoomViewToCenter(boolean)" class="member-name-link">zoomViewToCenter</a><wbr>(boolean&nbsp;defaultSpan)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Scale axes to spawn shape span or default span.</div>
 </div>
 </div>
 </div>
@@ -454,17 +467,13 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="setSources(java.util.List,java.util.List,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)">
+<section class="detail" id="setSources(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind)">
 <h3>setSources</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSources</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region&gt;&nbsp;domain,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone&gt;&nbsp;swarm,
- it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape&nbsp;spawnShape)</span></div>
-<div class="block">Set domain regions and swarm drones.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSources</span><wbr><span class="parameters">(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind&nbsp;hiveMind)</span></div>
+<div class="block">Set hive mind.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>domain</code> - domain regions</dd>
-<dd><code>swarm</code> - swarm drones</dd>
-<dd><code>spawnShape</code> - spawn shape</dd>
+<dd><code>hiveMind</code> - hive mind</dd>
 </dl>
 </section>
 </li>
@@ -476,30 +485,30 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="refresh()">
-<h3>refresh</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">refresh</span>()</div>
+<section class="detail" id="swarmStep()">
+<h3>swarmStep</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">swarmStep</span>()</div>
 <div class="block">Refresh chart and simulation state.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="translateToDefaultOrigin()">
-<h3>translateToDefaultOrigin</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateToDefaultOrigin</span>()</div>
+<section class="detail" id="translateAxesToDefault()">
+<h3>translateAxesToDefault</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateAxesToDefault</span>()</div>
 <div class="block">Translate axes to the default origin.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="translateToSpawnOrigin()">
-<h3>translateToSpawnOrigin</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateToSpawnOrigin</span>()</div>
+<section class="detail" id="translateAxesToSpawn()">
+<h3>translateAxesToSpawn</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateAxesToSpawn</span>()</div>
 <div class="block">Translate axes to the spawn shape origin.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="moveToCenter(boolean)">
-<h3>moveToCenter</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveToCenter</span><wbr><span class="parameters">(boolean&nbsp;defaultOrigin)</span></div>
+<section class="detail" id="moveViewToCenter(boolean)">
+<h3>moveViewToCenter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveViewToCenter</span><wbr><span class="parameters">(boolean&nbsp;defaultOrigin)</span></div>
 <div class="block">Move axes to the center of the spawn shape or the default origin.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -595,6 +604,24 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="scaleAxesToSpawn()">
+<h3>scaleAxesToSpawn</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">scaleAxesToSpawn</span>()</div>
+<div class="block">Scale axes to the spawn shape span.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="zoomViewToCenter(boolean)">
+<h3>zoomViewToCenter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">zoomViewToCenter</span><wbr><span class="parameters">(boolean&nbsp;defaultSpan)</span></div>
+<div class="block">Scale axes to spawn shape span or default span.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>defaultSpan</code> - default span flag</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="scaleAxesByFactor(double)">
 <h3>scaleAxesByFactor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">scaleAxesByFactor</span><wbr><span class="parameters">(double&nbsp;scalingFactor)</span></div>
@@ -645,6 +672,19 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>key pressed event handler</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMousePosition(javafx.scene.input.GestureEvent)">
+<h3>getMousePosition</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</span>&nbsp;<span class="element-name">getMousePosition</span><wbr><span class="parameters">(javafx.scene.input.GestureEvent&nbsp;event)</span></div>
+<div class="block">Get the mouse position on the swarm chart from a gesture event.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>event</code> - gesture event</dd>
+<dt>Returns:</dt>
+<dd>mouse position</dd>
 </dl>
 </section>
 </li>
