@@ -5,5 +5,5 @@
   "maxDomainRegions": 4,
   "maxDronesNumber": 262144,
   "signalRegex": "^\\s*$",
-  "echoRegex": "^[A-Za-z\\d_]+$"
+  "echoRegex": "^\\s*$"
 }

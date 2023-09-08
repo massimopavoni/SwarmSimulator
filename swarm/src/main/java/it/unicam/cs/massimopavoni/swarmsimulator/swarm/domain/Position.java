@@ -24,11 +24,11 @@ public final class Position {
      *
      * @param x first coordinate
      * @param y second coordinate
-     * @throws PositionException if the position is not finite
+     * @throws PositionException if the position is not meaningful
      */
     public Position(double x, double y) {
-        if (!(Double.isFinite(x) && Double.isFinite(y)))
-            throw new PositionException("Domain coordinates must be finite.");
+        if (!(SwarmUtils.isMeaningful(x) && SwarmUtils.isMeaningful(y)))
+            throw new PositionException("Domain coordinates must be meaningful.");
         this.x = x;
         this.y = y;
     }
@@ -126,10 +126,10 @@ public final class Position {
      *
      * @param scalar scalar to multiply
      * @return scaled position
-     * @throws PositionException if the scalar is not finite
+     * @throws PositionException if the scalar is not meaningful
      */
     public Position scale(double scalar) {
-        if (!(Double.isFinite(scalar))) throw new PositionException("Scalar to multiply must be finite.");
+        if (!(SwarmUtils.isMeaningful(scalar))) throw new PositionException("Scalar to multiply must be meaningful.");
         return new Position(x * scalar, y * scalar);
     }
 

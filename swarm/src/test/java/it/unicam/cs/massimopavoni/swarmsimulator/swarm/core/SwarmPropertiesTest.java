@@ -29,8 +29,8 @@ class SwarmPropertiesTest {
         assertAll(
                 () -> assertDoesNotThrow(() -> SwarmProperties.initialize()),
                 () -> assertTrue(Files.exists(customFile)),
-                () -> assertEquals(Math.pow(10, -12), SwarmProperties.tolerance()),
-                () -> assertEquals(16, SwarmProperties.parallelism()),
+                () -> assertEquals(Math.pow(10, -9), SwarmProperties.tolerance()),
+                () -> assertEquals(8, SwarmProperties.parallelism()),
                 () -> assertEquals(256, SwarmProperties.maxPolygonVertices()),
                 () -> assertEquals(4, SwarmProperties.maxDomainRegions()),
                 () -> assertEquals(Math.pow(2, 16), SwarmProperties.maxDronesNumber()),
@@ -47,10 +47,10 @@ class SwarmPropertiesTest {
         assertAll(
                 () -> assertDoesNotThrow(
                         () -> SwarmProperties.initialize(testSwarmFolder, SwarmProperties.DEFAULT_SWARM_PROPERTIES_FILE_NAME)),
-                () -> assertEquals(16, SwarmProperties.parallelism()),
+                () -> assertEquals(8, SwarmProperties.parallelism()),
                 () -> assertDoesNotThrow(
                         () -> SwarmProperties.initialize(testSwarmFolder, SwarmProperties.DEFAULT_SWARM_PROPERTIES_FILE_NAME)),
-                () -> assertEquals(16, SwarmProperties.parallelism()));
+                () -> assertEquals(8, SwarmProperties.parallelism()));
         TestUtils.deleteProperties(SwarmPropertiesTest.class.getSimpleName());
     }
 
@@ -62,7 +62,7 @@ class SwarmPropertiesTest {
                 .replace(testFileName, "");
         assertAll(
                 () -> assertDoesNotThrow(() -> SwarmProperties.initialize(testSwarmFolder, testFileName)),
-                () -> assertEquals(16, SwarmProperties.parallelism()));
+                () -> assertEquals(8, SwarmProperties.parallelism()));
         SwarmProperties.reset();
     }
 
@@ -108,8 +108,8 @@ class SwarmPropertiesTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"0,tolerance", "1,parallelism", "2,parallelism", "3,vertices", "4,vertices",
-            "5,regions", "6,regions", "7,drones", "8,drones", "9,pattern", "10,pattern", "11,pattern"})
+    @CsvSource({"0,tolerance", "1,tolerance", "2,parallelism", "3,parallelism", "4,vertices", "5,vertices",
+            "6,regions", "7,regions", "8,drones", "9,drones", "10,pattern", "11,pattern", "12,pattern"})
     void initialize_borkedInvalid(String testFileNumber, String containsCheck) {
         String testFileName = String.format("borkedInvalidSwarmProperties%s.json", testFileNumber);
         String testSwarmFolder = Objects.requireNonNull(HiveMind.class.getResource(

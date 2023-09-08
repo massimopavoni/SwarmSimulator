@@ -27,9 +27,22 @@ class SwarmUtilsTest {
     @Test
     void compare_combinations() {
         assertAll(
-                () -> assertEquals(0, SwarmUtils.compare(0, 0.000000000001)),
-                () -> assertEquals(-1, SwarmUtils.compare(0, 0.000000000002)),
-                () -> assertEquals(1, SwarmUtils.compare(0, -0.000000000002)));
+                () -> assertEquals(0, SwarmUtils.compare(0, 0.000000001)),
+                () -> assertEquals(-1, SwarmUtils.compare(0, 0.000000002)),
+                () -> assertEquals(1, SwarmUtils.compare(0, -0.000000002)));
+    }
+
+    @Test
+    void isMeaningful_combinations() {
+        assertAll(
+                () -> assertFalse(SwarmUtils.isMeaningful(Double.NEGATIVE_INFINITY)),
+                () -> assertFalse(SwarmUtils.isMeaningful(-1000000.1)),
+                () -> assertFalse(SwarmUtils.isMeaningful(1000000.1)),
+                () -> assertFalse(SwarmUtils.isMeaningful(Double.POSITIVE_INFINITY)),
+                () -> assertFalse(SwarmUtils.isMeaningful(Double.NaN)),
+                () -> assertTrue(SwarmUtils.isMeaningful(-1000000)),
+                () -> assertTrue(SwarmUtils.isMeaningful(1000000)),
+                () -> assertTrue(SwarmUtils.isMeaningful(0.000001)));
     }
 
     @Test

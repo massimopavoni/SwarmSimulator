@@ -78,6 +78,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">SwarmChartController</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Class representing a controller for the swarm chart actions and simulation.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,21 +91,66 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static final double</code></div>
-<div class="col-second even-row-color"><code><a href="#BIGGEST_X_AXIS_SPAN" class="member-name-link">BIGGEST_X_AXIS_SPAN</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>final double</code></div>
+<div class="col-second even-row-color"><code><a href="#biggestXAxisSpan" class="member-name-link">biggestXAxisSpan</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Biggest span for the x-axis.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</code></div>
 <div class="col-second odd-row-color"><code><a href="#DEFAULT_ORIGIN" class="member-name-link">DEFAULT_ORIGIN</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>static final double</code></div>
-<div class="col-second even-row-color"><code><a href="#DEFAULT_X_AXIS_SPAN" class="member-name-link">DEFAULT_X_AXIS_SPAN</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Default origin for the axes.</div>
+</div>
+<div class="col-first even-row-color"><code>static final javafx.scene.paint.Paint</code></div>
+<div class="col-second even-row-color"><code><a href="#DEFAULT_REGION_COLOR" class="member-name-link">DEFAULT_REGION_COLOR</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Default color for the domain regions.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final javafx.scene.text.Font</code></div>
+<div class="col-second odd-row-color"><code><a href="#DEFAULT_REGION_LABEL_FONT" class="member-name-link">DEFAULT_REGION_LABEL_FONT</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Default font size for the domain regions' labels.</div>
+</div>
+<div class="col-first even-row-color"><code>static final javafx.scene.layout.Background</code></div>
+<div class="col-second even-row-color"><code><a href="#DEFAULT_REGION_PANE_BACKGROUND" class="member-name-link">DEFAULT_REGION_PANE_BACKGROUND</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Default background for the domain regions' panes.</div>
+</div>
 <div class="col-first odd-row-color"><code>static final double</code></div>
-<div class="col-second odd-row-color"><code><a href="#SMALLEST_X_AXIS_SPAN" class="member-name-link">SMALLEST_X_AXIS_SPAN</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-second odd-row-color"><code><a href="#DEFAULT_X_AXIS_SPAN" class="member-name-link">DEFAULT_X_AXIS_SPAN</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Default span for the x-axis.</div>
+</div>
 <div class="col-first even-row-color"><code>static final double</code></div>
-<div class="col-second even-row-color"><code><a href="#Y_AXIS_TICK_COUNT" class="member-name-link">Y_AXIS_TICK_COUNT</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-second even-row-color"><code><a href="#MOVE_FIRST_MODIFIER_MULTIPLIER" class="member-name-link">MOVE_FIRST_MODIFIER_MULTIPLIER</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Move multiplier value for first modifier.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final double</code></div>
+<div class="col-second odd-row-color"><code><a href="#MOVE_SECOND_MODIFIER_MULTIPLIER" class="member-name-link">MOVE_SECOND_MODIFIER_MULTIPLIER</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Move multiplier value for second modifier.</div>
+</div>
+<div class="col-first even-row-color"><code>final double</code></div>
+<div class="col-second even-row-color"><code><a href="#smallestXAxisSpan" class="member-name-link">smallestXAxisSpan</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Smallest span for the x-axis.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final double</code></div>
+<div class="col-second odd-row-color"><code><a href="#Y_AXIS_TICK_COUNT" class="member-name-link">Y_AXIS_TICK_COUNT</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Number of ticks for the y-axis.</div>
+</div>
+<div class="col-first even-row-color"><code>static final double</code></div>
+<div class="col-second even-row-color"><code><a href="#ZOOM_FIRST_MODIFIER_MULTIPLIER" class="member-name-link">ZOOM_FIRST_MODIFIER_MULTIPLIER</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Zoom multiplier value for first modifier.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final double</code></div>
+<div class="col-second odd-row-color"><code><a href="#ZOOM_SECOND_MODIFIER_MULTIPLIER" class="member-name-link">ZOOM_SECOND_MODIFIER_MULTIPLIER</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Zoom multiplier value for second modifier.</div>
+</div>
 </div>
 </section>
 </li>
@@ -117,7 +163,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(javafx.scene.chart.XYChart)" class="member-name-link">SwarmChartController</a><wbr>(javafx.scene.chart.XYChart&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;&nbsp;chart)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructor for a swarm chart controller.</div>
+</div>
 </div>
 </section>
 </li>
@@ -132,38 +180,103 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyMoveMultiplier(double,boolean,boolean)" class="member-name-link">applyMoveMultiplier</a><wbr>(double&nbsp;value,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Apply the move multiplier to a value, based on modifiers' flags.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyZoomMultiplier(double,boolean,boolean)" class="member-name-link">applyZoomMultiplier</a><wbr>(double&nbsp;value,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Apply the zoom multiplier to a value, based on modifiers' flags.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>javafx.event.EventHandler&lt;javafx.scene.input.KeyEvent&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getKeyPressedEventHandler()" class="member-name-link">getKeyPressedEventHandler</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the additional key pressed event handler for the simulation.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveToCenter(boolean)" class="member-name-link">moveToCenter</a><wbr>(boolean&nbsp;defaultOrigin)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Move axes to the center of the spawn shape or the default origin.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveView(int,double,boolean,boolean)" class="member-name-link">moveView</a><wbr>(int&nbsp;direction,
+ double&nbsp;amount,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Move view in a specific direction by a delta.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#refresh()" class="member-name-link">refresh</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Refresh chart and simulation state.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Reset chart and simulation state.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetPosition()" class="member-name-link">resetPosition</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesByFactor(double)" class="member-name-link">scaleAxesByFactor</a><wbr>(double&nbsp;scalingFactor)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Scale axes by a scaling factor.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetZoom()" class="member-name-link">resetZoom</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesToDefault()" class="member-name-link">scaleAxesToDefault</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Scale axes to the default span.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSources(java.util.List,java.util.List)" class="member-name-link">setSources</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region&gt;&nbsp;domain,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone&gt;&nbsp;swarm)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSources(java.util.List,java.util.List,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)" class="member-name-link">setSources</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region&gt;&nbsp;domain,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone&gt;&nbsp;swarm,
+ it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape&nbsp;spawnShape)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set domain regions and swarm drones.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(double,double)" class="member-name-link">translateAxes</a><wbr>(double&nbsp;dx,
  double&nbsp;dy)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Translate axes by a delta.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">translateAxes</a><wbr>(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position&nbsp;destination)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Translate axes to a destination position.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateToDefaultOrigin()" class="member-name-link">translateToDefaultOrigin</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Translate axes to the default origin.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateToSpawnOrigin()" class="member-name-link">translateToSpawnOrigin</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Translate axes to the spawn shape origin.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateXAxis(double)" class="member-name-link">translateXAxis</a><wbr>(double&nbsp;dx)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Translate x-axis by a delta.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateYAxis(double)" class="member-name-link">translateYAxis</a><wbr>(double&nbsp;dy)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Translate y-axis by a delta.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoom(double)" class="member-name-link">zoom</a><wbr>(double&nbsp;zoomFactor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoomView(boolean,boolean,boolean)" class="member-name-link">zoomView</a><wbr>(boolean&nbsp;inOut,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Zoom view in or out.</div>
+</div>
 </div>
 </div>
 </div>
@@ -185,12 +298,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="DEFAULT_ORIGIN">
 <h3>DEFAULT_ORIGIN</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</span>&nbsp;<span class="element-name">DEFAULT_ORIGIN</span></div>
+<div class="block">Default origin for the axes.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="DEFAULT_X_AXIS_SPAN">
 <h3>DEFAULT_X_AXIS_SPAN</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">DEFAULT_X_AXIS_SPAN</span></div>
+<div class="block">Default span for the x-axis.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -202,29 +317,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="SMALLEST_X_AXIS_SPAN">
-<h3>SMALLEST_X_AXIS_SPAN</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">SMALLEST_X_AXIS_SPAN</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="BIGGEST_X_AXIS_SPAN">
-<h3>BIGGEST_X_AXIS_SPAN</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">BIGGEST_X_AXIS_SPAN</span></div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.SwarmChartController.BIGGEST_X_AXIS_SPAN">Constant Field Values</a></li>
-</ul>
-</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="Y_AXIS_TICK_COUNT">
 <h3>Y_AXIS_TICK_COUNT</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">Y_AXIS_TICK_COUNT</span></div>
+<div class="block">Number of ticks for the y-axis.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -233,6 +329,101 @@ loadScripts(document, 'script');</script>
 </ul>
 </dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="MOVE_FIRST_MODIFIER_MULTIPLIER">
+<h3>MOVE_FIRST_MODIFIER_MULTIPLIER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">MOVE_FIRST_MODIFIER_MULTIPLIER</span></div>
+<div class="block">Move multiplier value for first modifier.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.SwarmChartController.MOVE_FIRST_MODIFIER_MULTIPLIER">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="MOVE_SECOND_MODIFIER_MULTIPLIER">
+<h3>MOVE_SECOND_MODIFIER_MULTIPLIER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">MOVE_SECOND_MODIFIER_MULTIPLIER</span></div>
+<div class="block">Move multiplier value for second modifier.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.SwarmChartController.MOVE_SECOND_MODIFIER_MULTIPLIER">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ZOOM_FIRST_MODIFIER_MULTIPLIER">
+<h3>ZOOM_FIRST_MODIFIER_MULTIPLIER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">ZOOM_FIRST_MODIFIER_MULTIPLIER</span></div>
+<div class="block">Zoom multiplier value for first modifier.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.SwarmChartController.ZOOM_FIRST_MODIFIER_MULTIPLIER">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ZOOM_SECOND_MODIFIER_MULTIPLIER">
+<h3>ZOOM_SECOND_MODIFIER_MULTIPLIER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">ZOOM_SECOND_MODIFIER_MULTIPLIER</span></div>
+<div class="block">Zoom multiplier value for second modifier.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../../../../../constant-values.html#it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.SwarmChartController.ZOOM_SECOND_MODIFIER_MULTIPLIER">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_REGION_COLOR">
+<h3>DEFAULT_REGION_COLOR</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">javafx.scene.paint.Paint</span>&nbsp;<span class="element-name">DEFAULT_REGION_COLOR</span></div>
+<div class="block">Default color for the domain regions.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_REGION_LABEL_FONT">
+<h3>DEFAULT_REGION_LABEL_FONT</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">javafx.scene.text.Font</span>&nbsp;<span class="element-name">DEFAULT_REGION_LABEL_FONT</span></div>
+<div class="block">Default font size for the domain regions' labels.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_REGION_PANE_BACKGROUND">
+<h3>DEFAULT_REGION_PANE_BACKGROUND</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">javafx.scene.layout.Background</span>&nbsp;<span class="element-name">DEFAULT_REGION_PANE_BACKGROUND</span></div>
+<div class="block">Default background for the domain regions' panes.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="smallestXAxisSpan">
+<h3>smallestXAxisSpan</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">smallestXAxisSpan</span></div>
+<div class="block">Smallest span for the x-axis.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="biggestXAxisSpan">
+<h3>biggestXAxisSpan</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">biggestXAxisSpan</span></div>
+<div class="block">Biggest span for the x-axis.</div>
 </section>
 </li>
 </ul>
@@ -247,6 +438,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(javafx.scene.chart.XYChart)">
 <h3>SwarmChartController</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwarmChartController</span><wbr><span class="parameters">(javafx.scene.chart.XYChart&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;&nbsp;chart)</span></div>
+<div class="block">Constructor for a swarm chart controller.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chart</code> - chart instance</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -258,22 +454,68 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="setSources(java.util.List,java.util.List)">
+<section class="detail" id="setSources(java.util.List,java.util.List,it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape)">
 <h3>setSources</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setSources</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region&gt;&nbsp;domain,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone&gt;&nbsp;swarm)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone&gt;&nbsp;swarm,
+ it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.Shape&nbsp;spawnShape)</span></div>
+<div class="block">Set domain regions and swarm drones.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>domain</code> - domain regions</dd>
+<dd><code>swarm</code> - swarm drones</dd>
+<dd><code>spawnShape</code> - spawn shape</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="resetPosition()">
-<h3>resetPosition</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetPosition</span>()</div>
+<section class="detail" id="reset()">
+<h3>reset</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
+<div class="block">Reset chart and simulation state.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="refresh()">
+<h3>refresh</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">refresh</span>()</div>
+<div class="block">Refresh chart and simulation state.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="translateToDefaultOrigin()">
+<h3>translateToDefaultOrigin</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateToDefaultOrigin</span>()</div>
+<div class="block">Translate axes to the default origin.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="translateToSpawnOrigin()">
+<h3>translateToSpawnOrigin</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateToSpawnOrigin</span>()</div>
+<div class="block">Translate axes to the spawn shape origin.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="moveToCenter(boolean)">
+<h3>moveToCenter</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveToCenter</span><wbr><span class="parameters">(boolean&nbsp;defaultOrigin)</span></div>
+<div class="block">Move axes to the center of the spawn shape or the default origin.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>defaultOrigin</code> - default origin flag</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="translateAxes(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)">
 <h3>translateAxes</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateAxes</span><wbr><span class="parameters">(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position&nbsp;destination)</span></div>
+<div class="block">Translate axes to a destination position.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>destination</code> - destination position</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -281,42 +523,129 @@ loadScripts(document, 'script');</script>
 <h3>translateAxes</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateAxes</span><wbr><span class="parameters">(double&nbsp;dx,
  double&nbsp;dy)</span></div>
+<div class="block">Translate axes by a delta.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>dx</code> - x-axis delta</dd>
+<dd><code>dy</code> - y-axis delta</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="moveView(int,double,boolean,boolean)">
+<h3>moveView</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveView</span><wbr><span class="parameters">(int&nbsp;direction,
+ double&nbsp;amount,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</span></div>
+<div class="block">Move view in a specific direction by a delta.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>direction</code> - direction (0: up, 1: down, 2: left, 3: right)</dd>
+<dd><code>amount</code> - delta</dd>
+<dd><code>firstModifier</code> - first modifier flag</dd>
+<dd><code>secondModifier</code> - second modifier flag</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="translateXAxis(double)">
 <h3>translateXAxis</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateXAxis</span><wbr><span class="parameters">(double&nbsp;dx)</span></div>
+<div class="block">Translate x-axis by a delta.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>dx</code> - x-axis delta</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="translateYAxis(double)">
 <h3>translateYAxis</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">translateYAxis</span><wbr><span class="parameters">(double&nbsp;dy)</span></div>
+<div class="block">Translate y-axis by a delta.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>dy</code> - y-axis delta</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="resetZoom()">
-<h3>resetZoom</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetZoom</span>()</div>
+<section class="detail" id="applyMoveMultiplier(double,boolean,boolean)">
+<h3>applyMoveMultiplier</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">applyMoveMultiplier</span><wbr><span class="parameters">(double&nbsp;value,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</span></div>
+<div class="block">Apply the move multiplier to a value, based on modifiers' flags.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>value</code> - value to multiply</dd>
+<dd><code>firstModifier</code> - first modifier enabled flag</dd>
+<dd><code>secondModifier</code> - second modifier enabled flag</dd>
+<dt>Returns:</dt>
+<dd>move multiplied value</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="zoom(double)">
-<h3>zoom</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">zoom</span><wbr><span class="parameters">(double&nbsp;zoomFactor)</span></div>
+<section class="detail" id="scaleAxesToDefault()">
+<h3>scaleAxesToDefault</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">scaleAxesToDefault</span>()</div>
+<div class="block">Scale axes to the default span.</div>
 </section>
 </li>
 <li>
-<section class="detail" id="reset()">
-<h3>reset</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
+<section class="detail" id="scaleAxesByFactor(double)">
+<h3>scaleAxesByFactor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">scaleAxesByFactor</span><wbr><span class="parameters">(double&nbsp;scalingFactor)</span></div>
+<div class="block">Scale axes by a scaling factor.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>scalingFactor</code> - scaling factor</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="update()">
-<h3>update</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
+<section class="detail" id="zoomView(boolean,boolean,boolean)">
+<h3>zoomView</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">zoomView</span><wbr><span class="parameters">(boolean&nbsp;inOut,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</span></div>
+<div class="block">Zoom view in or out.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>inOut</code> - zoom in/out flag</dd>
+<dd><code>firstModifier</code> - first modifier flag</dd>
+<dd><code>secondModifier</code> - second modifier flag</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="applyZoomMultiplier(double,boolean,boolean)">
+<h3>applyZoomMultiplier</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">applyZoomMultiplier</span><wbr><span class="parameters">(double&nbsp;value,
+ boolean&nbsp;firstModifier,
+ boolean&nbsp;secondModifier)</span></div>
+<div class="block">Apply the zoom multiplier to a value, based on modifiers' flags.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>value</code> - value to multiply</dd>
+<dd><code>firstModifier</code> - first modifier enabled flag</dd>
+<dd><code>secondModifier</code> - second modifier enabled flag</dd>
+<dt>Returns:</dt>
+<dd>zoom value multiplied</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getKeyPressedEventHandler()">
+<h3>getKeyPressedEventHandler</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">javafx.event.EventHandler&lt;javafx.scene.input.KeyEvent&gt;</span>&nbsp;<span class="element-name">getKeyPressedEventHandler</span>()</div>
+<div class="block">Get the additional key pressed event handler for the simulation.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>key pressed event handler</dd>
+</dl>
 </section>
 </li>
 </ul>

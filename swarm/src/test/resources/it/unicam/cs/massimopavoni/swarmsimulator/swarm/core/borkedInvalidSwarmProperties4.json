@@ -1,7 +1,7 @@
 {
-  "tolerance": 0.000000000001,
+  "tolerance": 0.000000001,
   "parallelism": 16,
-  "maxPolygonVertices": 257,
+  "maxPolygonVertices": 2,
   "maxDomainRegions": 4,
   "maxDronesNumber": 262144,
   "signalRegex": "^[A-Za-z\\d_]+$",

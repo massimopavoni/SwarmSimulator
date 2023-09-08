@@ -36,12 +36,55 @@
                     <children>
                         <VBox layoutX="35.0" layoutY="118.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Label text="Simulation">
+                        <Label text="Simulation">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="13.0" top="8.0" />
+                           </VBox.margin>
+                        </Label>
+                        <GridPane hgap="5.0" vgap="5.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <Button fx:id="stepForwardButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/step-forward.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="stepPlayButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/step-play.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <Separator prefWidth="200.0" />
+                                <Label text="Chart view">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                     <VBox.margin>
-                                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                        <Insets bottom="8.0" left="13.0" top="8.0" />
                                     </VBox.margin>
                                 </Label>
                                 <GridPane hgap="5.0" vgap="5.0">
@@ -53,12 +96,12 @@
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
                                     </rowConstraints>
                            <children>
-                              <Button fx:id="moveUpButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1">
+                              <Button fx:id="moveUpButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveUpButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -67,7 +110,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="moveDownButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Button fx:id="moveDownButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveDownButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                        <image>
@@ -76,7 +119,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="moveLeftButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.rowIndex="1">
+                              <Button fx:id="moveLeftButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveLeftButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.rowIndex="1">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                                        <image>
@@ -84,7 +127,7 @@
                                        </image></ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="moveRightButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Button fx:id="moveRightButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveRightButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                                        <image>
@@ -93,15 +136,15 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="moveResetButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Button fx:id="moveResetButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveResetButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/move-reset.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="zoomInButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4">
+                              <Button fx:id="zoomInButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#zoomInButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -110,7 +153,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="zoomOutButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                              <Button fx:id="zoomOutButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#zoomOutButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -119,7 +162,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="zoomResetButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                              <Button fx:id="zoomResetButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#zoomResetButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -170,7 +213,7 @@
                                                 <Insets />
                                             </GridPane.margin>
                                         </Button>
-                                        <TextArea fx:id="domainPathTextArea" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                                        <TextArea fx:id="domainPathTextArea" editable="false" prefHeight="64.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
                                             <GridPane.margin>
                                                 <Insets right="2.0" />
                                             </GridPane.margin>
@@ -180,7 +223,7 @@
                                                 <Insets />
                                             </GridPane.margin>
                                         </Button>
-                                        <TextArea fx:id="strategyPathTextArea" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+                                        <TextArea fx:id="strategyPathTextArea" editable="false" prefHeight="64.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
                                             <GridPane.margin>
                                                 <Insets right="2.0" />
                                             </GridPane.margin>
@@ -213,7 +256,7 @@
                                                 <Insets right="2.0" />
                                             </GridPane.margin>
                                         </ChoiceBox>
-                                        <TextArea fx:id="shapeArgsTextArea" onKeyPressed="#shapeArgsTextAreaKeyPressed" prefHeight="80.0" prefWidth="200.0" promptText="Shape arguments" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="8">
+                                        <TextArea fx:id="shapeArgsTextArea" onKeyPressed="#shapeArgsTextAreaKeyPressed" prefHeight="64.0" prefWidth="200.0" promptText="Shape arguments" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="8">
                                             <GridPane.margin>
                                                 <Insets right="2.0" />
                                             </GridPane.margin>
@@ -253,7 +296,7 @@
                 <Separator orientation="VERTICAL" prefHeight="200.0" />
                 <AnchorPane HBox.hgrow="ALWAYS">
                     <children>
-                        <ScatterChart fx:id="swarmChart" alternativeColumnFillVisible="true" animated="false" disable="true" layoutX="265.0" layoutY="92.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="12.0">
+                        <ScatterChart fx:id="swarmChart" alternativeColumnFillVisible="true" animated="false" disable="true" layoutX="265.0" layoutY="92.0" legendVisible="false" onScroll="#swarmChartScroll" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="12.0">
                             <xAxis>
                                 <NumberAxis autoRanging="false" lowerBound="-7.0" minorTickCount="0" tickUnit="1.0" upperBound="7.0" />
                             </xAxis>

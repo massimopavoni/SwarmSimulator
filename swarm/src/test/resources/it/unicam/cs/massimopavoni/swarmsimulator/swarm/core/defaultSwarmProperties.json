@@ -1,6 +1,6 @@
 {
-  "tolerance": 0.000000000001,
-  "parallelism": 16,
+  "tolerance": 0.000000001,
+  "parallelism": 8,
   "maxPolygonVertices": 256,
   "maxDomainRegions": 4,
   "maxDronesNumber": 65536,

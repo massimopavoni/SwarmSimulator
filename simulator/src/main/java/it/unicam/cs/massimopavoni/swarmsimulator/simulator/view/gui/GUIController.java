@@ -12,15 +12,13 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser.DomainParserException;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeException;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeFactory;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.ShapeType;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.SwarmShapeFactory;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.*;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.SwarmDirectiveFactory;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser.StrategyParserException;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -31,6 +29,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -49,6 +48,8 @@ import java.util.function.Predicate;
  * Class representing the gui view, and acting as main controller for JavaFX application.
  */
 public final class GUIController implements Initializable {
+    //region Fields
+    //------------------------------------------------------------------------------------------------
     /**
      * Shape factory instance.
      */
@@ -81,20 +82,69 @@ public final class GUIController implements Initializable {
      * Swarm hive mind property.
      */
     private final Property<HiveMind> hiveMindProperty;
+    //endregion
+
+    //region JavaFX fields
+    //------------------------------------------------------------------------------------------------
     /**
      * File chooser for swarm files.
      */
     FileChooser swarmFileChooser;
     /**
-     * Help label for GUI elements information.
-     */
-    @FXML
-    private Label helpLabel;
-    /**
      * Help menu item for author account.
      */
     @FXML
     private MenuItem helpAuthorMenuItem;
+    /**
+     * Button for simulation step forward.
+     */
+    @FXML
+    private Button stepForwardButton;
+    /**
+     * Button for simulation step play.
+     */
+    @FXML
+    private Button stepPlayButton;
+    /**
+     * Button for chart view move up.
+     */
+    @FXML
+    private Button moveUpButton;
+    /**
+     * Button for chart view move down.
+     */
+    @FXML
+    private Button moveDownButton;
+    /**
+     * Button for chart view move left.
+     */
+    @FXML
+    private Button moveLeftButton;
+    /**
+     * Button for chart view move down.
+     */
+    @FXML
+    private Button moveRightButton;
+    /**
+     * Button for chart view move reset.
+     */
+    @FXML
+    private Button moveResetButton;
+    /**
+     * Button for chart view zoom in.
+     */
+    @FXML
+    private Button zoomInButton;
+    /**
+     * Button for chart view zoom out.
+     */
+    @FXML
+    private Button zoomOutButton;
+    /**
+     * Button for chart view zoom reset.
+     */
+    @FXML
+    private Button zoomResetButton;
     /**
      * Text area for domain file path.
      */
@@ -146,9 +196,18 @@ public final class GUIController implements Initializable {
     @FXML
     private XYChart<Number, Number> swarmChart;
     /**
+     * Help label for GUI elements information.
+     */
+    @FXML
+    private Label helpLabel;
+    /**
      * Controller for swarm chart actions.
      */
     private SwarmChartController swarmChartController;
+    //endregion
+
+    //region Constructor
+    //------------------------------------------------------------------------------------------------
 
     /**
      * Constructor for gui, initializing shape and directive factories, application stage and application controls.
@@ -170,6 +229,10 @@ public final class GUIController implements Initializable {
         hiveMindProperty = new SimpleObjectProperty<>();
         SwarmState.initializeParsers(shapeFactory, new SwarmDirectiveFactory());
     }
+    //endregion
+
+    //region Initialization methods
+    //------------------------------------------------------------------------------------------------
 
     /**
      * Controller initialization method.
@@ -187,7 +250,6 @@ public final class GUIController implements Initializable {
         spawnShapeChoiceBox.setItems(FXCollections.observableList(
                 Arrays.stream(ShapeType.values()).map(ShapeType::toString).toList()));
         spawnShapeChoiceBox.setValue(spawnShapeChoiceBox.getItems().get(0));
-        swarmChartController = new SwarmChartController(swarmChart);
     }
 
     /**
@@ -221,6 +283,26 @@ public final class GUIController implements Initializable {
             errorAlert.showAndWait(ErrorType.ERROR, "While loading help text properties.", e);
         }
     }
+
+    /**
+     * Pseudo-event handler used only for operations done after the shown event is fully completed.
+     */
+    void completeInitialization() {
+        swarmFileChooser.setInitialDirectory(new File(SwarmProperties.DEFAULT_SWARM_FOLDER));
+        try {
+            SwarmProperties.initialize();
+            dronesNumberSpinner.setValueFactory(new IntegerSpinnerValueFactory(
+                    1, SwarmProperties.maxDronesNumber(), 1));
+            addHiveMindChangeListener();
+            swarmChartController = new SwarmChartController(swarmChart);
+        } catch (HiveMindException e) {
+            errorAlert.showAndWait(ErrorType.FATAL, "While initializing swarm properties.", e);
+        }
+    }
+    //endregion
+
+    //region Listener methods
+    //------------------------------------------------------------------------------------------------
 
     /**
      * Get all nodes of the scene and add focus change listeners.
@@ -284,36 +366,25 @@ public final class GUIController implements Initializable {
     }
 
     /**
-     * Pseudo-event handler used only for operations done after the shown event is fully completed.
-     */
-    void completeInitialization() {
-        swarmFileChooser.setInitialDirectory(new File(SwarmProperties.DEFAULT_SWARM_FOLDER));
-        try {
-            SwarmProperties.initialize();
-            dronesNumberSpinner.setValueFactory(new IntegerSpinnerValueFactory(
-                    1, SwarmProperties.maxDronesNumber(), 1));
-            addHiveMindChangeListener();
-        } catch (HiveMindException e) {
-            errorAlert.showAndWait(ErrorType.FATAL, "While initializing swarm properties.", e);
-        }
-    }
-
-    /**
      * Add hive mind change listener.
      */
     private void addHiveMindChangeListener() {
         hiveMindProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue == null) {
-                swarmChart.setDisable(true);
-                swarmChartController.reset();
-                swarmChartController.setSources(null, null);
+                setSimulationDisable(true);
+                swarmChartController.setSources(null, null, null);
             } else {
-                swarmChart.setDisable(false);
+                setSimulationDisable(false);
                 swarmChartController.setSources(hiveMindProperty.getValue().state().domain(),
-                        hiveMindProperty.getValue().state().swarm());
+                        hiveMindProperty.getValue().state().swarm(),
+                        hiveMindProperty.getValue().state().spawnShape());
             }
         });
     }
+    //endregion
+
+    //region Menu event handlers methods
+    //------------------------------------------------------------------------------------------------
 
     /**
      * File quit menu item action event handler.
@@ -354,25 +425,191 @@ public final class GUIController implements Initializable {
     private void helpAboutMenuItemAction() {
         aboutDialog.showAndWait();
     }
+    //endregion
+
+    //region Simulation event handlers methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Move up button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void moveUpButtonMouseClicked(MouseEvent event) {
+        swarmChartController.moveView(
+                0, 1, event.isShiftDown(), event.isControlDown());
+        event.consume();
+    }
+
+    /**
+     * Move down button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void moveDownButtonMouseClicked(MouseEvent event) {
+        swarmChartController.moveView(
+                1, 1, event.isShiftDown(), event.isControlDown());
+        event.consume();
+    }
+
+    /**
+     * Move left button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void moveLeftButtonMouseClicked(MouseEvent event) {
+        swarmChartController.moveView(
+                2, 1, event.isShiftDown(), event.isControlDown());
+        event.consume();
+    }
+
+    /**
+     * Move right button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void moveRightButtonMouseClicked(MouseEvent event) {
+        swarmChartController.moveView(
+                3, 1, event.isShiftDown(), event.isControlDown());
+        event.consume();
+    }
+
+    /**
+     * Move reset button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void moveResetButtonMouseClicked(MouseEvent event) {
+        swarmChartController.moveToCenter(event.isShiftDown());
+        event.consume();
+    }
+
+    /**
+     * Zoom in button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void zoomInButtonMouseClicked(MouseEvent event) {
+        swarmChartController.zoomView(true, event.isShiftDown(), event.isControlDown());
+        event.consume();
+    }
+
+    /**
+     * Zoom out button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void zoomOutButtonMouseClicked(MouseEvent event) {
+        swarmChartController.zoomView(false, event.isShiftDown(), event.isControlDown());
+        event.consume();
+    }
+
+    /**
+     * Zoom reset button mouse clicked event handler.
+     *
+     * @param event mouse event
+     */
+    @FXML
+    private void zoomResetButtonMouseClicked(MouseEvent event) {
+        swarmChartController.scaleAxesToDefault();
+        event.consume();
+    }
+
+    /**
+     * Swarm chart scroll event handler.
+     *
+     * @param event scroll event
+     */
+    @FXML
+    private void swarmChartScroll(ScrollEvent event) {
+        double deltaY = event.getDeltaY();
+        double deltaX = event.getDeltaX();
+        if (event.isAltDown()) {
+            if (event.getDeltaY() != 0) {
+                swarmChartController.zoomView(deltaY > 0, false, event.isControlDown());
+                event.consume();
+            } else if (event.getDeltaX() != 0) {
+                swarmChartController.zoomView(deltaX > 0, true, event.isControlDown());
+                event.consume();
+            }
+        } else {
+            if (deltaY > 0) {
+                swarmChartController.moveView(0, 1, false, event.isControlDown());
+                event.consume();
+            } else if (deltaY < 0) {
+                swarmChartController.moveView(1, 1, false, event.isControlDown());
+                event.consume();
+            } else if (deltaX < 0) {
+                swarmChartController.moveView(2, 1, false, event.isControlDown());
+                event.consume();
+            } else if (deltaX > 0) {
+                swarmChartController.moveView(3, 1, false, event.isControlDown());
+                event.consume();
+            }
+        }
+    }
+    //endregion
+
+    //region Simulation additional methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Set simulation controls disable.
+     *
+     * @param disable disable flag
+     */
+    private void setSimulationDisable(boolean disable) {
+        stepForwardButton.setDisable(disable);
+        stepPlayButton.setDisable(disable);
+        moveUpButton.setDisable(disable);
+        moveDownButton.setDisable(disable);
+        moveLeftButton.setDisable(disable);
+        moveRightButton.setDisable(disable);
+        moveResetButton.setDisable(disable);
+        zoomInButton.setDisable(disable);
+        zoomOutButton.setDisable(disable);
+        zoomResetButton.setDisable(disable);
+        swarmChart.setDisable(disable);
+        if (disable)
+            stage.getScene().removeEventHandler(KeyEvent.KEY_PRESSED,
+                    swarmChartController.getKeyPressedEventHandler());
+        else
+            stage.getScene().addEventHandler(KeyEvent.KEY_PRESSED,
+                    swarmChartController.getKeyPressedEventHandler());
+
+    }
+    //endregion
+
+    //region Swarm event handlers methods
+    //------------------------------------------------------------------------------------------------
 
     /**
      * Domain file choose button action event handler.
      */
     @FXML
-    private void domainFileChooseButtonAction() {
+    private void domainFileChooseButtonAction(ActionEvent event) {
         swarmFileChooser.setTitle("Choose swarm domain file");
         swarmFileChooser.setSelectedExtensionFilter(swarmFileChooser.getExtensionFilters().get(0));
         domainFileProperty.setValue(swarmFileChooser.showOpenDialog(stage));
+        event.consume();
     }
 
     /**
      * Strategy file choose button action event handler.
      */
     @FXML
-    private void strategyFileChooseButtonAction() {
+    private void strategyFileChooseButtonAction(ActionEvent event) {
         swarmFileChooser.setTitle("Choose swarm strategy file");
         swarmFileChooser.setSelectedExtensionFilter(swarmFileChooser.getExtensionFilters().get(0));
         strategyFileProperty.setValue(swarmFileChooser.showOpenDialog(stage));
+        event.consume();
     }
 
     /**
@@ -410,25 +647,6 @@ public final class GUIController implements Initializable {
     }
 
     /**
-     * Drones number spinner selection with modifiers.
-     *
-     * @param altDown     alt key down flag
-     * @param controlDown control key down flag
-     * @param increase    increase flag
-     */
-    private void dronesNumberSpinnerSelection(boolean altDown, boolean controlDown, boolean increase) {
-        int unit = 1;
-        if (altDown)
-            unit *= 10;
-        if (controlDown)
-            unit *= 100;
-        if (increase)
-            dronesNumberSpinner.increment(unit);
-        else
-            dronesNumberSpinner.decrement(unit);
-    }
-
-    /**
      * Spawn shape choice box scroll event handler.
      *
      * @param event scroll event
@@ -461,21 +679,6 @@ public final class GUIController implements Initializable {
     }
 
     /**
-     * Spawn shape choice box selection with modifiers.
-     *
-     * @param decrease decrease flag
-     */
-    private void spawnShapeChoiceBoxSelection(boolean decrease) {
-        List<String> items = spawnShapeChoiceBox.getItems();
-        if (decrease)
-            spawnShapeChoiceBox.setValue(items.get((items.indexOf(spawnShapeChoiceBox.getValue()) + 1)
-                    % items.size()));
-        else
-            spawnShapeChoiceBox.setValue(items.get((items.indexOf(spawnShapeChoiceBox.getValue()) - 1 + items.size())
-                    % items.size()));
-    }
-
-    /**
      * Shape arguments text area key pressed event handler.
      *
      * @param event key event
@@ -495,15 +698,16 @@ public final class GUIController implements Initializable {
      * On boundary toggle switch mouse clicked event handler.
      */
     @FXML
-    private void onBoundaryToggleSwitchMouseClicked() {
+    private void onBoundaryToggleSwitchMouseClicked(MouseEvent event) {
         onBoundaryToggleSwitch.requestFocus();
+        event.consume();
     }
 
     /**
      * Reset button action event handler.
      */
     @FXML
-    private void resetButtonAction() {
+    private void resetButtonAction(ActionEvent event) {
         hiveMindProperty.setValue(null);
         domainFileProperty.setValue(null);
         strategyFileProperty.setValue(null);
@@ -513,21 +717,23 @@ public final class GUIController implements Initializable {
         onBoundaryToggleSwitch.setSelected(false);
         domainTextArea.setText("");
         strategyTextArea.setText("");
-        swarmChart.setDisable(true);
+        setSimulationDisable(true);
+        event.consume();
     }
 
     /**
      * Spawn button action event handler.
      */
     @FXML
-    private void spawnButtonAction() {
+    private void spawnButtonAction(ActionEvent event) {
         hiveMindProperty.setValue(null);
         try {
+            Shape spawnShape = shapeFactory.createShape(
+                    ShapeType.fromString(spawnShapeChoiceBox.getValue().toLowerCase()),
+                    SwarmUtils.toDoubleArray(shapeArgsTextArea.getText().trim().split(" "), 0));
             hiveMindProperty.setValue(new HiveMind(new SwarmState(
                     domainFileProperty.getValue(), strategyFileProperty.getValue(),
-                    dronesNumberSpinner.getValue(), shapeFactory.createShape(
-                    ShapeType.fromString(spawnShapeChoiceBox.getValue().toLowerCase()),
-                    SwarmUtils.toDoubleArray(shapeArgsTextArea.getText().trim().split(" "), 0)),
+                    dronesNumberSpinner.getValue(), spawnShape,
                     onBoundaryToggleSwitch.isSelected())));
             domainTextArea.setText(Files.readString(domainFileProperty.getValue().toPath()));
             strategyTextArea.setText(Files.readString(strategyFileProperty.getValue().toPath()));
@@ -535,7 +741,47 @@ public final class GUIController implements Initializable {
             domainTextArea.setText("");
             strategyTextArea.setText("");
             handleSpawnException(e);
+        } finally {
+            event.consume();
         }
+    }
+    //endregion
+
+    //region Swarm additional methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Drones number spinner selection with modifiers.
+     *
+     * @param firstModifier  first modifier enabled flag
+     * @param secondModifier second modifier enabled flag
+     * @param increase       increase flag
+     */
+    private void dronesNumberSpinnerSelection(boolean firstModifier, boolean secondModifier, boolean increase) {
+        int unit = 1;
+        if (firstModifier)
+            unit *= 10;
+        if (secondModifier)
+            unit *= 100;
+        if (increase)
+            dronesNumberSpinner.increment(unit);
+        else
+            dronesNumberSpinner.decrement(unit);
+    }
+
+    /**
+     * Spawn shape choice box selection with modifiers.
+     *
+     * @param decrease decrease flag
+     */
+    private void spawnShapeChoiceBoxSelection(boolean decrease) {
+        List<String> items = spawnShapeChoiceBox.getItems();
+        if (decrease)
+            spawnShapeChoiceBox.setValue(items.get((items.indexOf(spawnShapeChoiceBox.getValue()) + 1)
+                    % items.size()));
+        else
+            spawnShapeChoiceBox.setValue(items.get((items.indexOf(spawnShapeChoiceBox.getValue()) - 1 + items.size())
+                    % items.size()));
     }
 
     /**
@@ -562,4 +808,5 @@ public final class GUIController implements Initializable {
         else
             errorAlert.showAndWait(ErrorType.ERROR, "While spawning swarm.", e);
     }
+    //endregion
 }

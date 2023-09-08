@@ -1,46 +1,318 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.Drone;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Region;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.*;
+import javafx.event.EventHandler;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.function.DoubleFunction;
+import java.util.stream.IntStream;
 
+/**
+ * Class representing a controller for the swarm chart actions and simulation.
+ */
 public final class SwarmChartController {
+    //region Constant fields
+    //------------------------------------------------------------------------------------------------
+    /**
+     * Default origin for the axes.
+     */
     public static final Position DEFAULT_ORIGIN = new Position(0, 0);
+    /**
+     * Default span for the x-axis.
+     */
     public static final double DEFAULT_X_AXIS_SPAN = 14;
-    public static final double SMALLEST_X_AXIS_SPAN = Math.pow(2, -8) * DEFAULT_X_AXIS_SPAN;
-    public static final double BIGGEST_X_AXIS_SPAN = Double.MAX_VALUE;
+    /**
+     * Number of ticks for the y-axis.
+     */
     public static final double Y_AXIS_TICK_COUNT = 10;
-    private static final DoubleFunction<Double> AXIS_SPAN_TRANSFORM = Math::abs;
-    private final XYChart<Number, Number> chart;
-    private final NumberAxis xAxis;
-    private final NumberAxis yAxis;
-    private final double xyAxesRatio;
-    private List<Region> domain;
-    private List<Drone> swarm;
+    /**
+     * Move multiplier value for first modifier.
+     */
+    public static final double MOVE_FIRST_MODIFIER_MULTIPLIER = 2;
+    /**
+     * Move multiplier value for second modifier.
+     */
+    public static final double MOVE_SECOND_MODIFIER_MULTIPLIER = 4;
+    /**
+     * Zoom multiplier value for first modifier.
+     */
+    public static final double ZOOM_FIRST_MODIFIER_MULTIPLIER = 1.5;
+    /**
+     * Zoom multiplier value for second modifier.
+     */
+    public static final double ZOOM_SECOND_MODIFIER_MULTIPLIER = 2;
+    /**
+     * Default color for the domain regions.
+     */
+    public static final Paint DEFAULT_REGION_COLOR =
+            new Color(0, 204 / 255.0, 28 / 255.0, 0.15);
+    /**
+     * Default font size for the domain regions' labels.
+     */
+    public static final Font DEFAULT_REGION_LABEL_FONT = new Font(14);
+    /**
+     * Default background for the domain regions' panes.
+     */
+    public static final Background DEFAULT_REGION_PANE_BACKGROUND =
+            new Background(new BackgroundFill(null, null, null));
+    //endregion
 
+    //region Fields
+    //------------------------------------------------------------------------------------------------
+    /**
+     * Smallest span for the x-axis.
+     */
+    public final double smallestXAxisSpan;
+    /**
+     * Biggest span for the x-axis.
+     */
+    public final double biggestXAxisSpan;
+    /**
+     * Number axis for X.
+     */
+    private final NumberAxis xAxis;
+    /**
+     * Number axis for Y.
+     */
+    private final NumberAxis yAxis;
+    /**
+     * Ratio between the x-axis span and the y-axis span.
+     */
+    private final double xyAxesRatio;
+    /**
+     * Chart series for the domain regions.
+     */
+    private final Series<Number, Number> domainSeries;
+    /**
+     * Chart series for the swarm drones.
+     */
+    private final Series<Number, Number> swarmSeries;
+    /**
+     * Additional key pressed event handler for the simulation.
+     */
+    private final EventHandler<KeyEvent> keyPressedEventHandler;
+    /**
+     * Scaling factor for the domain regions' shapes.
+     */
+    private double shapeScalingFactor;
+    /**
+     * Span of the x-axis.
+     */
+    private double xAxisSpan;
+    /**
+     * Span of the y-axis.
+     */
+    private double yAxisSpan;
+    /**
+     * Tick unit for the axes.
+     */
+    private double tickUnit;
+    /**
+     * Domain regions.
+     */
+    private List<Region> domain;
+    /**
+     * Swarm drones.
+     */
+    private List<Drone> swarm;
+    /**
+     * Spawn shape.
+     */
+    private Shape spawnShape;
+    //endregion
+
+    //region Constructor
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Constructor for a swarm chart controller.
+     *
+     * @param chart chart instance
+     */
     public SwarmChartController(XYChart<Number, Number> chart) {
-        this.chart = chart;
+        smallestXAxisSpan = SwarmProperties.tolerance() * 4 * DEFAULT_X_AXIS_SPAN;
+        biggestXAxisSpan = SwarmProperties.maximumMeaningfulDoubleValue();
         xAxis = (NumberAxis) chart.getXAxis();
         yAxis = (NumberAxis) chart.getYAxis();
-        this.xyAxesRatio = (xAxis.getUpperBound() - xAxis.getLowerBound()) /
-                (yAxis.getUpperBound() - yAxis.getLowerBound());
+        updateAxesSpan();
+        this.xyAxesRatio = xAxisSpan / yAxisSpan;
+        domainSeries = new Series<>();
+        swarmSeries = new Series<>();
+        keyPressedEventHandler = this::swarmChartKeyPressed;
+        chart.getData().add(domainSeries);
+        chart.getData().add(swarmSeries);
         reset();
     }
+    //endregion
 
-    public void setSources(List<Region> domain, List<Drone> swarm) {
+    //region Main methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Set domain regions and swarm drones.
+     *
+     * @param domain     domain regions
+     * @param swarm      swarm drones
+     * @param spawnShape spawn shape
+     */
+    public void setSources(List<Region> domain, List<Drone> swarm, Shape spawnShape) {
         this.domain = domain;
         this.swarm = swarm;
+        this.spawnShape = spawnShape;
+        if (domain == null || swarm == null || spawnShape == null)
+            reset();
+        else {
+            updateAxesSpan();
+            translateAndScaleToSpawn();
+            refresh();
+        }
     }
 
-    public void resetPosition() {
+    /**
+     * Update axes span and shapes scaling factor.
+     */
+    private void updateAxesSpan() {
+        xAxisSpan = xAxis.getUpperBound() - xAxis.getLowerBound();
+        yAxisSpan = yAxis.getUpperBound() - yAxis.getLowerBound();
+        shapeScalingFactor = xAxis.getWidth() / xAxisSpan;
+    }
+
+    /**
+     * Translate and scale axes to the spawn shape.
+     */
+    private void translateAndScaleToSpawn() {
+        Rectangle br = spawnShape.getBoundingRectangle();
+        translateAxes(br.getCenter());
+        if (br.getWidthHeight().x() > br.getWidthHeight().y())
+            scaleAxes(br.getWidthHeight().x() + 2 * br.getWidthHeight().x() / 10);
+        else
+            scaleAxes((br.getWidthHeight().y() + 2 * br.getWidthHeight().y() / 10) * xyAxesRatio);
+    }
+
+    /**
+     * Reset chart and simulation state.
+     */
+    public void reset() {
+        domainSeries.getData().clear();
+        swarmSeries.getData().clear();
+        translateToDefaultOrigin();
+        scaleAxesToDefault();
+    }
+
+    /**
+     * Refresh chart and simulation state.
+     */
+    public void refresh() {
+        drawDomain();
+        drawSwarm();
+    }
+    //endregion
+
+    //region Draw methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Draw domain regions.
+     */
+    private void drawDomain() {
+        domainSeries.getData().clear();
+        domainSeries.getData().addAll(domain.stream().map(r -> {
+            Rectangle br = r.shape().getBoundingRectangle();
+            javafx.scene.shape.Shape shape = shapeTransform(r.shape());
+            shape.setFill(DEFAULT_REGION_COLOR);
+            Label label = new Label(r.signal());
+            label.setFont(DEFAULT_REGION_LABEL_FONT);
+            StackPane regionPane = new StackPane(shape, label);
+            regionPane.autosize();
+            regionPane.setBackground(DEFAULT_REGION_PANE_BACKGROUND);
+            Data<Number, Number> data = new Data<>(br.getCenter().x(), br.getCenter().y());
+            data.setNode(regionPane);
+            return data;
+        }).toList());
+    }
+
+    /**
+     * Transform a swarm shape to a JavaFX shape.
+     *
+     * @param shape swarm shape
+     * @return JavaFX shape
+     */
+    private javafx.scene.shape.Shape shapeTransform(Shape shape) {
+        double[] args = Arrays.stream(shape.getProperties()).map(a -> a * shapeScalingFactor).toArray();
+        // Would look better with patter matching switch, will come with Java 21 LTS project update
+        if (shape instanceof Circle)
+            return new javafx.scene.shape.Circle(args[0], args[1], args[2]);
+        else if (shape instanceof Ellipse)
+            return new javafx.scene.shape.Ellipse(args[0], args[1], args[2], args[3]);
+        else if (shape instanceof Rectangle)
+            return new javafx.scene.shape.Rectangle(args[0], args[1], args[2], args[3]);
+        else if (shape instanceof Polygon)
+            return new javafx.scene.shape.Polygon(IntStream.range(0, args.length)
+                    .mapToDouble(i -> i % 2 == 0 ? args[i] : -args[i]).toArray());
+        else
+            throw new IllegalArgumentException("Unknown shape type: " + shape.getClass().getName());
+    }
+
+    /**
+     * Draw swarm drones.
+     */
+    private void drawSwarm() {
+        swarmSeries.getData().clear();
+        swarmSeries.getData().addAll(swarm.stream().map(d ->
+                new Data<Number, Number>(d.position().x(), d.position().y())).toList());
+    }
+    //endregion
+
+    //region Translation methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Translate axes to the default origin.
+     */
+    public void translateToDefaultOrigin() {
         translateAxes(DEFAULT_ORIGIN);
     }
 
+    /**
+     * Translate axes to the spawn shape origin.
+     */
+    public void translateToSpawnOrigin() {
+        translateAxes(spawnShape.getBoundingRectangle().getCenter());
+    }
+
+    /**
+     * Move axes to the center of the spawn shape or the default origin.
+     *
+     * @param defaultOrigin default origin flag
+     */
+    public void moveToCenter(boolean defaultOrigin) {
+        if (defaultOrigin)
+            translateToDefaultOrigin();
+        else
+            translateToSpawnOrigin();
+    }
+
+    /**
+     * Translate axes to a destination position.
+     *
+     * @param destination destination position
+     */
     public void translateAxes(Position destination) {
         Position currentCenter = new Position((xAxis.getUpperBound() + xAxis.getLowerBound()) / 2,
                 (yAxis.getUpperBound() + yAxis.getLowerBound()) / 2);
@@ -48,63 +320,210 @@ public final class SwarmChartController {
         translateAxes(toDestination.x(), toDestination.y());
     }
 
+    /**
+     * Translate axes by a delta.
+     *
+     * @param dx x-axis delta
+     * @param dy y-axis delta
+     */
     public void translateAxes(double dx, double dy) {
         translateXAxis(dx);
         translateYAxis(dy);
+        updateAxesSpan();
     }
 
+    /**
+     * Move view in a specific direction by a delta.
+     *
+     * @param direction      direction (0: up, 1: down, 2: left, 3: right)
+     * @param amount         delta
+     * @param firstModifier  first modifier flag
+     * @param secondModifier second modifier flag
+     */
+    public void moveView(int direction, double amount, boolean firstModifier, boolean secondModifier) {
+        switch (direction) {
+            case 0 -> translateYAxis(
+                    applyMoveMultiplier(amount * tickUnit, firstModifier, secondModifier));
+            case 1 -> translateYAxis(
+                    applyMoveMultiplier(-amount * tickUnit, firstModifier, secondModifier));
+            case 2 -> translateXAxis(
+                    applyMoveMultiplier(-amount * tickUnit, firstModifier, secondModifier));
+            case 3 -> translateXAxis(
+                    applyMoveMultiplier(amount * tickUnit, firstModifier, secondModifier));
+            default -> throw new IllegalArgumentException("Unknown direction: " + direction);
+        }
+    }
+
+    /**
+     * Translate x-axis by a delta.
+     *
+     * @param dx x-axis delta
+     */
     public void translateXAxis(double dx) {
         translateAxis(xAxis, dx);
     }
 
+    /**
+     * Translate y-axis by a delta.
+     *
+     * @param dy y-axis delta
+     */
     public void translateYAxis(double dy) {
         translateAxis(yAxis, dy);
     }
 
+    /**
+     * Translate an axis by a delta.
+     *
+     * @param axis  axis to translate
+     * @param delta delta
+     */
     private void translateAxis(NumberAxis axis, double delta) {
-        if (axis.getLowerBound() + delta < -BIGGEST_X_AXIS_SPAN)
-            delta = -BIGGEST_X_AXIS_SPAN - axis.getLowerBound();
-        else if (axis.getUpperBound() + delta > BIGGEST_X_AXIS_SPAN)
-            delta = BIGGEST_X_AXIS_SPAN - axis.getUpperBound();
+        if (axis.getLowerBound() + delta < -biggestXAxisSpan)
+            delta = -biggestXAxisSpan - axis.getLowerBound();
+        else if (axis.getUpperBound() + delta > biggestXAxisSpan)
+            delta = biggestXAxisSpan - axis.getUpperBound();
         axis.setLowerBound(axis.getLowerBound() + delta);
         axis.setUpperBound(axis.getUpperBound() + delta);
     }
 
-    public void resetZoom() {
+    /**
+     * Apply the move multiplier to a value, based on modifiers' flags.
+     *
+     * @param value          value to multiply
+     * @param firstModifier  first modifier enabled flag
+     * @param secondModifier second modifier enabled flag
+     * @return move multiplied value
+     */
+    public double applyMoveMultiplier(double value, boolean firstModifier, boolean secondModifier) {
+        if (firstModifier)
+            value *= MOVE_FIRST_MODIFIER_MULTIPLIER;
+        if (secondModifier)
+            value *= MOVE_SECOND_MODIFIER_MULTIPLIER;
+        return value;
+    }
+    //endregion
+
+    //region Scaling methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Scale axes to the default span.
+     */
+    public void scaleAxesToDefault() {
         scaleAxes(DEFAULT_X_AXIS_SPAN);
     }
 
-    public void zoom(double zoomFactor) {
-        scaleAxes((xAxis.getUpperBound() - xAxis.getLowerBound()) * zoomFactor);
+    /**
+     * Scale axes by a scaling factor.
+     *
+     * @param scalingFactor scaling factor
+     */
+    public void scaleAxesByFactor(double scalingFactor) {
+        scaleAxes((xAxis.getUpperBound() - xAxis.getLowerBound()) * scalingFactor);
     }
 
+    /**
+     * Scale axes to a new span.
+     *
+     * @param newXAxisSpan new x-axis span
+     */
     private void scaleAxes(double newXAxisSpan) {
-        if (newXAxisSpan < SMALLEST_X_AXIS_SPAN)
-            newXAxisSpan = SMALLEST_X_AXIS_SPAN;
-        else if (newXAxisSpan > BIGGEST_X_AXIS_SPAN)
-            newXAxisSpan = BIGGEST_X_AXIS_SPAN;
-        double newYAxisSpan = AXIS_SPAN_TRANSFORM.apply(newXAxisSpan / xyAxesRatio);
+        if (newXAxisSpan < smallestXAxisSpan)
+            newXAxisSpan = smallestXAxisSpan;
+        else if (newXAxisSpan > biggestXAxisSpan)
+            newXAxisSpan = biggestXAxisSpan;
+        double newYAxisSpan = newXAxisSpan / xyAxesRatio;
         newXAxisSpan = newYAxisSpan * xyAxesRatio;
         scaleAxis(xAxis, newXAxisSpan);
         scaleAxis(yAxis, newYAxisSpan);
-        double newTickUnit = newYAxisSpan / Y_AXIS_TICK_COUNT;
-        xAxis.setTickUnit(newTickUnit);
-        yAxis.setTickUnit(newTickUnit);
+        updateAxesSpan();
+        tickUnit = newYAxisSpan / Y_AXIS_TICK_COUNT;
+        xAxis.setTickUnit(tickUnit);
+        yAxis.setTickUnit(tickUnit);
+        if (!domainSeries.getData().isEmpty())
+            drawDomain();
     }
 
+    /**
+     * Zoom view in or out.
+     *
+     * @param inOut          zoom in/out flag
+     * @param firstModifier  first modifier flag
+     * @param secondModifier second modifier flag
+     */
+    public void zoomView(boolean inOut, boolean firstModifier, boolean secondModifier) {
+        if (inOut)
+            scaleAxesByFactor(1 /
+                    applyZoomMultiplier(2, firstModifier, secondModifier));
+        else
+            scaleAxesByFactor(applyZoomMultiplier(2, firstModifier, secondModifier));
+    }
+
+    /**
+     * Scale an axis to a new span.
+     *
+     * @param axis    axis to scale
+     * @param newSpan new span
+     */
     private void scaleAxis(NumberAxis axis, double newSpan) {
         double spanIncreaseHalf = (newSpan + axis.getLowerBound() - axis.getUpperBound()) / 2;
         axis.setLowerBound(axis.getLowerBound() - spanIncreaseHalf);
         axis.setUpperBound(axis.getUpperBound() + spanIncreaseHalf);
     }
 
-    public void reset() {
-        chart.getData().clear();
-        resetPosition();
-        resetZoom();
+    /**
+     * Apply the zoom multiplier to a value, based on modifiers' flags.
+     *
+     * @param value          value to multiply
+     * @param firstModifier  first modifier enabled flag
+     * @param secondModifier second modifier enabled flag
+     * @return zoom value multiplied
+     */
+    public double applyZoomMultiplier(double value, boolean firstModifier, boolean secondModifier) {
+        if (firstModifier)
+            value *= ZOOM_FIRST_MODIFIER_MULTIPLIER;
+        if (secondModifier)
+            value *= ZOOM_SECOND_MODIFIER_MULTIPLIER;
+        return value;
+    }
+    //endregion
+
+    //region Simulation additional event handlers methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Get the additional key pressed event handler for the simulation.
+     *
+     * @return key pressed event handler
+     */
+    public EventHandler<KeyEvent> getKeyPressedEventHandler() {
+        return keyPressedEventHandler;
     }
 
-    public void update() {
-        chart.getData().clear();
+    /**
+     * Swarm chart key pressed event handler.
+     *
+     * @param event key event
+     */
+    private void swarmChartKeyPressed(KeyEvent event) {
+        switch (event.getCode()) {
+            case W, NUMPAD8 -> moveView(0, 1, event.isShiftDown(), event.isControlDown());
+            case S, NUMPAD5 -> moveView(1, 1, event.isShiftDown(), event.isControlDown());
+            case A, NUMPAD4 -> moveView(2, 1, event.isShiftDown(), event.isControlDown());
+            case D, NUMPAD6 -> moveView(3, 1, event.isShiftDown(), event.isControlDown());
+            case F, NUMPAD2 -> moveToCenter(event.isShiftDown());
+            case E, ADD -> zoomView(true, event.isShiftDown(), event.isControlDown());
+            case Q, SUBTRACT -> zoomView(false, event.isShiftDown(), event.isControlDown());
+            case R, MULTIPLY -> scaleAxesToDefault();
+            case N, SEPARATOR -> {
+            }
+            case T, NUMPAD0 -> {
+            }
+            default -> {
+                // Do nothing
+            }
+        }
     }
+    //endregion
 }
