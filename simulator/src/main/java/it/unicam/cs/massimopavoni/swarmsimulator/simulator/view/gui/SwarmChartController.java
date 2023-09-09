@@ -21,6 +21,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 import java.util.Arrays;
+import java.util.function.ToDoubleBiFunction;
 import java.util.stream.IntStream;
 
 /**
@@ -65,12 +66,21 @@ public final class SwarmChartController {
     /**
      * Default font size for the domain regions' labels.
      */
-    public static final Font DEFAULT_REGION_LABEL_FONT = new Font(14);
+    public static final Font DEFAULT_REGION_LABEL_FONT = new Font(15);
     /**
      * Default background for the domain regions' panes.
      */
     public static final Background DEFAULT_REGION_PANE_BACKGROUND =
             new Background(new BackgroundFill(null, null, null));
+    /**
+     * Shortest simulation period formula function, calculates an empirical lower bound in milliseconds.
+     */
+    public static final ToDoubleBiFunction<Integer, Integer> SHORTEST_SIMULATION_PERIOD =
+            (dronesNumber, parallelism) -> Math.max(dronesNumber * 0.05 * 16 / parallelism, 25);
+    /**
+     * Multiplier for calculating the longest simulation period.
+     */
+    public static final int LONGEST_SIMULATION_PERIOD_MULTIPLIER = (int) Math.pow(2, 6);
     //endregion
 
     //region Fields
@@ -563,6 +573,17 @@ public final class SwarmChartController {
         return new Position(
                 xAxis.getValueForDisplay(xAxis.sceneToLocal(mouseScenePoint).getX()).doubleValue(),
                 yAxis.getValueForDisplay(yAxis.sceneToLocal(mouseScenePoint).getY()).doubleValue());
+    }
+
+    /**
+     * Get double values representing the range for the current simulation range.
+     *
+     * @return range values, represented as a position
+     */
+    public Position getSimulationPeriodRange() {
+        double shortestPeriod = SHORTEST_SIMULATION_PERIOD.applyAsDouble(
+                hiveMind.state().swarm().size(), SwarmProperties.parallelism());
+        return new Position(shortestPeriod, shortestPeriod * LONGEST_SIMULATION_PERIOD_MULTIPLIER);
     }
 
     /**

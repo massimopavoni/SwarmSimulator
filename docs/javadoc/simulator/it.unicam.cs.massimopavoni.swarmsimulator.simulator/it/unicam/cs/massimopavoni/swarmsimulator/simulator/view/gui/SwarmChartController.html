@@ -121,15 +121,25 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">Default span for the x-axis.</div>
 </div>
-<div class="col-first even-row-color"><code>static final double</code></div>
-<div class="col-second even-row-color"><code><a href="#MOVE_FIRST_MODIFIER_MULTIPLIER" class="member-name-link">MOVE_FIRST_MODIFIER_MULTIPLIER</a></code></div>
+<div class="col-first even-row-color"><code>static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#LONGEST_SIMULATION_PERIOD_MULTIPLIER" class="member-name-link">LONGEST_SIMULATION_PERIOD_MULTIPLIER</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Move multiplier value for first modifier.</div>
+<div class="block">Multiplier for calculating the longest simulation period.</div>
 </div>
 <div class="col-first odd-row-color"><code>static final double</code></div>
-<div class="col-second odd-row-color"><code><a href="#MOVE_SECOND_MODIFIER_MULTIPLIER" class="member-name-link">MOVE_SECOND_MODIFIER_MULTIPLIER</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#MOVE_FIRST_MODIFIER_MULTIPLIER" class="member-name-link">MOVE_FIRST_MODIFIER_MULTIPLIER</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">Move multiplier value for first modifier.</div>
+</div>
+<div class="col-first even-row-color"><code>static final double</code></div>
+<div class="col-second even-row-color"><code><a href="#MOVE_SECOND_MODIFIER_MULTIPLIER" class="member-name-link">MOVE_SECOND_MODIFIER_MULTIPLIER</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Move multiplier value for second modifier.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/ToDoubleBiFunction.html" title="class or interface in java.util.function" class="external-link">ToDoubleBiFunction</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#SHORTEST_SIMULATION_PERIOD" class="member-name-link">SHORTEST_SIMULATION_PERIOD</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Shortest simulation period formula function, calculates an empirical lower bound in milliseconds.</div>
 </div>
 <div class="col-first even-row-color"><code>final double</code></div>
 <div class="col-second even-row-color"><code><a href="#smallestXAxisSpan" class="member-name-link">smallestXAxisSpan</a></code></div>
@@ -204,90 +214,95 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the mouse position on the swarm chart from a gesture event.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveView(int,double,boolean,boolean)" class="member-name-link">moveView</a><wbr>(int&nbsp;direction,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSimulationPeriodRange()" class="member-name-link">getSimulationPeriodRange</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get double values representing the range for the current simulation range.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveView(int,double,boolean,boolean)" class="member-name-link">moveView</a><wbr>(int&nbsp;direction,
  double&nbsp;amount,
  boolean&nbsp;firstModifier,
  boolean&nbsp;secondModifier)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Move view in a specific direction by a delta.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveViewToCenter(boolean)" class="member-name-link">moveViewToCenter</a><wbr>(boolean&nbsp;defaultOrigin)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveViewToCenter(boolean)" class="member-name-link">moveViewToCenter</a><wbr>(boolean&nbsp;defaultOrigin)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Move axes to the center of the spawn shape or the default origin.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Reset chart and simulation state.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesByFactor(double)" class="member-name-link">scaleAxesByFactor</a><wbr>(double&nbsp;scalingFactor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesByFactor(double)" class="member-name-link">scaleAxesByFactor</a><wbr>(double&nbsp;scalingFactor)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Scale axes by a scaling factor.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesToDefault()" class="member-name-link">scaleAxesToDefault</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesToDefault()" class="member-name-link">scaleAxesToDefault</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Scale axes to the default span.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesToSpawn()" class="member-name-link">scaleAxesToSpawn</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#scaleAxesToSpawn()" class="member-name-link">scaleAxesToSpawn</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Scale axes to the spawn shape span.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSources(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind)" class="member-name-link">setSources</a><wbr>(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind&nbsp;hiveMind)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSources(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind)" class="member-name-link">setSources</a><wbr>(it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind&nbsp;hiveMind)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set hive mind.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#swarmStep()" class="member-name-link">swarmStep</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#swarmStep()" class="member-name-link">swarmStep</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Refresh chart and simulation state.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(double,double)" class="member-name-link">translateAxes</a><wbr>(double&nbsp;dx,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(double,double)" class="member-name-link">translateAxes</a><wbr>(double&nbsp;dx,
  double&nbsp;dy)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate axes by a delta.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">translateAxes</a><wbr>(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position&nbsp;destination)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position)" class="member-name-link">translateAxes</a><wbr>(it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position&nbsp;destination)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate axes to a destination position.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxesToDefault()" class="member-name-link">translateAxesToDefault</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxesToDefault()" class="member-name-link">translateAxesToDefault</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate axes to the default origin.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxesToSpawn()" class="member-name-link">translateAxesToSpawn</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxesToSpawn()" class="member-name-link">translateAxesToSpawn</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate axes to the spawn shape origin.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateXAxis(double)" class="member-name-link">translateXAxis</a><wbr>(double&nbsp;dx)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateXAxis(double)" class="member-name-link">translateXAxis</a><wbr>(double&nbsp;dx)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate x-axis by a delta.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateYAxis(double)" class="member-name-link">translateYAxis</a><wbr>(double&nbsp;dy)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateYAxis(double)" class="member-name-link">translateYAxis</a><wbr>(double&nbsp;dy)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Translate y-axis by a delta.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoomView(boolean,boolean,boolean)" class="member-name-link">zoomView</a><wbr>(boolean&nbsp;inOut,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoomView(boolean,boolean,boolean)" class="member-name-link">zoomView</a><wbr>(boolean&nbsp;inOut,
  boolean&nbsp;firstModifier,
  boolean&nbsp;secondModifier)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Zoom view in or out.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoomViewToCenter(boolean)" class="member-name-link">zoomViewToCenter</a><wbr>(boolean&nbsp;defaultSpan)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#zoomViewToCenter(boolean)" class="member-name-link">zoomViewToCenter</a><wbr>(boolean&nbsp;defaultSpan)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Scale axes to spawn shape span or default span.</div>
 </div>
 </div>
@@ -423,6 +438,20 @@ loadScripts(document, 'script');</script>
 <h3>DEFAULT_REGION_PANE_BACKGROUND</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">javafx.scene.layout.Background</span>&nbsp;<span class="element-name">DEFAULT_REGION_PANE_BACKGROUND</span></div>
 <div class="block">Default background for the domain regions' panes.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="SHORTEST_SIMULATION_PERIOD">
+<h3>SHORTEST_SIMULATION_PERIOD</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/ToDoubleBiFunction.html" title="class or interface in java.util.function" class="external-link">ToDoubleBiFunction</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">SHORTEST_SIMULATION_PERIOD</span></div>
+<div class="block">Shortest simulation period formula function, calculates an empirical lower bound in milliseconds.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="LONGEST_SIMULATION_PERIOD_MULTIPLIER">
+<h3>LONGEST_SIMULATION_PERIOD_MULTIPLIER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">LONGEST_SIMULATION_PERIOD_MULTIPLIER</span></div>
+<div class="block">Multiplier for calculating the longest simulation period.</div>
 </section>
 </li>
 <li>
@@ -685,6 +714,17 @@ loadScripts(document, 'script');</script>
 <dd><code>event</code> - gesture event</dd>
 <dt>Returns:</dt>
 <dd>mouse position</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSimulationPeriodRange()">
+<h3>getSimulationPeriodRange</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position</span>&nbsp;<span class="element-name">getSimulationPeriodRange</span>()</div>
+<div class="block">Get double values representing the range for the current simulation range.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>range values, represented as a position</dd>
 </dl>
 </section>
 </li>

@@ -126,10 +126,10 @@ public final class Position {
      *
      * @param scalar scalar to multiply
      * @return scaled position
-     * @throws PositionException if the scalar is not meaningful
+     * @throws PositionException if the scalar is not finite
      */
     public Position scale(double scalar) {
-        if (!(SwarmUtils.isMeaningful(scalar))) throw new PositionException("Scalar to multiply must be meaningful.");
+        if (!Double.isFinite(scalar)) throw new PositionException("Scalar to multiply must be finite.");
         return new Position(x * scalar, y * scalar);
     }
 

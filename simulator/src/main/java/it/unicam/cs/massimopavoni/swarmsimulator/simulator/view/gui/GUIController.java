@@ -11,6 +11,7 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMindException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmState;
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser.DomainParserException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.*;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives.SwarmDirectiveFactory;
@@ -79,17 +80,17 @@ public final class GUIController implements Initializable {
      */
     private final Property<File> strategyFileProperty;
     /**
-     * Swarm hive mind property.
+     * File chooser for swarm files.
      */
-    private final Property<HiveMind> hiveMindProperty;
+    FileChooser swarmFileChooser;
     //endregion
 
     //region JavaFX fields
     //------------------------------------------------------------------------------------------------
     /**
-     * File chooser for swarm files.
+     * Swarm hive mind.
      */
-    FileChooser swarmFileChooser;
+    private HiveMind hiveMind;
     /**
      * Help menu item for author account.
      */
@@ -105,6 +106,16 @@ public final class GUIController implements Initializable {
      */
     @FXML
     private Button stepPlayButton;
+    /**
+     * Spinner for simulation period.
+     */
+    @FXML
+    private Spinner<Integer> simulationPeriodSpinner;
+    /**
+     * Label for simulation frequency.
+     */
+    @FXML
+    private Label simulationFrequencyLabel;
     /**
      * Button for chart view move up.
      */
@@ -186,6 +197,11 @@ public final class GUIController implements Initializable {
     @FXML
     private ToggleSwitch onBoundaryToggleSwitch;
     /**
+     * Button for swarm reset.
+     */
+    @FXML
+    private Button resetButton;
+    /**
      * Button for swarm spawning.
      */
     @FXML
@@ -226,7 +242,6 @@ public final class GUIController implements Initializable {
         swarmFileChooser = new FileChooser();
         domainFileProperty = new SimpleObjectProperty<>();
         strategyFileProperty = new SimpleObjectProperty<>();
-        hiveMindProperty = new SimpleObjectProperty<>();
         SwarmState.initializeParsers(shapeFactory, new SwarmDirectiveFactory());
     }
     //endregion
@@ -274,6 +289,7 @@ public final class GUIController implements Initializable {
             helpProperties.load(Objects.requireNonNull(
                     GUIApplication.class.getResourceAsStream("help.properties")));
             addFocusChangeListeners(helpProperties);
+            addSimulationPeriodChangeListener();
             addFileChangeListener(domainFileProperty, domainPathTextArea,
                     () -> strategyFileProperty != null && !shapeArgsTextArea.getText().isBlank());
             addFileChangeListener(strategyFileProperty, strategyPathTextArea,
@@ -292,9 +308,10 @@ public final class GUIController implements Initializable {
         try {
             SwarmProperties.initialize();
             dronesNumberSpinner.setValueFactory(new IntegerSpinnerValueFactory(
-                    1, SwarmProperties.maxDronesNumber(), 1));
-            addHiveMindChangeListener();
+                    1, SwarmProperties.maxDronesNumber(), 1, 1));
             swarmChartController = new SwarmChartController(swarmChart);
+            Thread.currentThread().setUncaughtExceptionHandler((thread, e) ->
+                    handleSpawnException((Exception) e));
         } catch (HiveMindException e) {
             errorAlert.showAndWait(ErrorType.FATAL, "While initializing swarm properties.", e);
         }
@@ -334,6 +351,17 @@ public final class GUIController implements Initializable {
     }
 
     /**
+     * Add simulation period change listener.
+     */
+    public void addSimulationPeriodChangeListener() {
+        simulationPeriodSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && newValue != 0)
+                simulationFrequencyLabel.setText(String.format("%.2f Hz",
+                        1 / (newValue / 1000.0)));
+        });
+    }
+
+    /**
      * Add file change listener.
      *
      * @param property     property to add listener to
@@ -362,21 +390,6 @@ public final class GUIController implements Initializable {
                 spawnButton.setDisable(true);
             else if (!domainPathTextArea.getText().isBlank() && !strategyPathTextArea.getText().isBlank())
                 spawnButton.setDisable(false);
-        });
-    }
-
-    /**
-     * Add hive mind change listener.
-     */
-    private void addHiveMindChangeListener() {
-        hiveMindProperty.addListener((observable, oldValue, newValue) -> {
-            if (newValue == null) {
-                setSimulationDisable(true);
-                swarmChartController.setSources(null);
-            } else {
-                setSimulationDisable(false);
-                swarmChartController.setSources(hiveMindProperty.getValue());
-            }
         });
     }
     //endregion
@@ -437,6 +450,44 @@ public final class GUIController implements Initializable {
     private void stepForwardButtonMouseClicked(MouseEvent event) {
         swarmChartController.swarmStep();
         event.consume();
+    }
+
+    /**
+     * Simulation period spinner scroll event handler.
+     *
+     * @param event scroll event
+     */
+    @FXML
+    private void simulationPeriodSpinnerScroll(ScrollEvent event) {
+        if (event.getDeltaY() > 0) {
+            simulationPeriodSpinner.increment(
+                    getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
+            event.consume();
+        } else if (event.getDeltaY() < 0) {
+            simulationPeriodSpinner.decrement(
+                    getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
+            event.consume();
+        }
+    }
+
+    /**
+     * Simulation period spinner key pressed event handler.
+     *
+     * @param event key event
+     */
+    @FXML
+    private void simulationPeriodSpinnerKeyPressed(KeyEvent event) {
+        if (!event.isConsumed()) {
+            if (event.getCode().equals(KeyCode.UP)) {
+                simulationPeriodSpinner.increment(
+                        getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
+                event.consume();
+            } else if (event.getCode().equals(KeyCode.DOWN)) {
+                simulationPeriodSpinner.decrement(
+                        getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
+                event.consume();
+            }
+        }
     }
     //endregion
 
@@ -583,6 +634,7 @@ public final class GUIController implements Initializable {
     private void setSimulationDisable(boolean disable) {
         stepForwardButton.setDisable(disable);
         stepPlayButton.setDisable(disable);
+        simulationPeriodSpinner.setDisable(disable);
         moveUpButton.setDisable(disable);
         moveDownButton.setDisable(disable);
         moveLeftButton.setDisable(disable);
@@ -592,13 +644,18 @@ public final class GUIController implements Initializable {
         zoomOutButton.setDisable(disable);
         zoomResetButton.setDisable(disable);
         swarmChart.setDisable(disable);
-        if (disable)
+        if (disable) {
             stage.getScene().removeEventHandler(KeyEvent.KEY_PRESSED,
                     swarmChartController.getKeyPressedEventHandler());
-        else
+            hiveMind = null;
+            swarmChartController.setSources(null);
+            simulationPeriodSpinner.getEditor().clear();
+            simulationFrequencyLabel.setText("Hz");
+            domainTextArea.setText("");
+            strategyTextArea.setText("");
+        } else
             stage.getScene().addEventHandler(KeyEvent.KEY_PRESSED,
                     swarmChartController.getKeyPressedEventHandler());
-
     }
     //endregion
 
@@ -635,10 +692,12 @@ public final class GUIController implements Initializable {
     @FXML
     private void dronesNumberSpinnerScroll(ScrollEvent event) {
         if (event.getDeltaY() > 0) {
-            dronesNumberSpinnerSelection(event.isAltDown(), event.isControlDown(), true);
+            dronesNumberSpinner.increment(
+                    getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
             event.consume();
         } else if (event.getDeltaY() < 0) {
-            dronesNumberSpinnerSelection(event.isAltDown(), event.isControlDown(), false);
+            dronesNumberSpinner.decrement(
+                    getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
             event.consume();
         }
     }
@@ -652,10 +711,12 @@ public final class GUIController implements Initializable {
     private void dronesNumberSpinnerKeyPressed(KeyEvent event) {
         if (!event.isConsumed()) {
             if (event.getCode().equals(KeyCode.UP)) {
-                dronesNumberSpinnerSelection(event.isAltDown(), event.isControlDown(), true);
+                dronesNumberSpinner.increment(
+                        getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
                 event.consume();
             } else if (event.getCode().equals(KeyCode.DOWN)) {
-                dronesNumberSpinnerSelection(event.isAltDown(), event.isControlDown(), false);
+                dronesNumberSpinner.decrement(
+                        getSpinnerIncrement(event.isAltDown(), event.isControlDown()));
                 event.consume();
             }
         }
@@ -710,6 +771,17 @@ public final class GUIController implements Initializable {
     }
 
     /**
+     * Other text areas key pressed event handler, to forward event to simulation, if enabled.
+     *
+     * @param event key event
+     */
+    @FXML
+    private void textAreaKeyPressed(KeyEvent event) {
+        if (!swarmChart.isDisabled())
+            swarmChartController.getKeyPressedEventHandler().handle(event);
+    }
+
+    /**
      * On boundary toggle switch mouse clicked event handler.
      */
     @FXML
@@ -723,15 +795,12 @@ public final class GUIController implements Initializable {
      */
     @FXML
     private void resetButtonAction(ActionEvent event) {
-        hiveMindProperty.setValue(null);
         domainFileProperty.setValue(null);
         strategyFileProperty.setValue(null);
         dronesNumberSpinner.getValueFactory().setValue(1);
         spawnShapeChoiceBox.setValue(spawnShapeChoiceBox.getItems().get(0));
         shapeArgsTextArea.setText("");
         onBoundaryToggleSwitch.setSelected(false);
-        domainTextArea.setText("");
-        strategyTextArea.setText("");
         setSimulationDisable(true);
         event.consume();
     }
@@ -741,20 +810,26 @@ public final class GUIController implements Initializable {
      */
     @FXML
     private void spawnButtonAction(ActionEvent event) {
-        hiveMindProperty.setValue(null);
         try {
             Shape spawnShape = shapeFactory.createShape(
                     ShapeType.fromString(spawnShapeChoiceBox.getValue().toLowerCase()),
                     SwarmUtils.toDoubleArray(shapeArgsTextArea.getText().trim().split(" "), 0));
-            hiveMindProperty.setValue(new HiveMind(new SwarmState(
+            hiveMind = new HiveMind(new SwarmState(
                     domainFileProperty.getValue(), strategyFileProperty.getValue(),
                     dronesNumberSpinner.getValue(), spawnShape,
-                    onBoundaryToggleSwitch.isSelected())));
+                    onBoundaryToggleSwitch.isSelected()));
+            swarmChartController.setSources(hiveMind);
+            Position simulationPeriodRange = swarmChartController.getSimulationPeriodRange();
+            int shortestSimulationPeriod = (int) Math.ceil(simulationPeriodRange.x());
+            int longestSimulationPeriod = (int) Math.floor(simulationPeriodRange.y());
+            simulationPeriodSpinner.setValueFactory(new IntegerSpinnerValueFactory(
+                    shortestSimulationPeriod, longestSimulationPeriod,
+                    shortestSimulationPeriod, 1));
             domainTextArea.setText(Files.readString(domainFileProperty.getValue().toPath()));
             strategyTextArea.setText(Files.readString(strategyFileProperty.getValue().toPath()));
+            setSimulationDisable(false);
         } catch (Exception e) {
-            domainTextArea.setText("");
-            strategyTextArea.setText("");
+            setSimulationDisable(true);
             handleSpawnException(e);
         } finally {
             event.consume();
@@ -766,22 +841,18 @@ public final class GUIController implements Initializable {
     //------------------------------------------------------------------------------------------------
 
     /**
-     * Drones number spinner selection with modifiers.
+     * Calculate spinner increment, based on modifiers' flags.
      *
      * @param firstModifier  first modifier enabled flag
      * @param secondModifier second modifier enabled flag
-     * @param increase       increase flag
      */
-    private void dronesNumberSpinnerSelection(boolean firstModifier, boolean secondModifier, boolean increase) {
+    private int getSpinnerIncrement(boolean firstModifier, boolean secondModifier) {
         int unit = 1;
         if (firstModifier)
             unit *= 10;
         if (secondModifier)
             unit *= 100;
-        if (increase)
-            dronesNumberSpinner.increment(unit);
-        else
-            dronesNumberSpinner.decrement(unit);
+        return unit;
     }
 
     /**

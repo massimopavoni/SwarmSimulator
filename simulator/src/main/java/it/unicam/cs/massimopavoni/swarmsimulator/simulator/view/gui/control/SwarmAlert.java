@@ -35,7 +35,7 @@ public final class SwarmAlert extends Alert {
      * @param message   message to show
      * @param exception exception encountered
      */
-    public void showAndWait(ErrorType errorType, String message, Exception exception) {
+    public void showAndWait(ErrorType errorType, String message, Throwable exception) {
         setAlertType(errorType.getAlertType());
         setHeaderText(errorType.getTitle());
         setContentText(String.format("%s%n%n%s", message,
