@@ -1,5 +1,6 @@
 package it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui;
 
+import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
@@ -76,7 +77,7 @@ public final class SwarmChartController {
      * Shortest simulation period formula function, calculates an empirical lower bound in milliseconds.
      */
     public static final ToDoubleBiFunction<Integer, Integer> SHORTEST_SIMULATION_PERIOD =
-            (dronesNumber, parallelism) -> Math.max(dronesNumber * 0.05 * 16 / parallelism, 25);
+            (dronesNumber, parallelism) -> Math.max(dronesNumber * 0.05 * 16 / parallelism, 20);
     /**
      * Multiplier for calculating the longest simulation period.
      */
@@ -118,6 +119,10 @@ public final class SwarmChartController {
      */
     private final EventHandler<KeyEvent> keyPressedEventHandler;
     /**
+     * Step count label.
+     */
+    private final Label stepCountLabel;
+    /**
      * Scaling factor for the domain regions' shapes.
      */
     private double shapeScalingFactor;
@@ -145,9 +150,11 @@ public final class SwarmChartController {
     /**
      * Constructor for a swarm chart controller.
      *
-     * @param chart chart instance
+     * @param chart          chart instance
+     * @param stepCountLabel step count label
      */
-    public SwarmChartController(XYChart<Number, Number> chart) {
+    public SwarmChartController(XYChart<Number, Number> chart, Label stepCountLabel) {
+        this.stepCountLabel = stepCountLabel;
         smallestXAxisSpan = SwarmProperties.tolerance() * 4 * DEFAULT_X_AXIS_SPAN;
         biggestXAxisSpan = SwarmProperties.maximumMeaningfulDoubleValue();
         xAxis = (NumberAxis) chart.getXAxis();
@@ -211,17 +218,30 @@ public final class SwarmChartController {
     }
 
     /**
-     * Refresh chart and simulation state.
+     * Execute a swarm step and update the chart.
      */
     public void swarmStep() {
-        long startTime = System.nanoTime();
         if (hiveMind.isSwarmAlive()) {
             hiveMind.swarmStep();
             drawDomain();
             drawSwarm();
+            updateStepCountLabel();
         }
-        long endTime = System.nanoTime();
-        System.out.println("Swarm step time: " + (endTime - startTime) / 1000000 + " ms");
+    }
+
+    /**
+     * Update the step count label text with proper formatting.
+     */
+    private void updateStepCountLabel() {
+        double stepCount = hiveMind.stepCount();
+        if (stepCount < 1000)
+            stepCountLabel.setText(String.format("%.0f steps", stepCount));
+        else if (stepCount < 1000000)
+            stepCountLabel.setText(String.format("%.3f Ksteps", stepCount / 1000.0));
+        else if (stepCount < 1000000000)
+            stepCountLabel.setText(String.format("%.3f Msteps", stepCount / 1000000.0));
+        else
+            stepCountLabel.setText(String.format("%.3f Gsteps", stepCount / 1000000000.0));
     }
     //endregion
 
@@ -275,8 +295,9 @@ public final class SwarmChartController {
      */
     private void drawSwarm() {
         swarmSeries.getData().clear();
-        swarmSeries.getData().addAll(hiveMind.state().swarm().stream().map(d ->
-                new Data<Number, Number>(d.position().x(), d.position().y())).toList());
+        swarmSeries.getData().addAll(SwarmUtils.parallelize(() ->
+                hiveMind.state().swarm().parallelStream().map(d ->
+                        new Data<Number, Number>(d.position().x(), d.position().y())).toList()));
     }
     //endregion
 

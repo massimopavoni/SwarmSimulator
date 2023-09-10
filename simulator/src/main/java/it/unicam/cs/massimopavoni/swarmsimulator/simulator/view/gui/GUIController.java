@@ -5,6 +5,7 @@ import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.ErrorType;
 import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.NodeFocusListener;
 import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.SwarmAbout;
 import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.SwarmAlert;
+import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.SwarmPeriodSpinnerValueFactory;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind;
@@ -106,6 +107,11 @@ public final class GUIController implements Initializable {
      */
     @FXML
     private Button stepPlayButton;
+    /**
+     * Label for simulation step count.
+     */
+    @FXML
+    private Label stepCountLabel;
     /**
      * Spinner for simulation period.
      */
@@ -309,7 +315,7 @@ public final class GUIController implements Initializable {
             SwarmProperties.initialize();
             dronesNumberSpinner.setValueFactory(new IntegerSpinnerValueFactory(
                     1, SwarmProperties.maxDronesNumber(), 1, 1));
-            swarmChartController = new SwarmChartController(swarmChart);
+            swarmChartController = new SwarmChartController(swarmChart, stepCountLabel);
             Thread.currentThread().setUncaughtExceptionHandler((thread, e) ->
                     handleSpawnException((Exception) e));
         } catch (HiveMindException e) {
@@ -353,13 +359,26 @@ public final class GUIController implements Initializable {
     /**
      * Add simulation period change listener.
      */
-    public void addSimulationPeriodChangeListener() {
-        simulationPeriodSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null && newValue != 0)
-                simulationFrequencyLabel.setText(String.format("%.2f Hz",
-                        1 / (newValue / 1000.0)));
-        });
+    private void addSimulationPeriodChangeListener() {
+        simulationPeriodSpinner.valueProperty().addListener(
+                (observable, oldValue, newValue) -> simulationPeriodChange(newValue));
     }
+
+    /**
+     * Simulation period change listener.
+     *
+     * @param value value to update with
+     */
+    private void simulationPeriodChange(Integer value) {
+        if (value != null && value != 0) {
+            double frequency = 1 / (value / 1000.0);
+            if (frequency < 1)
+                simulationFrequencyLabel.setText(String.format("%.2f mHz", frequency * 1000));
+            else
+                simulationFrequencyLabel.setText(String.format("%.2f Hz", frequency));
+        }
+    }
+
 
     /**
      * Add file change listener.
@@ -627,11 +646,45 @@ public final class GUIController implements Initializable {
     //------------------------------------------------------------------------------------------------
 
     /**
-     * Set simulation controls disable.
+     * Enable simulation and view controls.
+     */
+    private void enableSimulationView() {
+        setSimulationViewButtonsDisable(false);
+        stage.getScene().addEventHandler(KeyEvent.KEY_PRESSED,
+                swarmChartController.getKeyPressedEventHandler());
+        Position simulationPeriodRange = swarmChartController.getSimulationPeriodRange();
+        int shortestSimulationPeriod = (int) Math.ceil(simulationPeriodRange.x());
+        int longestSimulationPeriod = (int) Math.floor(simulationPeriodRange.y());
+        simulationPeriodSpinner.setValueFactory(new SwarmPeriodSpinnerValueFactory(
+                shortestSimulationPeriod, longestSimulationPeriod,
+                shortestSimulationPeriod, 1));
+        simulationPeriodSpinner.getEditor().setText(String.valueOf(shortestSimulationPeriod));
+        simulationPeriodChange(simulationPeriodSpinner.getValue());
+        stepCountLabel.setText("0 steps");
+    }
+
+    /**
+     * Disable simulation and view controls.
+     */
+    private void disableSimulationView() {
+        setSimulationViewButtonsDisable(true);
+        stage.getScene().removeEventHandler(KeyEvent.KEY_PRESSED,
+                swarmChartController.getKeyPressedEventHandler());
+        hiveMind = null;
+        swarmChartController.setSources(null);
+        stepCountLabel.setText("steps");
+        simulationPeriodSpinner.getEditor().clear();
+        simulationFrequencyLabel.setText("Hz");
+        domainTextArea.setText("");
+        strategyTextArea.setText("");
+    }
+
+    /**
+     * Set simulation and view buttons disable state.
      *
      * @param disable disable flag
      */
-    private void setSimulationDisable(boolean disable) {
+    private void setSimulationViewButtonsDisable(boolean disable) {
         stepForwardButton.setDisable(disable);
         stepPlayButton.setDisable(disable);
         simulationPeriodSpinner.setDisable(disable);
@@ -644,18 +697,6 @@ public final class GUIController implements Initializable {
         zoomOutButton.setDisable(disable);
         zoomResetButton.setDisable(disable);
         swarmChart.setDisable(disable);
-        if (disable) {
-            stage.getScene().removeEventHandler(KeyEvent.KEY_PRESSED,
-                    swarmChartController.getKeyPressedEventHandler());
-            hiveMind = null;
-            swarmChartController.setSources(null);
-            simulationPeriodSpinner.getEditor().clear();
-            simulationFrequencyLabel.setText("Hz");
-            domainTextArea.setText("");
-            strategyTextArea.setText("");
-        } else
-            stage.getScene().addEventHandler(KeyEvent.KEY_PRESSED,
-                    swarmChartController.getKeyPressedEventHandler());
     }
     //endregion
 
@@ -801,7 +842,7 @@ public final class GUIController implements Initializable {
         spawnShapeChoiceBox.setValue(spawnShapeChoiceBox.getItems().get(0));
         shapeArgsTextArea.setText("");
         onBoundaryToggleSwitch.setSelected(false);
-        setSimulationDisable(true);
+        disableSimulationView();
         event.consume();
     }
 
@@ -819,17 +860,11 @@ public final class GUIController implements Initializable {
                     dronesNumberSpinner.getValue(), spawnShape,
                     onBoundaryToggleSwitch.isSelected()));
             swarmChartController.setSources(hiveMind);
-            Position simulationPeriodRange = swarmChartController.getSimulationPeriodRange();
-            int shortestSimulationPeriod = (int) Math.ceil(simulationPeriodRange.x());
-            int longestSimulationPeriod = (int) Math.floor(simulationPeriodRange.y());
-            simulationPeriodSpinner.setValueFactory(new IntegerSpinnerValueFactory(
-                    shortestSimulationPeriod, longestSimulationPeriod,
-                    shortestSimulationPeriod, 1));
             domainTextArea.setText(Files.readString(domainFileProperty.getValue().toPath()));
             strategyTextArea.setText(Files.readString(strategyFileProperty.getValue().toPath()));
-            setSimulationDisable(false);
+            enableSimulationView();
         } catch (Exception e) {
-            setSimulationDisable(true);
+            disableSimulationView();
             handleSpawnException(e);
         } finally {
             event.consume();
