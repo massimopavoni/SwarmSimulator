@@ -172,7 +172,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(javafx.scene.chart.XYChart)" class="member-name-link">SwarmChartController</a><wbr>(javafx.scene.chart.XYChart&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;&nbsp;chart)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(javafx.scene.chart.XYChart,javafx.scene.control.Label)" class="member-name-link">SwarmChartController</a><wbr>(javafx.scene.chart.XYChart&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;&nbsp;chart,
+ javafx.scene.control.Label&nbsp;stepCountLabel)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Constructor for a swarm chart controller.</div>
 </div>
@@ -260,7 +261,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#swarmStep()" class="member-name-link">swarmStep</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Refresh chart and simulation state.</div>
+<div class="block">Execute a swarm step and update the chart.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#translateAxes(double,double)" class="member-name-link">translateAxes</a><wbr>(double&nbsp;dx,
@@ -477,13 +478,15 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(javafx.scene.chart.XYChart)">
+<section class="detail" id="&lt;init&gt;(javafx.scene.chart.XYChart,javafx.scene.control.Label)">
 <h3>SwarmChartController</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwarmChartController</span><wbr><span class="parameters">(javafx.scene.chart.XYChart&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;&nbsp;chart)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SwarmChartController</span><wbr><span class="parameters">(javafx.scene.chart.XYChart&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Number.html" title="class or interface in java.lang" class="external-link">Number</a>&gt;&nbsp;chart,
+ javafx.scene.control.Label&nbsp;stepCountLabel)</span></div>
 <div class="block">Constructor for a swarm chart controller.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>chart</code> - chart instance</dd>
+<dd><code>stepCountLabel</code> - step count label</dd>
 </dl>
 </section>
 </li>
@@ -517,7 +520,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="swarmStep()">
 <h3>swarmStep</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">swarmStep</span>()</div>
-<div class="block">Refresh chart and simulation state.</div>
+<div class="block">Execute a swarm step and update the chart.</div>
 </section>
 </li>
 <li>
