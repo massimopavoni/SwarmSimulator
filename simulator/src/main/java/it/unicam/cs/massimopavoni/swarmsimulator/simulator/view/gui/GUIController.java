@@ -163,10 +163,20 @@ public final class GUIController implements Initializable {
     @FXML
     private Button zoomResetButton;
     /**
+     * Button for domain file choose.
+     */
+    @FXML
+    private Button domainFileChooseButton;
+    /**
      * Text area for domain file path.
      */
     @FXML
     private TextArea domainPathTextArea;
+    /**
+     * Button for strategy file choose.
+     */
+    @FXML
+    private Button strategyFileChooseButton;
     /**
      * Text area for strategy file path.
      */
@@ -316,6 +326,7 @@ public final class GUIController implements Initializable {
             dronesNumberSpinner.setValueFactory(new IntegerSpinnerValueFactory(
                     1, SwarmProperties.maxDronesNumber(), 1, 1));
             swarmChartController = new SwarmChartController(swarmChart, stepCountLabel);
+            addSimulatingListener();
             Thread.currentThread().setUncaughtExceptionHandler((thread, e) ->
                     handleSpawnException((Exception) e));
         } catch (HiveMindException e) {
@@ -357,6 +368,18 @@ public final class GUIController implements Initializable {
     }
 
     /**
+     * Add simulating listener.
+     */
+    private void addSimulatingListener() {
+        swarmChartController.simulating.addListener(
+                (observable, oldValue, newValue) -> {
+                    setSimulatingButtonsDisable(newValue);
+                    swarmChartController.toggleSimulating(
+                            simulationPeriodSpinner.getValue().doubleValue());
+                });
+    }
+
+    /**
      * Add simulation period change listener.
      */
     private void addSimulationPeriodChangeListener() {
@@ -378,7 +401,6 @@ public final class GUIController implements Initializable {
                 simulationFrequencyLabel.setText(String.format("%.2f Hz", frequency));
         }
     }
-
 
     /**
      * Add file change listener.
@@ -468,6 +490,17 @@ public final class GUIController implements Initializable {
     @FXML
     private void stepForwardButtonMouseClicked(MouseEvent event) {
         swarmChartController.swarmStep();
+        event.consume();
+    }
+
+    /**
+     * Step play button action event handler.
+     *
+     * @param event action event
+     */
+    @FXML
+    private void stepPlayButtonAction(ActionEvent event) {
+        swarmChartController.simulating.set(!swarmChartController.simulating.getValue());
         event.consume();
     }
 
@@ -644,6 +677,20 @@ public final class GUIController implements Initializable {
 
     //region Simulation additional methods
     //------------------------------------------------------------------------------------------------
+
+    /**
+     * Set buttons disable state during simulation.
+     *
+     * @param disable disable flag
+     */
+    private void setSimulatingButtonsDisable(boolean disable) {
+        stepForwardButton.setDisable(disable);
+        simulationPeriodSpinner.setDisable(disable);
+        domainFileChooseButton.setDisable(disable);
+        strategyFileChooseButton.setDisable(disable);
+        resetButton.setDisable(disable);
+        spawnButton.setDisable(disable);
+    }
 
     /**
      * Enable simulation and view controls.

@@ -59,8 +59,6 @@ public final class GUIApplication extends Application {
         fxmlLoader.setController(controller);
         stage.setScene(new Scene(fxmlLoader.load()));
         initializeStage(stage);
-        // For future use in case of ongoing animation (?)
-        // stage.setOnCloseRequest(e -> controller.shutdown());
         stage.show();
         controller.completeInitialization();
     }

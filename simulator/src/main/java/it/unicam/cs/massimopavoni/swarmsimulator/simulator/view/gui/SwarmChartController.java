@@ -5,6 +5,11 @@ import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.SwarmProperties;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.Position;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes.*;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.chart.NumberAxis;
@@ -20,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 import java.util.Arrays;
 import java.util.function.ToDoubleBiFunction;
@@ -123,6 +129,14 @@ public final class SwarmChartController {
      */
     private final Label stepCountLabel;
     /**
+     * Simulation timeline.
+     */
+    private final Timeline simulationTimeline;
+    /**
+     * Simulation running flag property.
+     */
+    BooleanProperty simulating;
+    /**
      * Scaling factor for the domain regions' shapes.
      */
     private double shapeScalingFactor;
@@ -155,6 +169,9 @@ public final class SwarmChartController {
      */
     public SwarmChartController(XYChart<Number, Number> chart, Label stepCountLabel) {
         this.stepCountLabel = stepCountLabel;
+        simulating = new SimpleBooleanProperty(false);
+        simulationTimeline = new Timeline();
+        simulationTimeline.setCycleCount(Animation.INDEFINITE);
         smallestXAxisSpan = SwarmProperties.tolerance() * 4 * DEFAULT_X_AXIS_SPAN;
         biggestXAxisSpan = SwarmProperties.maximumMeaningfulDoubleValue();
         xAxis = (NumberAxis) chart.getXAxis();
@@ -226,7 +243,8 @@ public final class SwarmChartController {
             drawDomain();
             drawSwarm();
             updateStepCountLabel();
-        }
+        } else
+            simulating.set(false);
     }
 
     /**
@@ -571,11 +589,30 @@ public final class SwarmChartController {
             case R, MULTIPLY -> executeAndConsumeEvent(() ->
                     zoomViewToCenter(event.isShiftDown()), event);
             case N, DECIMAL -> executeAndConsumeEvent(this::swarmStep, event);
-            case T, NUMPAD0 -> {
-            }
+            case T, NUMPAD0 -> simulating.set(!simulating.getValue());
             default -> {
                 // Do nothing
             }
+        }
+    }
+    //endregion
+
+    //region Simulation methods
+    //------------------------------------------------------------------------------------------------
+
+    /**
+     * Toggle simulating and start or stop the simulation timeline.
+     *
+     * @param ms frame duration in milliseconds
+     */
+    public void toggleSimulating(double ms) {
+        if (simulating.getValue() != null && !simulating.getValue())
+            simulationTimeline.stop();
+        else {
+            simulationTimeline.getKeyFrames().clear();
+            simulationTimeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(ms), e -> swarmStep()));
+            simulationTimeline.play();
         }
     }
     //endregion
