@@ -1,9 +1,9 @@
 {
-  "tolerance": 0.000000001,
+  "tolerance": 0.000001,
   "parallelism": 16,
-  "maxPolygonVertices": 64,
-  "maxDomainRegions": 32,
-  "maxDronesNumber": 65536,
-  "signalRegex": "^[A-Za-z\\d_]+$",
-  "echoRegex": "^[A-Za-z\\d_]+$"
+  "maxPolygonVertices": 32,
+  "maxDomainRegions": 16,
+  "maxDronesNumber": 4096,
+  "signalRegex": "^[A-Za-z\\d_]{2,32}$",
+  "echoRegex": "^[A-Za-z\\d_]{2,32}$"
 }

@@ -42,13 +42,24 @@ public final class SwarmUtils {
     }
 
     /**
-     * Check if a double is finite and positive.
+     * Check if a double is meaningful for precise swarm operations.
      *
      * @param a double to check
-     * @return true if the double is finite and positive, false otherwise
+     * @return true if the double is meaningful, false otherwise
+     */
+    public static boolean isMeaningful(double a) {
+        return a > -SwarmProperties.maximumMeaningfulDoubleValue() &&
+                a < SwarmProperties.maximumMeaningfulDoubleValue();
+    }
+
+    /**
+     * Check if a double is meaningful and positive.
+     *
+     * @param a double to check
+     * @return true if the double is meaningful and positive, false otherwise
      */
     public static boolean isPositive(double a) {
-        return Double.isFinite(a) && a > 0;
+        return isMeaningful(a) && a > 0;
     }
 
     /**

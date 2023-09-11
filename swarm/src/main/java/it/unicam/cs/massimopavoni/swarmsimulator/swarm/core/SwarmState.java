@@ -50,6 +50,10 @@ public final class SwarmState {
      * List of drones constituting the swarm.
      */
     private final List<Drone> swarm;
+    /**
+     * Shape of the swarm spawn.
+     */
+    private final Shape spawnShape;
 
     /**
      * Constructor for a swarm state from domain, strategy and swarm information.
@@ -125,10 +129,11 @@ public final class SwarmState {
                     SwarmProperties.maxDronesNumber()));
         this.domain = domain;
         this.strategy = strategy;
+        this.spawnShape = spawnShape;
         List<Integer> jumpDirectiveIndexes = IntStream.range(0, strategy.size())
                 .filter(i -> strategy.get(i).getType().equals(DirectiveType.JUMP))
                 .boxed().toList();
-        swarm = SwarmUtils.parallelize(() -> spawnShape.getRandomPositions(onBoundary, dronesNumber)
+        swarm = SwarmUtils.parallelize(() -> this.spawnShape.getRandomPositions(onBoundary, dronesNumber)
                 .parallelStream()
                 .map(rp -> new Drone(rp, jumpDirectiveIndexes))).collect(toImmutableList());
     }
@@ -171,5 +176,14 @@ public final class SwarmState {
      */
     public List<Drone> swarm() {
         return swarm;
+    }
+
+    /**
+     * Getter for the spawn shape.
+     *
+     * @return shape
+     */
+    public Shape spawnShape() {
+        return spawnShape;
     }
 }

@@ -58,6 +58,13 @@
 	-fx-tick-label-fill: #fff;
 }
 
+.default-color1.chart-symbol {
+	-fx-background-color: #00cc1c;
+	-fx-background-radius: 0;
+	-fx-background-insets: 0;
+	-fx-shape: "M5,0 L10,8 L0,8 Z";
+}
+
 .text-area,
 .text-field {
 	-fx-prompt-text-fill: #bbb;

@@ -3,7 +3,6 @@ package it.unicam.cs.massimopavoni.swarmsimulator.swarm.core;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
-import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,6 +29,18 @@ public final class SwarmProperties {
      * Default swarm properties resource location if no custom file is found.
      */
     public static final String DEFAULT_SWARM_PROPERTIES_RESOURCE_LOCATION = "defaultSwarmProperties.json";
+    /**
+     * Smallest tolerance for double comparisons.
+     */
+    public static final double SMALLEST_TOLERANCE = Math.pow(10, -9);
+    /**
+     * Largest tolerance for double comparisons.
+     */
+    public static final double LARGEST_TOLERANCE = Math.pow(10, 0);
+    /**
+     * Maximum number of digits that makes sense to try and represent.
+     */
+    public static final int MAXIMUM_MEANINGFUL_DIGITS = 15;
     /**
      * Minimum parallelism level.
      */
@@ -66,6 +77,10 @@ public final class SwarmProperties {
      * Tolerance for double comparisons.
      */
     private static double tolerance;
+    /**
+     * Maximum double value that makes sense to try and represent.
+     */
+    private static double maximumMeaningfulDoubleValue;
     /**
      * Parallelism level for parallel swarm operations.
      */
@@ -167,6 +182,7 @@ public final class SwarmProperties {
             signalPattern = Pattern.compile(root.get("signalRegex").requireNonNull().asText());
             echoPattern = Pattern.compile(root.get("echoRegex").requireNonNull().asText());
             checkProperties();
+            maximumMeaningfulDoubleValue = tolerance * Math.pow(10, MAXIMUM_MEANINGFUL_DIGITS);
         } catch (IOException | IllegalArgumentException | SwarmException e) {
             throw new HiveMindException("Error while parsing swarm properties.", e);
         }
@@ -178,8 +194,10 @@ public final class SwarmProperties {
      * @throws SwarmException if a property is invalid
      */
     private static void checkProperties() {
-        if (!SwarmUtils.isPositive(tolerance))
-            throw new SwarmException("Tolerance must be finite and positive.");
+        if (tolerance < SMALLEST_TOLERANCE || tolerance > LARGEST_TOLERANCE)
+            throw new SwarmException(String.format(
+                    "Tolerance must be between %10.9f and %10.9f.",
+                    SMALLEST_TOLERANCE, LARGEST_TOLERANCE));
         if (parallelism < 4 || parallelism > 32)
             throw new SwarmException(String.format(
                     "Parallelism level must be between %d and %d.",
@@ -231,6 +249,15 @@ public final class SwarmProperties {
      */
     public static double tolerance() {
         return tolerance;
+    }
+
+    /**
+     * Getter for maximum meaningful double value.
+     *
+     * @return maximum meaningful double value
+     */
+    public static double maximumMeaningfulDoubleValue() {
+        return maximumMeaningfulDoubleValue;
     }
 
     /**

@@ -154,6 +154,7 @@ class SwarmStateTest {
                 () -> assertEquals(0, oneDrone.get().jumpCounter(2)),
                 () -> assertEquals(0, oneDrone.get().jumpCounter(3)),
                 () -> assertThrowsExactly(SwarmException.class, () -> oneDrone.get().jumpCounter(4)),
-                () -> assertThrowsExactly(SwarmException.class, () -> oneDrone.get().jumpCounter(5)));
+                () -> assertThrowsExactly(SwarmException.class, () -> oneDrone.get().jumpCounter(5)),
+                () -> assertArrayEquals(new double[]{0, 0, 20}, swarmState.get().spawnShape().getProperties()));
     }
 }

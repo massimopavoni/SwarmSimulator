@@ -26,7 +26,7 @@ class PositionTest {
     }
 
     @Test
-    void Position_nonFinite() {
+    void Position_nonMeaningful() {
         assertAll(
                 () -> assertThrowsExactly(PositionException.class,
                         () -> new Position(Double.POSITIVE_INFINITY, 0)),
@@ -49,7 +49,7 @@ class PositionTest {
     }
 
     @Test
-    void Position_finite() {
+    void Position_meaningful() {
         Position p = new Position(1, 2);
         assertAll(
                 () -> assertEquals(1, p.x()),
@@ -139,10 +139,10 @@ class PositionTest {
     void equalTo() {
         Position p = new Position(-2, 3);
         assertAll(
-                () -> assertFalse(p.equalTo(new Position(-2.000000000001, 2.999999999998))),
-                () -> assertFalse(p.equalTo(new Position(-2.0000000000009, 2.999999999998))),
-                () -> assertFalse(p.equalTo(new Position(-2.000000000001, 2.9999999999999))),
-                () -> assertTrue(p.equalTo(new Position(-2.0000000000009, 2.9999999999999))));
+                () -> assertFalse(p.equalTo(new Position(-2.000000001, 2.999999998))),
+                () -> assertFalse(p.equalTo(new Position(-2.0000000009, 2.999999998))),
+                () -> assertFalse(p.equalTo(new Position(-2.000000001, 2.9999999999))),
+                () -> assertTrue(p.equalTo(new Position(-2.0000000009, 2.9999999999))));
     }
 
     @Test
@@ -154,7 +154,7 @@ class PositionTest {
     }
 
     @Test
-    void scale_nonFinite() {
+    void scale_nonMeaningful() {
         Position p = new Position(7, -2);
         assertAll(
                 () -> assertThrowsExactly(PositionException.class,
@@ -166,7 +166,7 @@ class PositionTest {
     }
 
     @Test
-    void scale_finite() {
+    void scale_meaningful() {
         Position p = new Position(3.5, -0.4);
         Position ps = p.scale(Math.sqrt(23.765));
         assertTrue(ps.equalTo(new Position(17.0622756395505461896230, -1.94997435880577670738548)));

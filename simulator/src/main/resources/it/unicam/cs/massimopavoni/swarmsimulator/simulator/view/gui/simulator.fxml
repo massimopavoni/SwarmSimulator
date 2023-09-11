@@ -38,103 +38,159 @@
                             <children>
                                 <Label text="Simulation">
                                     <font>
-                                        <Font size="15.0" />
+                                        <Font name="System Bold" size="15.0" />
                                     </font>
                                     <VBox.margin>
-                                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                        <Insets bottom="8.0" left="13.0" top="8.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <GridPane hgap="5.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="40.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <padding>
+                                        <Insets bottom="8.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <children>
+                                        <Button fx:id="stepForwardButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#stepForwardButtonMouseClicked" prefHeight="36.0" prefWidth="36.0">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/step-forward.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="stepPlayButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#stepPlayButtonAction" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/step-play.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Spinner fx:id="simulationPeriodSpinner" disable="true" onKeyPressed="#simulationPeriodSpinnerKeyPressed" onScroll="#simulationPeriodSpinnerScroll" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                                        <Label fx:id="simulationFrequencyLabel" text="Hz" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                            <GridPane.margin>
+                                                <Insets left="8.0" />
+                                            </GridPane.margin>
+                                        </Label>
+                                        <Label fx:id="stepCountLabel" text="steps" GridPane.columnIndex="2" GridPane.columnSpan="2147483647">
+                                            <GridPane.margin>
+                                                <Insets left="8.0" />
+                                            </GridPane.margin>
+                                        </Label>
+                                    </children>
+                                </GridPane>
+                                <Label text="View">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="8.0" left="13.0" top="8.0" />
                                     </VBox.margin>
                                 </Label>
                                 <GridPane hgap="5.0" vgap="5.0">
                                     <columnConstraints>
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="36.0" minWidth="36.0" prefWidth="36.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" valignment="CENTER" vgrow="SOMETIMES" />
                                     </rowConstraints>
-                           <children>
-                              <Button fx:id="moveUpButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/move-arrow.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="moveDownButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                                       <image>
-                                          <Image url="@images/move-arrow.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="moveLeftButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.rowIndex="1">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
-                                       <image>
-                                          <Image url="@images/move-arrow.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="moveRightButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-                                       <image>
-                                          <Image url="@images/move-arrow.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="moveResetButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-                                       <image>
-                                          <Image url="@images/move-reset.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="zoomInButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/zoom-in.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="zoomOutButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/zoom-out.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="zoomResetButton" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/zoom-reset.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
+                                    <children>
+                                        <Button fx:id="moveUpButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveUpButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/move-arrow.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="moveDownButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveDownButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                                    <image>
+                                                        <Image url="@images/move-arrow.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="moveLeftButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveLeftButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.rowIndex="1">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+                                                    <image>
+                                                        <Image url="@images/move-arrow.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="moveRightButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveRightButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                                                    <image>
+                                                        <Image url="@images/move-arrow.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="moveResetButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#moveResetButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/move-reset.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="zoomInButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#zoomInButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/zoom-in.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="zoomOutButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#zoomOutButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/zoom-out.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="zoomResetButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#zoomResetButtonMouseClicked" prefHeight="36.0" prefWidth="36.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                            <graphic>
+                                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/zoom-reset.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets bottom="8.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
                                 </GridPane>
                                 <Separator prefWidth="200.0" />
                                 <GridPane hgap="5.0" vgap="10.0">
@@ -159,7 +215,7 @@
                                     <children>
                                         <Label text="Swarm" GridPane.halignment="LEFT">
                                             <font>
-                                                <Font size="15.0" />
+                                                <Font name="System Bold" size="15.0" />
                                             </font>
                                             <GridPane.margin>
                                                 <Insets left="8.0" />
@@ -170,9 +226,9 @@
                                                 <Insets />
                                             </GridPane.margin>
                                         </Button>
-                                        <TextArea fx:id="domainPathTextArea" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                                        <TextArea fx:id="domainPathTextArea" editable="false" onKeyPressed="#textAreaKeyPressed" prefHeight="64.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
                                             <GridPane.margin>
-                                                <Insets right="2.0" />
+                                                <Insets left="2.0" right="2.0" />
                                             </GridPane.margin>
                                         </TextArea>
                                         <Button fx:id="strategyFileChooseButton" mnemonicParsing="false" onAction="#strategyFileChooseButtonAction" prefWidth="70.0" text="Strategy" GridPane.rowIndex="3">
@@ -180,14 +236,14 @@
                                                 <Insets />
                                             </GridPane.margin>
                                         </Button>
-                                        <TextArea fx:id="strategyPathTextArea" editable="false" prefHeight="80.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+                                        <TextArea fx:id="strategyPathTextArea" editable="false" onKeyPressed="#textAreaKeyPressed" prefHeight="64.0" prefWidth="200.0" promptText="path" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
                                             <GridPane.margin>
-                                                <Insets right="2.0" />
+                                                <Insets left="2.0" right="2.0" />
                                             </GridPane.margin>
                                         </TextArea>
                                         <Label text="Spawn" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                                             <font>
-                                                <Font size="15.0" />
+                                                <Font name="System Bold" size="14.0" />
                                             </font>
                                             <GridPane.margin>
                                                 <Insets left="8.0" />
@@ -200,7 +256,7 @@
                                         </Label>
                                         <Spinner fx:id="dronesNumberSpinner" onKeyPressed="#dronesNumberSpinnerKeyPressed" onScroll="#dronesNumberSpinnerScroll" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
                                             <GridPane.margin>
-                                                <Insets right="2.0" />
+                                                <Insets left="2.0" right="2.0" />
                                             </GridPane.margin>
                                         </Spinner>
                                         <Label text="Shape" GridPane.halignment="LEFT" GridPane.rowIndex="7">
@@ -210,12 +266,12 @@
                                         </Label>
                                         <ChoiceBox fx:id="spawnShapeChoiceBox" onKeyPressed="#spawnShapeChoiceBoxKeyPressed" onScroll="#spawnShapeChoiceBoxScroll" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7">
                                             <GridPane.margin>
-                                                <Insets right="2.0" />
+                                                <Insets left="2.0" right="2.0" />
                                             </GridPane.margin>
                                         </ChoiceBox>
-                                        <TextArea fx:id="shapeArgsTextArea" onKeyPressed="#shapeArgsTextAreaKeyPressed" prefHeight="80.0" prefWidth="200.0" promptText="Shape arguments" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="8">
+                                        <TextArea fx:id="shapeArgsTextArea" onKeyPressed="#shapeArgsTextAreaKeyPressed" prefHeight="64.0" prefWidth="200.0" promptText="Shape arguments" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="8">
                                             <GridPane.margin>
-                                                <Insets right="2.0" />
+                                                <Insets left="2.0" right="2.0" />
                                             </GridPane.margin>
                                         </TextArea>
                                         <Label text="On boundary" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="9">
@@ -225,7 +281,7 @@
                                         </Label>
                                         <ToggleSwitch fx:id="onBoundaryToggleSwitch" onMouseClicked="#onBoundaryToggleSwitchMouseClicked" prefWidth="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="9">
                                             <GridPane.margin>
-                                                <Insets right="2.0" />
+                                                <Insets left="2.0" right="2.0" />
                                             </GridPane.margin>
                                         </ToggleSwitch>
                                         <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetButtonAction" prefWidth="70.0" text="Reset" GridPane.columnSpan="2" GridPane.rowIndex="10">
@@ -243,7 +299,7 @@
                                         <Insets />
                                     </VBox.margin>
                                     <padding>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        <Insets bottom="8.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </GridPane>
                             </children>
@@ -253,7 +309,7 @@
                 <Separator orientation="VERTICAL" prefHeight="200.0" />
                 <AnchorPane HBox.hgrow="ALWAYS">
                     <children>
-                        <ScatterChart fx:id="swarmChart" alternativeColumnFillVisible="true" animated="false" disable="true" layoutX="265.0" layoutY="92.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="12.0">
+                        <ScatterChart fx:id="swarmChart" alternativeColumnFillVisible="true" animated="false" disable="true" layoutX="265.0" layoutY="92.0" legendVisible="false" onScroll="#swarmChartScroll" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="12.0">
                             <xAxis>
                                 <NumberAxis autoRanging="false" lowerBound="-7.0" minorTickCount="0" tickUnit="1.0" upperBound="7.0" />
                             </xAxis>
@@ -268,12 +324,12 @@
                     <children>
                         <VBox layoutX="38.0" layoutY="76.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <TextArea fx:id="domainTextArea" editable="false" promptText="Domain" wrapText="true" VBox.vgrow="SOMETIMES">
+                                <TextArea fx:id="domainTextArea" editable="false" onKeyPressed="#textAreaKeyPressed" promptText="Domain" wrapText="true" VBox.vgrow="SOMETIMES">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </VBox.margin>
                                 </TextArea>
-                                <TextArea fx:id="strategyTextArea" editable="false" promptText="Strategy" wrapText="true" VBox.vgrow="ALWAYS">
+                                <TextArea fx:id="strategyTextArea" editable="false" onKeyPressed="#textAreaKeyPressed" promptText="Strategy" wrapText="true" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </VBox.margin>

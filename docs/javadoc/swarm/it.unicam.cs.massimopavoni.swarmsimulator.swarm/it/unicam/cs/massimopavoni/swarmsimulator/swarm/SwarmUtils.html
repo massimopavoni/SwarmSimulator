@@ -112,24 +112,29 @@ loadScripts(document, 'script');</script>
 <div class="block">Compare two doubles with the configured tolerance.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isPositive(double)" class="member-name-link">isPositive</a><wbr>(double&nbsp;a)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isMeaningful(double)" class="member-name-link">isMeaningful</a><wbr>(double&nbsp;a)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Check if a double is finite and positive.</div>
+<div class="block">Check if a double is meaningful for precise swarm operations.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parallelize(java.lang.Runnable)" class="member-name-link">parallelize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;task)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isPositive(double)" class="member-name-link">isPositive</a><wbr>(double&nbsp;a)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Check if a double is meaningful and positive.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parallelize(java.lang.Runnable)" class="member-name-link">parallelize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;task)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Swarm parallel task execution without final result.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;T</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parallelize(java.util.concurrent.Callable)" class="member-name-link">parallelize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html" title="class or interface in java.util.concurrent" class="external-link">Callable</a>&lt;T&gt;&nbsp;task)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T&gt;&nbsp;T</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parallelize(java.util.concurrent.Callable)" class="member-name-link">parallelize</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html" title="class or interface in java.util.concurrent" class="external-link">Callable</a>&lt;T&gt;&nbsp;task)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Swarm parallel task execution with final result.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#toDoubleArray(java.lang.String%5B%5D,int)" class="member-name-link">toDoubleArray</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static double[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#toDoubleArray(java.lang.String%5B%5D,int)" class="member-name-link">toDoubleArray</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args,
  int&nbsp;skip)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Converts a string array to a double array skipping some elements.</div>
 </div>
 </div>
@@ -165,15 +170,28 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="isPositive(double)">
-<h3>isPositive</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPositive</span><wbr><span class="parameters">(double&nbsp;a)</span></div>
-<div class="block">Check if a double is finite and positive.</div>
+<section class="detail" id="isMeaningful(double)">
+<h3>isMeaningful</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isMeaningful</span><wbr><span class="parameters">(double&nbsp;a)</span></div>
+<div class="block">Check if a double is meaningful for precise swarm operations.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>a</code> - double to check</dd>
 <dt>Returns:</dt>
-<dd>true if the double is finite and positive, false otherwise</dd>
+<dd>true if the double is meaningful, false otherwise</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isPositive(double)">
+<h3>isPositive</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPositive</span><wbr><span class="parameters">(double&nbsp;a)</span></div>
+<div class="block">Check if a double is meaningful and positive.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>a</code> - double to check</dd>
+<dt>Returns:</dt>
+<dd>true if the double is meaningful and positive, false otherwise</dd>
 </dl>
 </section>
 </li>
