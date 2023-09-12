@@ -2,8 +2,6 @@ plugins {
     id("it.unicam.cs.massimopavoni.swarmsimulator.java-application-conventions")
     // JavaFX plugin for graphics support
     id("org.openjfx.javafxplugin") version "0.0.14"
-    // John Rengelman's shadow plugin for fat JAR packaging
-    id("com.github.johnrengelman.shadow") version "8.+"
     // Beryx's jlink plugin for final application packaging
     id("org.beryx.jlink") version "2.+"
 }
