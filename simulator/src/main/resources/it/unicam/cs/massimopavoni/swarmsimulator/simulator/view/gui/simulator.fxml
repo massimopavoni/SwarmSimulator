@@ -61,7 +61,7 @@
                                         <Insets bottom="8.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                     <children>
-                                        <Button fx:id="stepForwardButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onMouseClicked="#stepForwardButtonMouseClicked" prefHeight="36.0" prefWidth="36.0">
+                                        <Button fx:id="stepForwardButton" disable="true" maxHeight="36.0" maxWidth="36.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#stepForwardButtonAction" prefHeight="36.0" prefWidth="36.0">
                                             <graphic>
                                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>

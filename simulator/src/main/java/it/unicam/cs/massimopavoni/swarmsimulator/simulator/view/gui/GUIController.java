@@ -494,12 +494,12 @@ public final class GUIController implements Initializable {
     //------------------------------------------------------------------------------------------------
 
     /**
-     * Step forward button mouse clicked event handler.
+     * Step forward button action event handler.
      *
-     * @param event mouse event
+     * @param event action event
      */
     @FXML
-    private void stepForwardButtonMouseClicked(MouseEvent event) {
+    private void stepForwardButtonAction(ActionEvent event) {
         swarmChartController.swarmStep();
         event.consume();
     }
