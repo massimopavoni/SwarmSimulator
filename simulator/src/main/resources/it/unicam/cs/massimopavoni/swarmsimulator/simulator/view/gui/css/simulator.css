@@ -1,0 +1,222 @@
+.root {
+	-fx-background-color: #333;
+	-fx-focus-color: #00cc1c;
+}
+
+.label {
+	-fx-text-fill: #fff;
+}
+
+.separator .line {
+	-fx-border-color: #fff;
+	-fx-border-style: solid;
+	-fx-border-width: .25px;
+}
+
+.button {
+	-fx-color: #444;
+	-fx-background-radius: 7;
+	-fx-shadow-highlight-color: transparent;
+}
+
+.button:pressed {
+	-fx-color: #333;
+}
+
+.menu-bar {
+	-fx-background-color: #333;
+}
+
+.menu:hover,
+.menu:showing {
+	-fx-background-color: #505050;
+}
+
+.menu-item:focused {
+	-fx-background-color: #505050;
+}
+
+.context-menu {
+	-fx-background-color: #393939;
+}
+
+.chart-plot-background {
+	-fx-background-color: transparent;
+}
+
+.chart-horizontal-grid-lines,
+.chart-vertical-grid-lines {
+	-fx-stroke: #505050;
+}
+
+.chart-horizontal-zero-line,
+.chart-vertical-zero-line {
+	-fx-stroke: #aaa;
+}
+
+.axis {
+	-fx-tick-label-fill: #fff;
+}
+
+.default-color1.chart-symbol {
+	-fx-background-color: #00cc1c;
+	-fx-background-radius: 0;
+	-fx-background-insets: 0;
+	-fx-shape: "M5,0 L10,8 L0,8 Z";
+}
+
+.text-area,
+.text-field {
+	-fx-prompt-text-fill: #bbb;
+	-fx-text-fill: #fff;
+	-fx-highlight-fill: #00cc1c44;
+}
+
+.text-area .content {
+	-fx-background-color: #393939;
+	-fx-border-color: #393939;
+	-fx-border-radius: 7;
+}
+
+.text-field {
+	-fx-background-color: #393939;
+	-fx-border-color: #555;
+	-fx-border-radius: 7;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+	-fx-background-color: #393939;
+	-fx-border-color: transparent;
+	-fx-background-radius: 0.0em;
+	-fx-border-radius: 2.0em;
+}
+
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
+	-fx-background-color: transparent;
+	-fx-background-radius: 0.0em;
+	-fx-padding: 0.0 0.0 10.0 0.0;
+
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+	-fx-background-color: transparent;
+	-fx-background-radius: 0.0em;
+	-fx-padding: 0.0 10.0 0.0 0.0;
+
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+	-fx-shape: " ";
+	-fx-padding: 0.15em 0.0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+	-fx-shape: " ";
+	-fx-padding: 0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+	-fx-background-color: #555;
+	-fx-background-insets: 2.0, 0.0, 0.0;
+	-fx-background-radius: 2.0em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+	-fx-background-color: #00cc1cbb;
+	-fx-background-insets: 2.0, 0.0, 0.0;
+	-fx-background-radius: 2.0em;
+}
+
+.spinner {
+	-fx-shadow-highlight-color: transparent;
+	-fx-text-box-border: transparent;
+	-fx-base: transparent;
+	-fx-background-radius: 7;
+}
+
+.spinner:focused {
+	-fx-background-insets: -0.8;
+}
+
+.spinner .text-field {
+	-fx-background-radius: 7;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+	-fx-color: #444;
+	-fx-background-radius: 7;
+}
+
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+	-fx-color: #333;
+}
+
+.spinner .increment-arrow-button .increment-arrow,
+.spinner .decrement-arrow-button .decrement-arrow {
+	-fx-background-color: #fff;
+}
+
+.choice-box {
+	-fx-color: #444;
+	-fx-background-radius: 7;
+	-fx-shadow-highlight-color: transparent;
+}
+
+.choice-box:pressed {
+	-fx-color: #333;
+}
+
+.choice-box .arrow {
+	-fx-background-color: #fff;
+}
+
+.toggle-switch {
+	-fx-color: #444;
+	-thumb-move-animation-time: 200;
+}
+
+.toggle-switch .thumb {
+	-fx-background-color: #444;
+	-fx-background-insets: -0.2, 0, -1.4, 1, 2;
+	-fx-padding: 0.8em;
+	-fx-alignment: CENTER;
+	-fx-content-display: LEFT;
+}
+
+.toggle-switch:hover .thumb {
+	-fx-color: #444;
+}
+
+.toggle-switch:focused .thumb {
+	-fx-background-color: #444;
+	-fx-background-insets: -0.2, 0, -1.4, 1, 2;
+}
+
+.toggle-switch .thumb-area {
+	-fx-background-color: #666;
+	-fx-background-insets: 1;
+	-fx-padding: 0.7em 1.7em 0.7em 1.7em;
+}
+
+.toggle-switch:focused .thumb-area {
+	-fx-color: #666;
+}
+
+.toggle-switch:selected .thumb-area {
+	-fx-background-color: #00a816;
+	-fx-background-insets: 1;
+}
+
+.toggle-switch:selected:focused .thumb-area {
+	-fx-background-color: #00a816;
+	-fx-background-insets: 1;
+}

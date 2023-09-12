@@ -1,0 +1,9 @@
+module:it.unicam.cs.massimopavoni.swarmsimulator.swarm
+it.unicam.cs.massimopavoni.swarmsimulator.swarm
+it.unicam.cs.massimopavoni.swarmsimulator.swarm.core
+it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain
+it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.parser
+it.unicam.cs.massimopavoni.swarmsimulator.swarm.domain.shapes
+it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy
+it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.directives
+it.unicam.cs.massimopavoni.swarmsimulator.swarm.strategy.parser

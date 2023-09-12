@@ -127,7 +127,4 @@ sonarqube-scan.sh
 build
 
 # Local gradle properties
-gradle-local.properties
-
-# Ignore sonarscan script for code quality analysis
-sonarscan
+gradle.properties

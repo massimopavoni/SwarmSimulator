@@ -1,0 +1,9 @@
+{
+  "tolerance": null,
+  "parallelism": null,
+  "maxPolygonVertices": null,
+  "maxDomainRegions": null,
+  "maxDronesNumber": null,
+  "signalRegex": null,
+  "echoRegex": null
+}
