@@ -8,7 +8,7 @@ repositories {
     mavenCentral()
 }
 
-rootProject.version = "0.0.1a"
+rootProject.version = "1.0.0"
 
 sonar {
     properties {

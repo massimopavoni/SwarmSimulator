@@ -20,11 +20,13 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
+                  <MenuItem fx:id="helpControlsMenuItem" mnemonicParsing="false" onAction="#helpControlsMenuItemAction" text="Controls" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#helpAboutMenuItemAction" text="About" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#helpGitHubMenuItemAction" text="GitHub" />
                         <MenuItem fx:id="helpAuthorMenuItem" mnemonicParsing="false" onAction="#helpAuthorMenuItemAction" text="author" />
                         <MenuItem mnemonicParsing="false" onAction="#helpLicenseMenuItemAction" text="License" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#helpAboutMenuItemAction" text="About" />
                     </items>
                 </Menu>
             </menus>

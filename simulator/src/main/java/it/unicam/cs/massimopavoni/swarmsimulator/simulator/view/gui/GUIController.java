@@ -2,10 +2,7 @@ package it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui;
 
 import it.unicam.cs.massimopavoni.swarmsimulator.simulator.Resources;
 import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.ErrorType;
-import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.NodeFocusListener;
-import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.SwarmAbout;
-import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.SwarmAlert;
-import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.SwarmPeriodSpinnerValueFactory;
+import it.unicam.cs.massimopavoni.swarmsimulator.simulator.view.gui.control.*;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmException;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.SwarmUtils;
 import it.unicam.cs.massimopavoni.swarmsimulator.swarm.core.HiveMind;
@@ -64,6 +61,10 @@ public final class GUIController implements Initializable {
      * Alert dialog for errors.
      */
     private final SwarmAlert errorAlert;
+    /**
+     * Application controls dialog.
+     */
+    private final SwarmControls controlsDialog;
     /**
      * Application about dialog.
      */
@@ -253,6 +254,7 @@ public final class GUIController implements Initializable {
         this.stage.setOnShown(event -> onShown());
         errorAlert = new SwarmAlert(AlertType.ERROR);
         shapeFactory = new SwarmShapeFactory();
+        controlsDialog = new SwarmControls();
         aboutDialog = new SwarmAbout();
         focusableNodes = new ArrayList<>();
         swarmFileChooser = new FileChooser();
@@ -289,6 +291,7 @@ public final class GUIController implements Initializable {
     private void onShowing() {
         errorAlert.initOwner(stage);
         aboutDialog.initOwner(stage);
+        controlsDialog.initOwner(stage);
         // Prevent alt key from focusing menu bar, as it's a modifier for other controls
         stage.getScene().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.isAltDown())
@@ -447,6 +450,22 @@ public final class GUIController implements Initializable {
     }
 
     /**
+     * Help controls menu item action event handler.
+     */
+    @FXML
+    private void helpControlsMenuItemAction() {
+        controlsDialog.show();
+    }
+
+    /**
+     * Help about menu item action event handler.
+     */
+    @FXML
+    private void helpAboutMenuItemAction() {
+        aboutDialog.showAndWait();
+    }
+
+    /**
      * Help GitHub menu item action event handler.
      */
     @FXML
@@ -468,14 +487,6 @@ public final class GUIController implements Initializable {
     @FXML
     private void helpLicenseMenuItemAction() {
         GUIApplication.openURI(Resources.LICENSE);
-    }
-
-    /**
-     * Help about menu item action event handler.
-     */
-    @FXML
-    private void helpAboutMenuItemAction() {
-        aboutDialog.showAndWait();
     }
     //endregion
 
