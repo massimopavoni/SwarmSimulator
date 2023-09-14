@@ -716,7 +716,9 @@ public final class GUIController implements Initializable {
         simulationPeriodSpinner.setValueFactory(new SwarmPeriodSpinnerValueFactory(
                 shortestSimulationPeriod, longestSimulationPeriod,
                 shortestSimulationPeriod, 1));
-        simulationPeriodSpinner.getEditor().setText(String.valueOf(shortestSimulationPeriod));
+        simulationPeriodSpinner.getEditor().setText(
+                simulationPeriodSpinner.getValueFactory().getConverter()
+                        .toString(shortestSimulationPeriod));
         simulationPeriodChange(simulationPeriodSpinner.getValue());
         stepCountLabel.setText("0 steps");
     }
