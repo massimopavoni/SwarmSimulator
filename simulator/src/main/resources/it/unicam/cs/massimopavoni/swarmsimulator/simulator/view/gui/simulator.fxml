@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<VBox prefHeight="900.0" prefWidth="1600.0" stylesheets="@css/simulator.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="900.0" prefWidth="1600.0" stylesheets="@css/simulator.css" xmlns="http://javafx.com/javafx/21.0.1-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>

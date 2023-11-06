@@ -971,23 +971,19 @@ public final class GUIController implements Initializable {
      * @param e exception
      */
     private void handleSpawnException(Exception e) {
-        // Would look better with patter matching switch, will come with Java 21 LTS project update
-        if (e instanceof NumberFormatException)
-            errorAlert.showAndWait(ErrorType.ERROR, "While converting shape arguments.", e);
-        else if (e instanceof ShapeException)
-            errorAlert.showAndWait(ErrorType.ERROR, "While creating shape.", e);
-        else if (e instanceof DomainParserException)
-            errorAlert.showAndWait(ErrorType.ERROR, "While creating domain.", e);
-        else if (e instanceof StrategyParserException)
-            errorAlert.showAndWait(ErrorType.ERROR, "While creating strategy.", e);
-        else if (e instanceof HiveMindException)
-            errorAlert.showAndWait(ErrorType.FATAL, "While initializing swarm properties.", e);
-        else if (e instanceof SwarmException)
-            errorAlert.showAndWait(ErrorType.ERROR, "While creating swarm.", e);
-        else if (e instanceof IOException)
-            errorAlert.showAndWait(ErrorType.ERROR, "While reading swarm files.", e);
-        else
-            errorAlert.showAndWait(ErrorType.ERROR, "While spawning swarm.", e);
+        switch (e) {
+            case NumberFormatException nfe ->
+                    errorAlert.showAndWait(ErrorType.ERROR, "While converting shape arguments.", nfe);
+            case ShapeException se -> errorAlert.showAndWait(ErrorType.ERROR, "While creating shape.", se);
+            case DomainParserException dpe -> errorAlert.showAndWait(ErrorType.ERROR, "While creating domain.", dpe);
+            case StrategyParserException spe ->
+                    errorAlert.showAndWait(ErrorType.ERROR, "While creating strategy.", spe);
+            case HiveMindException hme ->
+                    errorAlert.showAndWait(ErrorType.FATAL, "While initializing swarm properties.", hme);
+            case SwarmException se -> errorAlert.showAndWait(ErrorType.ERROR, "While creating swarm.", se);
+            case IOException ioe -> errorAlert.showAndWait(ErrorType.ERROR, "While reading swarm files.", ioe);
+            default -> errorAlert.showAndWait(ErrorType.ERROR, "While spawning swarm.", e);
+        }
     }
     //endregion
 }

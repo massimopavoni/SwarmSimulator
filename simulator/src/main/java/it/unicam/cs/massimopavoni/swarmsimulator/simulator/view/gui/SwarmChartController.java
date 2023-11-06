@@ -294,18 +294,13 @@ public final class SwarmChartController {
      */
     private javafx.scene.shape.Shape shapeTransform(Shape shape) {
         double[] args = Arrays.stream(shape.getProperties()).map(a -> a * shapeScalingFactor).toArray();
-        // Would look better with patter matching switch, will come with Java 21 LTS project update
-        if (shape instanceof Circle)
-            return new javafx.scene.shape.Circle(args[0], args[1], args[2]);
-        else if (shape instanceof Ellipse)
-            return new javafx.scene.shape.Ellipse(args[0], args[1], args[2], args[3]);
-        else if (shape instanceof Rectangle)
-            return new javafx.scene.shape.Rectangle(args[0], args[1], args[2], args[3]);
-        else if (shape instanceof Polygon)
-            return new javafx.scene.shape.Polygon(IntStream.range(0, args.length)
+        return switch (shape) {
+            case Circle ignored -> new javafx.scene.shape.Circle(args[0], args[1], args[2]);
+            case Ellipse ignored -> new javafx.scene.shape.Ellipse(args[0], args[1], args[2], args[3]);
+            case Rectangle ignored -> new javafx.scene.shape.Rectangle(args[0], args[1], args[2], args[3]);
+            case Polygon ignored -> new javafx.scene.shape.Polygon(IntStream.range(0, args.length)
                     .mapToDouble(i -> i % 2 == 0 ? args[i] : -args[i]).toArray());
-        else
-            throw new IllegalArgumentException("Unknown shape type: " + shape.getClass().getName());
+        };
     }
 
     /**
