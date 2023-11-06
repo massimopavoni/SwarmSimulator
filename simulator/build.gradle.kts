@@ -1,7 +1,7 @@
 plugins {
     id("it.unicam.cs.massimopavoni.swarmsimulator.java-application-conventions")
     // JavaFX plugin for graphics support
-    id("org.openjfx.javafxplugin") version "0.0.14"
+    id("org.openjfx.javafxplugin") version "0.0.+"
     // Beryx's jlink plugin for final application packaging
 //    id("org.beryx.jlink") version "2.+"
 }

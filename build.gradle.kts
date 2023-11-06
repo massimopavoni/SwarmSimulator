@@ -1,6 +1,6 @@
 plugins {
     // SonarQube plugin for code quality analysis
-    id("org.sonarqube") version "4.2.1.3168"
+    id("org.sonarqube") version "4.+"
 }
 
 repositories {
