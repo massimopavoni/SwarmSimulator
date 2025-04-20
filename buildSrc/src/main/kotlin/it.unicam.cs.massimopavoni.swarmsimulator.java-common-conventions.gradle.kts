@@ -20,7 +20,7 @@ dependencies {
     // Use Guava for common utilities
     implementation("com.google.guava:guava:33.+")
     // Use JUnit Jupiter for testing
-    testImplementation("org.junit.jupiter:junit-jupiter:5.+")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.+")
 }
 
 tasks.javadoc {

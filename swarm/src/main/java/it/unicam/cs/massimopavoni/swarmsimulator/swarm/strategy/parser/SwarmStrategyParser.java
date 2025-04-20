@@ -74,7 +74,7 @@ public final class SwarmStrategyParser implements StrategyParser {
             lines.forEach(this::parseLine);
             if (!uncompletedJumpDirectives.isEmpty())
                 throw new StrategyException("Inconsistent loop directives detected.");
-            if (Iterables.getLast(strategy, null).getClass() != Stop.class)
+            if (Iterables.getLast(strategy, new Done(0)).getClass() != Stop.class)
                 throw new StrategyException("Strategy must end with a stop directive.");
             return strategy.stream().collect(toImmutableList());
         } catch (DirectiveException | StrategyException | IllegalArgumentException e) {
@@ -108,7 +108,7 @@ public final class SwarmStrategyParser implements StrategyParser {
             throw new DirectiveException("Not enough arguments for directive parsing.");
         List<String> args = new ArrayList<>(List.of(line.trim().split(" ")));
         ParserDirective parserDirective = ParserDirective.fromLine(line.toLowerCase());
-        args.remove(0);
+        args.removeFirst();
         if (EchoDirective.isPermittedDirective(parserDirective.getDirectiveClass()))
             addDirective(parserDirective, args);
         else if (JumpDirective.isPermittedDirective(parserDirective.getDirectiveClass()))
@@ -145,10 +145,10 @@ public final class SwarmStrategyParser implements StrategyParser {
         if (uncompletedJumpDirectives.isEmpty())
             throw new StrategyException("Unexpected inconsistent loop directive received.");
         int index = uncompletedJumpIndexes.pop();
-        uncompletedJumpArgs.getFirst().add(0, String.valueOf(lineCounter + 1));
+        uncompletedJumpArgs.getFirst().addFirst(String.valueOf(lineCounter + 1));
         addDirective(index - uncompletedJumpIndexes.size(),
                 uncompletedJumpDirectives.pop(), uncompletedJumpArgs.pop());
-        args.add(0, String.valueOf(index));
+        args.addFirst(String.valueOf(index));
         addDirective(parserDirective, args);
     }
 
