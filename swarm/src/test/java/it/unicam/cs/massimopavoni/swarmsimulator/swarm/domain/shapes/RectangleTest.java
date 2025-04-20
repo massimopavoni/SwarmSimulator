@@ -47,7 +47,7 @@ class RectangleTest {
                         () -> r.set(new Rectangle(new Position(0, 1), new Position(4, 3)))),
                 () -> assertTrue(r.get().getCenter().equalTo(new Position(0, 1))),
                 () -> assertTrue(r.get().getWidthHeight().equalTo(new Position(4, 3))),
-                () -> assertTrue(r.get().getVertices().get(0).equalTo(new Position(-2, -0.5))),
+                () -> assertTrue(r.get().getVertices().getFirst().equalTo(new Position(-2, -0.5))),
                 () -> assertTrue(r.get().getVertices().get(1).equalTo(new Position(2, -0.5))),
                 () -> assertTrue(r.get().getVertices().get(2).equalTo(new Position(2, 2.5))),
                 () -> assertTrue(r.get().getVertices().get(3).equalTo(new Position(-2, 2.5))));
@@ -78,9 +78,9 @@ class RectangleTest {
     void getRandomPositions_onBoundary() {
         Rectangle r = new Rectangle(new Position(-3, 2), new Position(5, 7));
         List<Position> rps = r.getRandomPositions(true, SwarmProperties.maxDronesNumber());
-        double xMin = r.getVertices().get(0).x();
+        double xMin = r.getVertices().getFirst().x();
         double xMax = r.getVertices().get(2).x();
-        double yMin = r.getVertices().get(0).y();
+        double yMin = r.getVertices().getFirst().y();
         double yMax = r.getVertices().get(2).y();
         assertAll(
                 () -> assertEquals(SwarmProperties.maxDronesNumber(), rps.size()),
@@ -108,7 +108,7 @@ class RectangleTest {
         assertAll(
                 () -> assertTrue(br.getCenter().equalTo(new Position(-3, 2))),
                 () -> assertTrue(br.getWidthHeight().equalTo(new Position(5, 7))),
-                () -> assertTrue(br.vertices.get(0).equalTo(new Position(-5.5, -1.5))),
+                () -> assertTrue(br.vertices.getFirst().equalTo(new Position(-5.5, -1.5))),
                 () -> assertTrue(br.vertices.get(1).equalTo(new Position(-0.5, -1.5))),
                 () -> assertTrue(br.vertices.get(2).equalTo(new Position(-0.5, 5.5))),
                 () -> assertTrue(br.vertices.get(3).equalTo(new Position(-5.5, 5.5))));

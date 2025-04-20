@@ -40,7 +40,7 @@ class DoneTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Done d = new Done(1);
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         oneDrone.setCurrentDirective(13);
         assertAll(
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),

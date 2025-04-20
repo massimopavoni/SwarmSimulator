@@ -58,7 +58,7 @@ class PolygonTest {
                         new Position(0, 0),
                         new Position(1, 1),
                         new Position(1, 0)))))),
-                () -> assertTrue(p.get().getVertices().get(0).equalTo(new Position(0, 0))),
+                () -> assertTrue(p.get().getVertices().getFirst().equalTo(new Position(0, 0))),
                 () -> assertTrue(p.get().getVertices().get(1).equalTo(new Position(1, 1))),
                 () -> assertTrue(p.get().getVertices().get(2).equalTo(new Position(1, 0))));
     }
@@ -283,7 +283,6 @@ class PolygonTest {
                 new Position(-2, 5),
                 new Position(-2, -1))));
         List<Position> rps = p.getRandomPositions(true, SwarmProperties.maxDronesNumber());
-        Rectangle br = p.getBoundingRectangle();
         double xMin = p.vertices.stream().mapToDouble(Position::x).min().orElseThrow();
         double xMax = p.vertices.stream().mapToDouble(Position::x).max().orElseThrow();
         double yMin = p.vertices.stream().mapToDouble(Position::y).min().orElseThrow();
@@ -329,7 +328,7 @@ class PolygonTest {
         assertAll(
                 () -> assertTrue(br.getCenter().equalTo(new Position(-0.5, 2))),
                 () -> assertTrue(br.getWidthHeight().equalTo(new Position(7, 6))),
-                () -> assertTrue(br.vertices.get(0).equalTo(new Position(-4, -1))),
+                () -> assertTrue(br.vertices.getFirst().equalTo(new Position(-4, -1))),
                 () -> assertTrue(br.vertices.get(1).equalTo(new Position(3, -1))),
                 () -> assertTrue(br.vertices.get(2).equalTo(new Position(3, 5))),
                 () -> assertTrue(br.vertices.get(3).equalTo(new Position(-4, 5))));

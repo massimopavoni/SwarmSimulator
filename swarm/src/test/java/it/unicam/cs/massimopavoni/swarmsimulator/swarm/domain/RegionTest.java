@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RegionTest {
-    SwarmShapeFactory swarmShapeFactory = new SwarmShapeFactory();
+    final SwarmShapeFactory swarmShapeFactory = new SwarmShapeFactory();
 
     @BeforeAll
     static void setUp() throws HiveMindException {

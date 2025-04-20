@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" stylesheets="@css/about.css" xmlns="http://javafx.com/javafx/21.0.1-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="500.0" stylesheets="@css/about.css" xmlns="http://javafx.com/javafx/21.0.1-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" VBox.vgrow="NEVER">
          <children>

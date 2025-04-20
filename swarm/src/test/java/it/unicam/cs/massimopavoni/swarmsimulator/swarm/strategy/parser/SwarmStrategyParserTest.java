@@ -19,8 +19,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SwarmStrategyParserTest {
-    SwarmStrategyParser swarmStrategyParser = new SwarmStrategyParser(new SwarmDirectiveFactory());
-    AtomicReference<List<Directive>> strategy = new AtomicReference<>();
+    final SwarmStrategyParser swarmStrategyParser = new SwarmStrategyParser(new SwarmDirectiveFactory());
+    final AtomicReference<List<Directive>> strategy = new AtomicReference<>();
 
     @BeforeAll
     static void setUp() throws HiveMindException {
@@ -67,7 +67,7 @@ class SwarmStrategyParserTest {
         assertAll(
                 () -> e.set(assertThrowsExactly(StrategyParserException.class,
                         () -> swarmStrategyParser.parseStrategy("""
-                                                                
+                                
                                 DONE
                                 STOP"""))),
                 () -> assertTrue(e.get().getMessage().toLowerCase().contains("line 0")),
@@ -228,8 +228,8 @@ class SwarmStrategyParserTest {
                 () -> assertEquals(
                         List.of(Until.class, Follow.class, Continue.class, Done.class, Radiate.class, Stop.class),
                         strategy.get().stream().map(Directive::getClass).toList()),
-                () -> assertEquals(4, ((Until) strategy.get().get(0)).jumpIndex()),
-                () -> assertEquals("first_shape", ((Until) strategy.get().get(0)).signal()),
+                () -> assertEquals(4, ((Until) strategy.get().getFirst()).jumpIndex()),
+                () -> assertEquals("first_shape", ((Until) strategy.get().getFirst()).signal()),
                 () -> assertEquals("in_first_shape", ((Follow) strategy.get().get(1)).echo()),
                 () -> assertEquals(100, ((Follow) strategy.get().get(1)).range()),
                 () -> assertEquals(5, ((Follow) strategy.get().get(1)).speed()),

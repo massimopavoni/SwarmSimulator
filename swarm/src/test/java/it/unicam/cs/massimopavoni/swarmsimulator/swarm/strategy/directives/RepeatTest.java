@@ -51,7 +51,7 @@ class RepeatTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Repeat d = new Repeat(5, 3);
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         oneDrone.setCurrentDirective(3);
         assertAll(
                 () -> assertEquals(0, oneDrone.jumpCounter(3)),
@@ -71,7 +71,7 @@ class RepeatTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Repeat d = new Repeat(5);
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         oneDrone.setCurrentDirective(3);
         assertAll(
                 () -> assertEquals(0, oneDrone.jumpCounter(3)),

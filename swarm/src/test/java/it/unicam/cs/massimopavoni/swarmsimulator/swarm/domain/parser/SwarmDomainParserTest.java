@@ -22,8 +22,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SwarmDomainParserTest {
-    DomainParser swarmDomainParser = new SwarmDomainParser(new SwarmShapeFactory());
-    AtomicReference<List<Region>> domain = new AtomicReference<>();
+    final DomainParser swarmDomainParser = new SwarmDomainParser(new SwarmShapeFactory());
+    final AtomicReference<List<Region>> domain = new AtomicReference<>();
 
     @BeforeAll
     static void setUp() throws HiveMindException {
@@ -158,6 +158,6 @@ class SwarmDomainParserTest {
                         domain.get().stream().map(Region::shapeType).toList()),
                 () -> assertArrayEquals(
                         new double[]{1, 2, 3},
-                        domain.get().get(0).shape().getProperties()));
+                        domain.get().getFirst().shape().getProperties()));
     }
 }

@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SwarmDirectiveFactoryTest {
-    DirectiveFactory swarmDirectiveFactory = new SwarmDirectiveFactory();
-    AtomicReference<Directive> directive = new AtomicReference<>();
+    final DirectiveFactory swarmDirectiveFactory = new SwarmDirectiveFactory();
+    final AtomicReference<Directive> directive = new AtomicReference<>();
 
     @BeforeAll
     static void setUp() throws HiveMindException {

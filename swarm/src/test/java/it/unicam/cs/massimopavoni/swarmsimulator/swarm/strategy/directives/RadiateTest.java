@@ -48,7 +48,7 @@ class RadiateTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Radiate d = new Radiate("neo_ooo");
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         assertAll(
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),
                 () -> assertTrue(oneDrone.isRadiating("neo_ooo")));

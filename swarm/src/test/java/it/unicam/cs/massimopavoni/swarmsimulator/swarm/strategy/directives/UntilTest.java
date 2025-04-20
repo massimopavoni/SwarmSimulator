@@ -51,7 +51,7 @@ class UntilTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Until d = new Until(9, "first_shape");
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         oneDrone.setCurrentDirective(3);
         assertAll(
                 () -> assertEquals(0, oneDrone.jumpCounter(3)),

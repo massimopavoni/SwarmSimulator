@@ -1,6 +1,6 @@
 plugins {
     // SonarQube plugin for code quality analysis
-    id("org.sonarqube") version "4.+"
+    id("org.sonarqube") version "6.+"
 }
 
 repositories {
@@ -8,7 +8,7 @@ repositories {
     mavenCentral()
 }
 
-rootProject.version = "1.1.0"
+rootProject.version = "1.2.0"
 
 sonar {
     properties {

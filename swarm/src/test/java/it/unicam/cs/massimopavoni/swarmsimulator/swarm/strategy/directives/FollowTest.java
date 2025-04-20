@@ -63,7 +63,7 @@ class FollowTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 100}, true);
         Follow d = new Follow("follow_me_origin", 200, Math.sqrt(50));
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         Position start = new Position(30, 30);
         oneDrone.setDirection(oneDrone.position().directionTo(start));
         oneDrone.setSpeed(oneDrone.position().distanceTo(start));
@@ -104,7 +104,7 @@ class FollowTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 100}, true);
         Follow d = new Follow("follow_me_origin", 200, Math.sqrt(50));
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         Position start = new Position(30, 30);
         oneDrone.setDirection(oneDrone.position().directionTo(start));
         oneDrone.setSpeed(oneDrone.position().distanceTo(start));

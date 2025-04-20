@@ -1,9 +1,7 @@
 plugins {
     id("it.unicam.cs.massimopavoni.swarmsimulator.java-application-conventions")
     // JavaFX plugin for graphics support
-    id("org.openjfx.javafxplugin") version "0.0.+"
-    // Beryx's jlink plugin for final application packaging
-//    id("org.beryx.jlink") version "2.+"
+    id("org.openjfx.javafxplugin") version "0.1.+"
 }
 
 dependencies {
@@ -45,17 +43,3 @@ application {
     mainModule.set("it.unicam.cs.massimopavoni.swarmsimulator.simulator")
     mainClass.set("it.unicam.cs.massimopavoni.swarmsimulator.simulator.launcher.Launcher")
 }
-
-//jlink {
-//    imageZip.set(File("${layout.buildDirectory}/image-zip/simulator.zip"))
-//    addOptions("--bind-services", "--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages")
-//    listOf("win", "linux", "mac").forEach { name ->
-//        targetPlatform(name) {
-//            addExtraModulePath(System.getenv("OPENJFX_MODS_" + name.uppercase()))
-//        }
-//    }
-//    launcher {
-//        name = rootProject.name
-//        imageDir.set(File("$rootDir/bin"))
-//    }
-//}

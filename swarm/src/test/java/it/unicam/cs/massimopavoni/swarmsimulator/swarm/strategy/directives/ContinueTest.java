@@ -41,7 +41,7 @@ class ContinueTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Continue d = new Continue(8);
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         oneDrone.setCurrentDirective(2);
         assertAll(
                 () -> assertEquals(0, oneDrone.jumpCounter(2)),

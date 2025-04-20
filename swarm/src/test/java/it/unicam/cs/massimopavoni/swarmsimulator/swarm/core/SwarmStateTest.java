@@ -25,8 +25,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SwarmStateTest {
-    AtomicReference<SwarmState> swarmState = new AtomicReference<>();
-    ShapeFactory shapeFactory = new SwarmShapeFactory();
+    final AtomicReference<SwarmState> swarmState = new AtomicReference<>();
+    final ShapeFactory shapeFactory = new SwarmShapeFactory();
 
     @BeforeAll
     static void setUp() throws HiveMindException {
@@ -148,7 +148,7 @@ class SwarmStateTest {
                 () -> assertTrue(swarmState.get().swarm().stream()
                         .allMatch(d -> SwarmUtils.compare(d.position()
                                 .distanceTo(spawnCircle.getCenter()), spawnCircle.getRadius().x()) == 0)),
-                () -> oneDrone.set(swarmState.get().swarm().get(0)),
+                () -> oneDrone.set(swarmState.get().swarm().getFirst()),
                 () -> assertEquals(0, oneDrone.get().jumpCounter(0)),
                 () -> assertThrowsExactly(SwarmException.class, () -> oneDrone.get().jumpCounter(1)),
                 () -> assertEquals(0, oneDrone.get().jumpCounter(2)),

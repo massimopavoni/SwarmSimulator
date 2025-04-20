@@ -48,7 +48,7 @@ class AbsorbTest {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
         Absorb d = new Absorb("lucky13");
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         oneDrone.radiate("lucky13");
         assertAll(
                 () -> assertDoesNotThrow(() -> d.execute(swarmState, oneDrone)),

@@ -41,7 +41,7 @@ class StopTest {
     void execute_stop() throws DomainParserException, StrategyParserException {
         SwarmState swarmState = TestUtils.getNewDefaultTestSwarmState(256,
                 ShapeType.CIRCLE, new double[]{0, 0, 20}, true);
-        Drone oneDrone = swarmState.swarm().get(0);
+        Drone oneDrone = swarmState.swarm().getFirst();
         Position start = new Position(-3, 6);
         oneDrone.setDirection(oneDrone.position().directionTo(start));
         oneDrone.setSpeed(oneDrone.position().distanceTo(start));

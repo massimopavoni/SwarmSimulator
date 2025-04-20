@@ -282,7 +282,7 @@ public final class GUIController implements Initializable {
                 new ExtensionFilter("All Files", "*.*"));
         spawnShapeChoiceBox.setItems(FXCollections.observableList(
                 Arrays.stream(ShapeType.values()).map(ShapeType::toString).toList()));
-        spawnShapeChoiceBox.setValue(spawnShapeChoiceBox.getItems().get(0));
+        spawnShapeChoiceBox.setValue(spawnShapeChoiceBox.getItems().getFirst());
     }
 
     /**
@@ -769,7 +769,7 @@ public final class GUIController implements Initializable {
     @FXML
     private void domainFileChooseButtonAction(ActionEvent event) {
         swarmFileChooser.setTitle("Choose swarm domain file");
-        swarmFileChooser.setSelectedExtensionFilter(swarmFileChooser.getExtensionFilters().get(0));
+        swarmFileChooser.setSelectedExtensionFilter(swarmFileChooser.getExtensionFilters().getFirst());
         domainFileProperty.setValue(swarmFileChooser.showOpenDialog(stage));
         event.consume();
     }
@@ -780,7 +780,7 @@ public final class GUIController implements Initializable {
     @FXML
     private void strategyFileChooseButtonAction(ActionEvent event) {
         swarmFileChooser.setTitle("Choose swarm strategy file");
-        swarmFileChooser.setSelectedExtensionFilter(swarmFileChooser.getExtensionFilters().get(0));
+        swarmFileChooser.setSelectedExtensionFilter(swarmFileChooser.getExtensionFilters().getFirst());
         strategyFileProperty.setValue(swarmFileChooser.showOpenDialog(stage));
         event.consume();
     }
@@ -899,7 +899,7 @@ public final class GUIController implements Initializable {
         domainFileProperty.setValue(null);
         strategyFileProperty.setValue(null);
         dronesNumberSpinner.getValueFactory().setValue(1);
-        spawnShapeChoiceBox.setValue(spawnShapeChoiceBox.getItems().get(0));
+        spawnShapeChoiceBox.setValue(spawnShapeChoiceBox.getItems().getFirst());
         shapeArgsTextArea.setText("");
         onBoundaryToggleSwitch.setSelected(false);
         disableSimulationView();

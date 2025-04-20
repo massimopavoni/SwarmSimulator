@@ -77,9 +77,9 @@ public final class Rectangle extends Polygon implements Shape {
      */
     @Override
     public boolean contains(Position p) {
-        return SwarmUtils.compare(p.x(), vertices.get(0).x()) >= 0 &&
+        return SwarmUtils.compare(p.x(), vertices.getFirst().x()) >= 0 &&
                 SwarmUtils.compare(p.x(), vertices.get(2).x()) <= 0 &&
-                SwarmUtils.compare(p.y(), vertices.get(0).y()) >= 0 &&
+                SwarmUtils.compare(p.y(), vertices.getFirst().y()) >= 0 &&
                 SwarmUtils.compare(p.y(), vertices.get(2).y()) <= 0;
     }
 
@@ -97,7 +97,7 @@ public final class Rectangle extends Polygon implements Shape {
                     .mapToObj(i -> getRandomPositionOnBoundary()).collect(toImmutableList()));
         else
             return SwarmUtils.parallelize(() -> IntStream.range(0, amount).parallel()
-                    .mapToObj(i -> Position.random(vertices.get(0), vertices.get(2)))
+                    .mapToObj(i -> Position.random(vertices.getFirst(), vertices.get(2)))
                     .collect(toImmutableList()));
     }
 
@@ -109,17 +109,17 @@ public final class Rectangle extends Polygon implements Shape {
     private Position getRandomPositionOnBoundary() {
         return switch (ThreadLocalRandom.current().nextInt(4)) {
             case 0 -> new Position(
-                    ThreadLocalRandom.current().nextDouble(vertices.get(0).x(), vertices.get(2).x()),
-                    vertices.get(0).y());
+                    ThreadLocalRandom.current().nextDouble(vertices.getFirst().x(), vertices.get(2).x()),
+                    vertices.getFirst().y());
             case 1 -> new Position(
                     vertices.get(2).x(),
-                    ThreadLocalRandom.current().nextDouble(vertices.get(0).y(), vertices.get(2).y()));
+                    ThreadLocalRandom.current().nextDouble(vertices.getFirst().y(), vertices.get(2).y()));
             case 2 -> new Position(
-                    ThreadLocalRandom.current().nextDouble(vertices.get(0).x(), vertices.get(2).x()),
+                    ThreadLocalRandom.current().nextDouble(vertices.getFirst().x(), vertices.get(2).x()),
                     vertices.get(2).y());
             case 3 -> new Position(
-                    vertices.get(0).x(),
-                    ThreadLocalRandom.current().nextDouble(vertices.get(0).y(), vertices.get(2).y()));
+                    vertices.getFirst().x(),
+                    ThreadLocalRandom.current().nextDouble(vertices.getFirst().y(), vertices.get(2).y()));
             default -> throw new ShapeException("Invalid random edge value");
         };
     }
